@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>regist form</title>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <style>
@@ -29,13 +31,6 @@ function w3_close() {
   document.getElementById("myOverlay").style.display = "none";
 }
 
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
-}
 </script>
 </head>
 <body>
@@ -82,7 +77,7 @@ function onClick(element) {
   <div class="w3-container" id="services" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-green"><b>회원 등록</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
-    <form action="memberRegist" method="post" th:object=${memberCommand}>
+    <form action="memberRegist" method="post" th:object="${memberCommand}">
     <table border=1>
     	<tr>
     		<th>회원 번호</th>
@@ -119,8 +114,8 @@ function onClick(element) {
     	<tr>
     		<th>성별</th>
     		<td>
-    			<input type="radio" name="gender" value="F" th:checked="${memberCommand.gender=='F'}" />여자 
-				<input type="radio" name="gender" value="M" th:checked="${memberCommand.gender=='M'}" />남자
+    			<input type="radio" name="memberGender" value="F" th:checked="${memberCommand.memberGender=='F'}" />여자 
+				<input type="radio" name="memberGender" value="M" th:checked="${memberCommand.memberGender=='M'}" />남자
 			</td>
     	</tr>
     	<tr>

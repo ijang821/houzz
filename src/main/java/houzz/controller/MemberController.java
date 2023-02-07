@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import houzz.command.MemberCommand;
+
 @Controller
 @RequestMapping("member")
 public class MemberController {
@@ -21,7 +23,7 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping(value = "memberRegist", method = RequestMethod.GET)
-	public String memberRegist() {
-		return "thmyeleaf/member/memberForm";
+	public String memberRegist(MemberCommand memberCommand) {
+		return "thymeleaf/member/memberForm";
 	}
 }

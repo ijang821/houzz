@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 	
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="houzz.mapper.MediationMapper">
+   <sql id="AutoNum">
+		select nvl(max(substr(MEDIATION_NUM,4)),100000) + 1 from member
+	</sql>
+
+	<insert id="mediationJoinService" parameterType="mediationDTO">
+		insert into mediation(MEDIATION_NUM,BUSINESS_REGI_NUM,
+		MEDIATION_ID,MEDIATION_PW,CEO_NAME,MEDIATION_NAME,
+		MEDIATION_ADDR,MEDIATION_PHONE,MEDIATION_EMAIL,ABLE_AD_COUNT)
+		values((<include refid="AutoNum"></include>)
+		,#{businessRegiNum},#{mediationId},#{mediatrionPw},#{ceoName},
+		#{mediationName},#{mediationAddr},#{mediationPhone},#{mediationEmail},#{ableAdCount})
+	</insert>
+
+
+</mapper>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="mediationJoinAction" method="post" name='frm' id="frm1">
+
+		<fieldset>
+			<legend>공인중개소 회원가입 정보</legend>
+			<table width='600' align='center' border='1'>
+				<caption>
+					<strong>공인 중개사 회원 가입</strong>
+				</caption>
+				<tfoot>
+					<tr>
+						<th colspan="2"><input type='submit' value='가입완료' id="submit" />&nbsp;&nbsp;
+							<input type='reset' value='다시 입력' />&nbsp;&nbsp; <input
+							type='button' value='가입 안함'
+							onclick="javascript:location.href='/'" /></th>
+					</tr>
+				</tfoot>
+				<tbody>
+					<tr>
+						<th colspan='2'>공인중개소 ID와 비밀번호 입력</th>
+					</tr>
+					<tr>
+						<th><label for="mediationId">* 공인중개소 아이디</label></th>
+						<td><input type='text' name="mediationId" id="mediationId"
+							size='15' maxlength='12' autofocus="autofocus" /></td>
+					</tr>
+					<tr>
+						<th><label for="mediatrionPw">비밀번호</label></th>
+						<td><input type='password' name='mediatrionPw' id="mediatrionPw"
+							size='15' maxlength='12' /></td>
+					</tr>
+					<tr>
+						<th><label for="memberPwCon">비밀번호 확인</label></th>
+						<td><input type='password' name='mediatrionPwCon'
+							id="mediatrionPwCon" size='15' maxlength='12' /></td>
+					</tr>
+					<tr>
+						<th colspan='2'>공인중개소 기본 정보</th>
+					</tr>
+					<tr>
+						<th><label for="mediationName">사업자 상호</label></th>
+						<td><input type='text' name='mediationName' id="mediationName"
+							size='15' maxlength='12' /></td>
+					</tr>
+					<tr>
+						<th><label for="businessRegiNum">사업자 대표명</label></th>
+						<td><input type='text' name='businessRegiNum' id="businessRegiNum"
+							/></td>
+					</tr>
+					<tr>
+						<th><label for='mediationNum'>중개 등록 번호</label></th>
+						<td><input type='text' name='mediationNum' id="mediationNum" />
+					</tr>
+					<tr>
+						<th colspan='2'>연락처</th>
+					</tr>
+					<tr>
+						<th><label for='mediationEmail'>이메일</label></th>
+						<td><input type='email' name='mediationEmail' id="mediationEmail" />
+
+						</td>
+					</tr>
+					<tr>
+						<th><label for="mediationAddr">소재지</label></th>
+						<td><input type='text' name='mediationAddr' id="mediationAddr" />
+
+						</td>
+					</tr>
+					<tr>
+						<th><label for="mediationPhone">전화 번호</label></th>
+						<td><input type='tel' size='26' maxlength='13'
+							name="mediationPhone" id="mediationPhone" placeholder='123-123-1234' />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>
+	</form>
+</body>
+</html>

@@ -6,6 +6,6 @@ import houzz.domain.MediationDTO;
 
 @Repository("houzz.mapper.MediationMapper")
 public interface MediationMapper {
-	public Integer mediationJoinService(MediationDTO dto);
+	public Integer mediationJoinInsert(MediationDTO dto);
 	
 	}

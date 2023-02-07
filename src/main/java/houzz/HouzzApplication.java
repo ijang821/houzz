@@ -1,5 +1,6 @@
 package houzz;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @SpringBootApplication
 @Controller
+@MapperScan(value = {"houzz"})
 public class HouzzApplication {
 
 	public static void main(String[] args) {

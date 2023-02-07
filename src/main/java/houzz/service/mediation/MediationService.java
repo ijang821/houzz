@@ -23,7 +23,7 @@ public class MediationService {
 		dto.setMediationPhone(mediationCommand.getMediationPhone());
 		dto.setAbleAdCount(mediationCommand.getAbleAdCount());
 		dto.setMediationNum(mediationCommand.getMediationNum());
-		Integer i = mediationMapper.mediationJoinService(dto);
+		Integer i = mediationMapper.mediationJoinInsert(dto);
 		System.out.println(i +"개가 삽입되었습니다.");
 		return i;
 	}

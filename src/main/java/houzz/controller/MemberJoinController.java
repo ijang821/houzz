@@ -1,5 +1,6 @@
 package houzz.controller;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("register")
+
 public class MemberJoinController {
 	@RequestMapping("agree")
 	public String agree1() {

@@ -115,7 +115,7 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
-		<!-- oracle -->
+		<!-- oracle 7버젼에서 6으로 바꿈--> 
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>

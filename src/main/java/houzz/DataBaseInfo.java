@@ -18,8 +18,8 @@ public class DataBaseInfo {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
 		//sessionFactory.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
-		sessionFactory.setMapperLocations(
-				applicationContext.getResources("classpath:mappers/**/*Mapper.xml"));
+		//sessionFactory.setMapperLocations(
+		//applicationContext.getResources("classpath:mappers/**/*Mapper.xml"));
 		sessionFactory.setTypeAliasesPackage("houzz.domain");
 		
 		return sessionFactory.getObject();

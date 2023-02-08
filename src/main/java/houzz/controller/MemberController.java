@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import houzz.command.MemberCommand;
 import houzz.service.member.MemberNumService;
+import houzz.service.member.MemberRegistService;
 
 @Controller
 @RequestMapping("member")
@@ -31,9 +32,11 @@ public class MemberController {
 		memberNumService.execute(memberCommand);
 		return "thymeleaf/member/memberForm";
 	}
-	
+	@Autowired
+	MemberRegistService memberRegistService;
 	@RequestMapping(value = "memberRegist", method = RequestMethod.POST)
-	public String memberRegist() {
+	public String memberWrite(MemberCommand memberCommand) {
+		Integer i = memberRegistService.execute(memberCommand);
 		return "redirect:memberList";
 	}
 }

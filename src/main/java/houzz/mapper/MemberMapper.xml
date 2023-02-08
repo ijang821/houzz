@@ -11,7 +11,7 @@
 	insert into member(MEMBER_NUM, MEMBER_NAME, MEMBER_ID, MEMBER_PW, MEMBER_PHONE, MEMBER_EMAIL, MEMBER_ADDR, MEMBER_GENDER, 
 						MEMBER_BIRTH, MEMBER_JOIN_DATE, MEMBER_JOIN_CK, ACCOUNT_ADDRESS)
 	values(#{memberNum}, #{memberName}, #{memberId}, #{memberPw}, #{memberPhone}, #{memberEmail}, #{memberAddr}, #{memberGender},
-			#{memberBirth}, sysdate, #{memberJoinCk}, #{accountAddress})
+			#{memberBirth}, sysdate, 'N', #{accountAddress})
 </insert>
 
 

@@ -8,10 +8,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import houzz.command.MemberCommand;
 import houzz.service.member.MemberDetailService;
 import houzz.service.member.MemberListController;
+import houzz.service.member.MemberModifyService;
 import houzz.service.member.MemberNumService;
 import houzz.service.member.MemberRegistService;
 
@@ -43,6 +45,9 @@ public class MemberController {
 	}
 	/**
 	 * 회원 등록
+	 * @param memberCommand
+	 * @param result
+	 * @return
 	 */
 	@Autowired
 	MemberRegistService memberRegistService;
@@ -62,6 +67,13 @@ public class MemberController {
 		}
 		else return "thymeleaf/member/memberForm";
 	}
+	
+	/**
+	 * 회원 정보 상세보기
+	 * @param memberNum
+	 * @param model
+	 * @return
+	 */
 	@Autowired
 	MemberDetailService memberDetailService;
 	@RequestMapping(value = "memberDetail/{memberNum}")
@@ -69,4 +81,33 @@ public class MemberController {
 		memberDetailService.execute(memberNum, model);
 		return "thymeleaf/member/memberDetail";
 	}
+	/**
+	 * 회원 정보 수정 페이지
+	 * @param memberNum
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "memberModify", method = RequestMethod.GET)
+	public String memberModify(@RequestParam(value = "memberNum")String memberNum, Model model) {
+		memberDetailService.execute(memberNum, model);
+		return "thymeleaf/member/memberUpdate";
+	}
+	/**
+	 * 회원 정보 수정
+	 * @param memberCommand
+	 * @param result
+	 * @return
+	 */
+	@Autowired
+	MemberModifyService memberModifyService;
+	@RequestMapping(value = "memberModify", method = RequestMethod.POST)
+	public String memberModify(@Validated MemberCommand memberCommand, BindingResult result) {
+		if(result.hasErrors()) {
+			return "thymeleaf/member/memberUpdate";
+		}
+		memberModifyService.execute(memberCommand);
+		return "redirect:memberDetail/"+memberCommand.getMemberNum();
+	}
+	
+	
 }

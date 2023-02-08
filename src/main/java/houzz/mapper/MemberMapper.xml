@@ -23,12 +23,19 @@ MEMBER_BIRTH , MEMBER_JOIN_DATE , MEMBER_JOIN_CK , ACCOUNT_ADDRESS
 <insert id="memberInsert" parameterType="memberDTO">
 	insert into member(<include refid="insertBase" />)
 	values(#{memberNum}, #{memberName}, #{memberId}, #{memberPw}, #{memberPhone}, #{memberEmail}, #{memberAddr}, #{memberGender},
-			#{memberBirth}, sysdate, 'N', #{accountAddress})
+			#{memberBirth}, sysdate, 'N', '')
 </insert>
 
 <select id="selectAll" resultType="memberDTO" parameterType="string">
 	select <include refid="memberBase" />
 	from member
+	<where>
+		<if test="memberWord != null">
+			member_num like '%'||#{memberWord}||'%' 
+ 			or member_name like '%'||#{memberWord}||'%'
+ 			or member_id like '%'||#{memberWord}||'%'
+		</if>
+	</where>
 </select>
 
 <select id="selectOne" resultType="memberDTO" parameterType="string">
@@ -40,7 +47,20 @@ MEMBER_BIRTH , MEMBER_JOIN_DATE , MEMBER_JOIN_CK , ACCOUNT_ADDRESS
 <update id="memberUpdate" parameterType="memberDTO">
 	update member
 	set member_name = #{memberName}, member_id = #{memberId}, member_addr = #{memberAddr}, member_email = #{memberEmail},
-	member_phone = #{memberPhone}, account_address = #{accountAddress}
+	member_phone = #{memberPhone}, account_address = ''
 	where member_num = #{memberNum}
 </update>
+
+<delete id="memberDelete" parameterType="string">
+	delete from member
+	where member_Num = #{memberNum}
+</delete>
+
+<delete id="membersRemove" parameterType="hashMap">
+	delete from member
+	where member_Num in 
+	<foreach collection="memberNums" item="memberNum" index="index" open="(" close=")" separator=",">
+		#{memberNum}
+	</foreach>
+</delete>
 </mapper>

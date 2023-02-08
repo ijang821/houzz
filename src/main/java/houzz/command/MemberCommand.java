@@ -38,6 +38,7 @@ public class MemberCommand {
 	Date memberBirth;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date memberJoinDate;
+	
 	String accountAddress;
 	String memberJoinCk;
 	

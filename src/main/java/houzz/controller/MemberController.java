@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import houzz.command.MemberCommand;
+import houzz.service.member.MemberDeleteService;
+import houzz.service.member.MemberDelsService;
 import houzz.service.member.MemberDetailService;
 import houzz.service.member.MemberListController;
 import houzz.service.member.MemberModifyService;
@@ -27,8 +29,8 @@ public class MemberController {
 	@Autowired
 	MemberListController memberListController;
 	@RequestMapping("memberList")
-	public String memberList(Model model) {
-		memberListController.execute(model);
+	public String memberList(@RequestParam(value = "memberWord" ,required = false ) String memberWord, Model model) {
+		memberListController.execute(memberWord, model);
 		return "thymeleaf/member/memberList";
 	}
 	
@@ -108,6 +110,31 @@ public class MemberController {
 		memberModifyService.execute(memberCommand);
 		return "redirect:memberDetail/"+memberCommand.getMemberNum();
 	}
-	
-	
+	/**
+	 * 회원 정보 삭제
+	 * @param memberNum
+	 * @return
+	 */
+	@Autowired
+	MemberDeleteService memberDeleteService;
+	@RequestMapping("memberDelete")
+	public String memberDelete(@RequestParam("memberNum")String memberNum) {
+		Integer i = memberDeleteService.execute(memberNum);
+		if(i==0) {
+			return "redirect:memberDetail/"+memberNum;
+		}
+		return "redirect:memberList";
+	}
+	/**
+	 * 회원 선택 삭제
+	 * @param memDels
+	 * @return
+	 */
+	@Autowired
+	MemberDelsService memberDelsService;
+	@RequestMapping("memberDels")
+	public String memberDels(@RequestParam("memDels")String memDels[]) {
+		memberDelsService.execute(memDels);
+		return "redirect:memberList";
+	}
 }

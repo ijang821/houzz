@@ -17,7 +17,6 @@ public class MemberRegistService {
 	Integer i;
 	public Integer execute(MemberCommand memberCommand) {
 		MemberDTO memDTO = new MemberDTO();
-		memDTO.setAccountAddress(memberCommand.getAccountAddress());
 		memDTO.setMemberAddr(memberCommand.getMemberAddr());
 		memDTO.setMemberBirth(memberCommand.getMemberBirth());
 		memDTO.setMemberEmail(memberCommand.getMemberEmail());

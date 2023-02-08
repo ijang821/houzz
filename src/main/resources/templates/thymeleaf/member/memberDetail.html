@@ -16,6 +16,9 @@ body {font-size:16px;}
     font-weight: normal;
     font-style: normal;
 }
+a {
+	text-decoration-line:none;
+}
 </style>
 <script>
 // Script to open and close sidebar
@@ -27,14 +30,6 @@ function w3_open() {
 function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
   document.getElementById("myOverlay").style.display = "none";
-}
-
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
 }
 </script>
 </head>
@@ -71,50 +66,84 @@ function onClick(element) {
   <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
     <h1 class="w3-jumbo"><b>HOUZZ</b></h1>
-    <h1 class="w3-xxxlarge w3-text-green"><b>Members Of Houzz</b></h1>
+    <h1 class="w3-xxxlarge w3-text-green"><b>[[${memberCommand.memberName}]] Houzz Member</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
-    <form action="memberDels" method="post">
-	<table border="1">
-		<tr>
-			<td>번호</td>
-			<td>이름</td>
-			<td>아이디</td>
-			<td>생일</td>
-			<td><input type="submit" value="삭제"></td>
-		</tr>
-		<tr th:each="memberDTO : ${list}">
-			<td>
-				<a th:href="|memberDetail/${memberDTO.memberNum}|">[[${memberDTO.memberNum}]]</a>
+    <form action="memberRegist" method="post" th:object="${memberCommand}">
+    <table border=1>
+    	<tr>
+    		<th>회원 번호</th>
+    		<td>
+    			[[${memberCommand.memberNum}]]
+    		</td>
+    	</tr>
+    	<tr>
+    		<th>등록일</th>
+    		<td>
+    			<span th:text="${#dates.format(memberCommand.memberJoinDate,'yyyy-MM-dd')}"></span>
+    		</td>
+    	</tr>
+    	<tr>
+    		<th>이름</th>
+    		<td>
+    			[[${memberCommand.memberName}]]
+    		</td>
+    	</tr>
+    	<tr>
+    		<th>ID</th>
+    		<td>
+    			[[${memberCommand.memberId}]]
+    		</td>
+    	</tr>
+    	<tr>
+    		<th>연락처</th>
+    		<td>
+    			[[${memberCommand.memberPhone}]]
+    		</td>
+    	</tr>
+    	<tr>
+    		<th>이메일</th>
+    		<td>
+    			[[${memberCommand.memberEmail}]]
 			</td>
-			<td>
-				[[${memberDTO.memberName} ]]
+    	</tr>
+    	<tr>
+    		<th>주소</th>
+    		<td>
+    			[[${memberCommand.memberAddr}]]
+    		</td>
+    	</tr>
+    	<tr>
+    		<th>성별</th>
+    		<td>
+    			<span th:if="${memberCommand.memberGender == 'M'}" th:text="남자"></span> 
+				<span th:if="${memberCommand.memberGender == 'F'}" th:text="여자"></span>
 			</td>
-			<td>
-				[[${memberDTO.memberId}]]
-			</td>
-			<td>
-				<span th:text="${#dates.format(memberDTO.memberBirth,'yyyy-MM-dd')}"></span>
-			</td>
-			<td>
-				<input type="checkbox" name="memDels" th:value="${memberDTO.memberNum}">
-			</td>
-		</tr>
-	</table>
-	</form>
+    	</tr>
+    	<tr>
+    		<th>생년월일</th>
+    		<td>
+    			<span th:text="${#dates.format(memberCommand.memberBirth,'yyyy-MM-dd')}"></span>
+    		</td>
+    	</tr>
+    	<tr>
+    		<th>지갑주소</th>
+    		<td>
+    			[[${memberCommand.accountAddress}]]
+    		</td>
+    	</tr>
+    	<tr>
+    		<td>
+				<a th:href="|../memberModify?memberNum=${memberCommand.memberNum}|">회원 수정</a>
+				<span> | </span>
+				<a th:href="|../memberDelete?memberNum=${memberCommand.memberNum}|">회원 삭제</a>
+				<span> | </span>
+				<a href="javascript:history.back()">뒤로 가기</a>
+    		</td>
+    	</tr>
+    </table>
+    </form>
   </div>
   
-
-
-  <!-- MemberRegist -->
-  <div class="w3-container" id="services" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-green"><b>회원 등록</b></h1>
-    <hr style="width:50px;border:5px solid green" class="w3-round">
-    <p>
-    <a href="memberRegist">회원등록(REGISTER TO HOUZZ)</a>
-    </p>
-  </div>
-
-
 <!-- End page content -->
 </div>
 

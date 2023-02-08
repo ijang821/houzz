@@ -3,16 +3,31 @@
 	"-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="houzz.mapper.MemberMapper">
+<sql id="memberBase">
+MEMBER_NUM memberNum, MEMBER_NAME memberName, MEMBER_ID memberId, MEMBER_PW memberPw, MEMBER_PHONE memberPhone, MEMBER_EMAIL memberEmail, 
+MEMBER_ADDR memberAddr, MEMBER_GENDER memberGender, 
+MEMBER_BIRTH memberBirth, MEMBER_JOIN_DATE memberJoinDate, MEMBER_JOIN_CK memberJoinCk, ACCOUNT_ADDRESS accountAddress
+</sql>
+
 <select id="memberNumGenerate" resultType="string">
 	select concat('mem',nvl(max(substr(member_num,4)),100000)+ 1) 
 	from member
 </select>	
+
 <insert id="memberInsert" parameterType="memberDTO">
-	insert into member(MEMBER_NUM, MEMBER_NAME, MEMBER_ID, MEMBER_PW, MEMBER_PHONE, MEMBER_EMAIL, MEMBER_ADDR, MEMBER_GENDER, 
-						MEMBER_BIRTH, MEMBER_JOIN_DATE, MEMBER_JOIN_CK, ACCOUNT_ADDRESS)
+	insert into member(<include refid="memberBase" />)
 	values(#{memberNum}, #{memberName}, #{memberId}, #{memberPw}, #{memberPhone}, #{memberEmail}, #{memberAddr}, #{memberGender},
 			#{memberBirth}, sysdate, 'N', #{accountAddress})
 </insert>
 
+<select id="selectAll" resultType="memberDTO" parameterType="string">
+	select <include refid="memberBase" />
+	from member
+</select>
 
+<select id="selectOne" resultType="memberDTO" parameterType="string">
+	select <include refid="memberBase" />
+	from member
+	where member_num = #{memberNum}
+</select>
 </mapper>

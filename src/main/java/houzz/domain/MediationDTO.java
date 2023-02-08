@@ -10,7 +10,7 @@ public class MediationDTO {
 	String mediationNum;
 	String businessRegiNum;
 	String mediationId;
-	String mediatrionPw;
+	String mediationPw;
 	String ceoName;
 	String mediationName;
 	String mediationAddr;

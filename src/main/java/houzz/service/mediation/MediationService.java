@@ -3,6 +3,7 @@ package houzz.service.mediation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 import houzz.command.MediationCommand;
 import houzz.domain.MediationDTO;
@@ -16,7 +17,7 @@ public class MediationService {
 	public Integer execute(MediationCommand mediationCommand, Model model) {
 		MediationDTO dto = new MediationDTO();
 		dto.setMediationId(mediationCommand.getMediationId());
-		dto.setMediatrionPw(mediationCommand.getMediatrionPw());
+		dto.setMediationPw(mediationCommand.getMediationPw());
 		dto.setBusinessRegiNum(mediationCommand.getBusinessRegiNum());
 		dto.setCeoName(mediationCommand.getCeoName());
 		dto.setMediationAddr(mediationCommand.getMediationAddr());

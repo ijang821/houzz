@@ -19,6 +19,8 @@ public class MemberCommand {
 	String memberGender;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date memberBirth;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	Date memberJoinDate;
 	String accountAddress;
 	
 }

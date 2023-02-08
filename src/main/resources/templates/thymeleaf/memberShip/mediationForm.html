@@ -6,7 +6,7 @@
 </head>
 <body>
 	<form action="mediationJoinAction" method="post">
-
+    <input type="hidden" name="ableAdCount" value="0">
 		<fieldset>
 			<legend>공인중개소 회원가입 정보</legend>
 			<table width='600' align='center' border='1'>
@@ -52,6 +52,11 @@
 						<th><label for="businessRegiNum">사업자 대표명</label></th>
 						<td><input type='text' name='businessRegiNum' id="businessRegiNum"
 							/></td>
+					</tr>
+					<tr>
+						<th><label for="ceoName">중개소 이름</label></th>
+						<td><input type='text' name='ceoName' id="ceoName"
+							size='15' maxlength='12' /></td>
 					</tr>
 					<tr>
 						<th><label for='mediationNum'>중개 등록 번호</label></th>

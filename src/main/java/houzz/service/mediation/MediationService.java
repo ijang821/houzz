@@ -2,6 +2,7 @@ package houzz.service.mediation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import houzz.command.MediationCommand;
 import houzz.domain.MediationDTO;
@@ -11,7 +12,7 @@ import houzz.mapper.MediationMapper;
 public class MediationService {
 	@Autowired
 	MediationMapper mediationMapper;
-	public Integer execute(MediationCommand mediationCommand) {
+	public Integer execute(MediationCommand mediationCommand, Model model) {
 		MediationDTO dto = new MediationDTO();
 		dto.setMediationId(mediationCommand.getMediationId());
 		dto.setMediatrionPw(mediationCommand.getMediatrionPw());
@@ -23,6 +24,7 @@ public class MediationService {
 		dto.setMediationPhone(mediationCommand.getMediationPhone());
 		dto.setAbleAdCount(mediationCommand.getAbleAdCount());
 		dto.setMediationNum(mediationCommand.getMediationNum());
+		model.addAttribute("mediationName",dto.getMediationName());
 		Integer i = mediationMapper.mediationJoinInsert(dto);
 		System.out.println(i +"개가 삽입되었습니다.");
 		return i;

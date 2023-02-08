@@ -12,4 +12,5 @@ public interface MemberMapper {
 	public Integer memberInsert(MemberDTO memDTO);
 	public List<MemberDTO> selectAll();
 	public MemberDTO selectOne(String memberNum);
+	
 }

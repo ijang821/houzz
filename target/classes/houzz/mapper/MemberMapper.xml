@@ -17,7 +17,7 @@ MEMBER_BIRTH memberBirth, MEMBER_JOIN_DATE memberJoinDate, MEMBER_JOIN_CK member
 <insert id="memberInsert" parameterType="memberDTO">
 	insert into member(<include refid="memberBase" />)
 	values(#{memberNum}, #{memberName}, #{memberId}, #{memberPw}, #{memberPhone}, #{memberEmail}, #{memberAddr}, #{memberGender},
-			#{memberBirth}, sysdate, 'N', #{accountAddress})
+		   #{memberBirth}, sysdate, 'N', #{accountAddress})
 </insert>
 
 <select id="selectAll" resultType="memberDTO" parameterType="string">
@@ -30,4 +30,6 @@ MEMBER_BIRTH memberBirth, MEMBER_JOIN_DATE memberJoinDate, MEMBER_JOIN_CK member
 	from member
 	where member_num = #{memberNum}
 </select>
+
+
 </mapper>

@@ -81,53 +81,87 @@ function w3_close() {
     <table border=1>
     	<tr>
     		<th>회원 번호</th>
-    		<td><input type="text" name="memberNum" th:value="${memberCommand.memberNum}"></td>
+    		<td>
+    			<input type="text" name="memberNum" th:value="${memberCommand.memberNum}">
+    		</td>
     	</tr>
     	<tr>
     		<th>이름</th>
-    		<td><input type="text" name="memberName" th:value="${memberCommand.memberName}"></td>
+    		<td>
+    			<input type="text" name="memberName" th:value="${memberCommand.memberName}">
+    			<span style="color:red" th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}"></span>
+    		</td>
     	</tr>
     	<tr>
     		<th>ID</th>
-    		<td><input type="text" name="memberId" th:value="${memberCommand.memberId}"></td>
+    		<td>
+    			<input type="text" name="memberId" th:value="${memberCommand.memberId}">
+    			<span id="idCheck"></span>
+				<span style="color:red" th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}"></span>
+    		</td>
     	</tr>
     	<tr>
     		<th>PW</th>
-    		<td><input type="password" name="memberPw" th:value="${memberCommand.memberPw}"></td>
+    		<td>
+    			<input type="password" name="memberPw" th:value="${memberCommand.memberPw}">
+    			<span style="color:red" th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}"></span>
+    		</td>
     	</tr>
     	<tr>
     		<th>PW Check</th>
-    		<td><input type="password" name="memberPwCon" th:value="${memberCommand.memberPwCon}"></td>
+    		<td>
+    			<input type="password" name="memberPwCon" th:value="${memberCommand.memberPwCon}">
+    			<span style="color:red" th:if="${#fields.hasErrors('memberPwCon')}" th:errors="*{memberPwCon}"></span>
+    		</td>
     	</tr>
     	<tr>
     		<th>연락처</th>
-    		<td><input type="tel" name="memberPhone" th:value="${memberCommand.memberPhone}"></td>
+    		<td>
+    			<input type="tel" name="memberPhone" th:value="${memberCommand.memberPhone}">
+    			<span style="color:red" th:if="${#fields.hasErrors('memberPhone')}" th:errors="*{memberPhone}"></span>
+    		</td>
     	</tr>
     	<tr>
     		<th>이메일</th>
-    		<td><input type="email" name="memberEmail" th:value="${memberCommand.memberEmail}"></td>
+    		<td>
+    			<input type="email" name="memberEmail" th:value="${memberCommand.memberEmail}">
+    			<span id="emailCk"></span>
+				<span style="color:red" th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}"></span>
+			</td>
     	</tr>
     	<tr>
     		<th>주소</th>
-    		<td><input type="text" name="memberAddr" th:value="${memberCommand.memberAddr}"></td>
+    		<td>
+    			<input type="text" name="memberAddr" th:value="${memberCommand.memberAddr}">
+    			<span style="color:red" th:if="${#fields.hasErrors('memberAddr')}" th:errors="*{memberAddr}"></span>
+    		</td>
     	</tr>
     	<tr>
     		<th>성별</th>
     		<td>
     			<input type="radio" name="memberGender" value="F" th:checked="${memberCommand.memberGender=='F'}" />여자 
 				<input type="radio" name="memberGender" value="M" th:checked="${memberCommand.memberGender=='M'}" />남자
+				<span style="color:red" th:if="${#fields.hasErrors('memberGender')}" th:errors="*{memberGender}"></span>
 			</td>
     	</tr>
     	<tr>
     		<th>생년월일</th>
-    		<td><input type="date" name="memberBirth" th:value="${memberCommand.memberBirth}"></td>
+    		<td>
+    			<input type="date" name="memberBirth" th:value="${memberCommand.memberBirth}">
+    			<span style="color:red" th:if="${#fields.hasErrors('memberBirth')}" th:errors="*{memberBirth}"></span>
+    		</td>
     	</tr>
     	<tr>
     		<th>지갑주소</th>
-    		<td><input type="text" name="accountAddress" th:value="${memberCommand.accountAddress}"></td>
+    		<td>
+    			<input type="text" name="accountAddress" th:value="${memberCommand.accountAddress}">
+    			<span style="color:red" th:if="${#fields.hasErrors('accountAddress')}" th:errors="*{accountAddress}"></span>
+    		</td>
     	</tr>
     	<tr>
-    		<input type="submit" value="REGISTER"/>
+    		<td>
+    			<input type="submit" value="REGISTER"/>
+    		</td>
     	</tr>
     </table>
     </form>

@@ -15,9 +15,14 @@ import houzz.service.mediation.MediationService;
 public class MediationController {
 	@Autowired
 	MediationService mediationService;
+	/**
+	 * 공인중개소 등록
+	 * 
+	 */
 	@RequestMapping(value = "mediationJoinAction", method = RequestMethod.POST)
 	public String mediationJoinAction(MediationCommand mediationCommand, Model model) {
 		mediationService.execute(mediationCommand,model);
 		return "thymeleaf/memberShip/welcome2";
 	}
+
 }

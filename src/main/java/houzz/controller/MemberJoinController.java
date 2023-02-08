@@ -33,4 +33,9 @@ public class MemberJoinController {
 	public String regist1() {
 		return "thymeleaf/membership/mediationForm";
 	}
+	@RequestMapping(value = "memberJoinAction", method = RequestMethod.POST)
+	public String memberJoinAction(
+			@RequestParam(value = "memberName")String memberName) {
+		return "thymeleaf/membership/welcome";
+	}
 }

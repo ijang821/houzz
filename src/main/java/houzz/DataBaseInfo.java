@@ -19,9 +19,8 @@ public class DataBaseInfo {
 		sessionFactory.setDataSource(dataSource);
 		//sessionFactory.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
 		//sessionFactory.setMapperLocations(
-		//		applicationContext.getResources("classpath:mappers/**/*Mapper.xml"));
+		//applicationContext.getResources("classpath:mappers/**/*Mapper.xml"));	
 		sessionFactory.setTypeAliasesPackage("houzz.domain");
-		
 		return sessionFactory.getObject();
 	}
 	 //마이바티스를 class파일과 연동을 할 때 필요, interface를 사용하는 경우엔 필요없음

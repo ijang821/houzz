@@ -10,6 +10,9 @@ body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
 .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
 .w3-half img:hover{opacity:1}
+a{
+	text-decoration-line : none;
+}
 </style>
 <script>
 // Script to open and close sidebar
@@ -39,8 +42,10 @@ function onClick(element) {
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
   <div class="w3-container">
     <h3 class="w3-padding-64"><b>HOUZZ</b></h3> 
+     
   </div>
   <div class="w3-bar-block">
+    <a href="login" class="w3-bar-item w3-button w3-hover-white">HOUZZ 로그인</a>
     <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
     <a href="#showcase" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Showcase</a> 
     <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Services</a> 
@@ -72,7 +77,7 @@ function onClick(element) {
     <div class="w3-half w3-margin-bottom">
       <ul class="w3-ul w3-light-grey w3-center">
         <li class="w3-dark-grey w3-xlarge w3-padding-32">Basic</li>
-        <li><a href="login">로그인 하기</a></li>
+       
         <li class="w3-padding-16"><a href="/">HOME</a></li>
         <li class="w3-padding-16"><a href="/member/memberList">회원 관리</a></li>
         <li class="w3-padding-16"><a href="/employee/empList">직원 관리</a></li>

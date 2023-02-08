@@ -12,6 +12,7 @@ import houzz.mapper.MediationMapper;
 public class MediationService {
 	@Autowired
 	MediationMapper mediationMapper;
+
 	public Integer execute(MediationCommand mediationCommand, Model model) {
 		MediationDTO dto = new MediationDTO();
 		dto.setMediationId(mediationCommand.getMediationId());
@@ -24,7 +25,7 @@ public class MediationService {
 		dto.setMediationPhone(mediationCommand.getMediationPhone());
 		dto.setAbleAdCount(mediationCommand.getAbleAdCount());
 		dto.setMediationNum(mediationCommand.getMediationNum());
-		model.addAttribute("mediationName",dto.getMediationName());
+		model.addAttribute("MediationName",dto.getMediationName());
 		Integer i = mediationMapper.mediationJoinInsert(dto);
 		System.out.println(i +"개가 삽입되었습니다.");
 		return i;

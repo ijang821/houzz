@@ -21,6 +21,8 @@ public class MemberModifyService {
 		memDTO.setMemberName(memberCommand.getMemberName());
 		memDTO.setMemberPhone(memberCommand.getMemberPhone());
 		memDTO.setMemberBirth(memberCommand.getMemberBirth());
+		memDTO.setMemberId(memberCommand.getMemberId());
+		memDTO.setMemberNum(memberCommand.getMemberNum());
 		memberMapper.memberUpdate(memDTO);
 	}
 }

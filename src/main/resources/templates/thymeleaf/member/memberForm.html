@@ -78,6 +78,7 @@ function w3_close() {
     <h1 class="w3-xxxlarge w3-text-green"><b>회원 등록</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
     <form action="memberRegist" method="post" th:object="${memberCommand}">
+
     <table border=1>
     	<tr>
     		<th>회원 번호</th>
@@ -147,7 +148,7 @@ function w3_close() {
     	<tr>
     		<th>생년월일</th>
     		<td>
-    			<input type="date" name="memberBirth" th:value="${memberCommand.memberBirth}">
+    			<input type="date" name="memberBirth" th:value="${#dates.format(memberCommand.memberBirth,'yyyy-MM-dd')}">
     			<span style="color:red" th:if="${#fields.hasErrors('memberBirth')}" th:errors="*{memberBirth}"></span>
     		</td>
     	</tr>

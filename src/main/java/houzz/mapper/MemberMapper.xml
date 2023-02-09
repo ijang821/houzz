@@ -9,6 +9,7 @@ MEMBER_ADDR memberAddr, MEMBER_GENDER memberGender,
 MEMBER_BIRTH memberBirth, MEMBER_JOIN_DATE memberJoinDate, MEMBER_JOIN_CK memberJoinCk, ACCOUNT_ADDRESS accountAddress
 </sql>
 
+
 <select id="memberNumGenerate" resultType="string">
 	select concat('mem',nvl(max(substr(member_num,4)),100000)+ 1) 
 	from member
@@ -31,5 +32,11 @@ MEMBER_BIRTH memberBirth, MEMBER_JOIN_DATE memberJoinDate, MEMBER_JOIN_CK member
 	where member_num = #{memberNum}
 </select>
 
+<update id="memberUpdate" parameterType="memberDTO">
+	update member
+	set member_name = #{memberName}, member_id = #{memberId}, member_addr = #{memberAddr}, member_email = #{memberEmail},
+	member_phone = #{memberPhone}, account_address = #{accountAddress}
+	where member_num = #{memberNum}
+</update>
 
 </mapper>

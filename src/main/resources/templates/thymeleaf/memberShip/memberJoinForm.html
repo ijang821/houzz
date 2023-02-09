@@ -106,14 +106,14 @@ body {
 		</div>
 
 		<!-- MemberRegist -->
-		<div class="w3-container" id="services" style="margin-top: 75px">
-			<form action="memberJoinAction" method="post" th:object="${memberCommand}">
-				<input type="hidden" name="memberNum" value="123456789">
-				<input type="hidden" name="memberJoinDate" value="1999-12-30" >
-				<span
+		<div class="w3-container" id="services" style="margin-top: 50px">
+			<form action="memberJoinAction" method="post"
+				th:object="${memberCommand}">
+				<input type="hidden" name="memberNum" value="123456789"> <input
+					type="hidden" name="memberJoinDate" value="1999-12-30"> <span
 					style="color: red" th:if="${#fields.hasErrors('memberJoinDate')}"
-					th:errors="*{memberJoinDate}"></span>
-				<input type="hidden" name="accountAddress" value="abcd"> <span
+					th:errors="*{memberJoinDate}"></span> <input type="hidden"
+					name="accountAddress" value="abcd"> <span
 					style="color: red" th:if="${#fields.hasErrors('accountAddress')}"
 					th:errors="*{accountAddress}"></span>
 				<table width='600' align='center' border='1'>
@@ -133,20 +133,16 @@ body {
 							<th><label for="memberId">* 사용자 아이디</label></th>
 							<td><input type='text' name="memberId" id="memberId"
 								size='15' maxlength='12' autofocus="autofocus"
-								th:value="${memberCommand.memberId}"/> <span
-								style="
-								color: red" th:if="${#fields.hasErrors('memberId')}"
-								th:errors="*{memberId}"></span></td>
+								th:value="${memberCommand.memberId}" /> <span style="color: red"
+								th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}"></span></td>
 
 
 						</tr>
 						<tr>
 							<th><label for="memberPw">비밀번호</label></th>
 							<td><input type='password' name='memberPw' id="memberPw"
-								size='15' maxlength='12'
-								th:value="${memberCommand.memberPw}"/><span style=" color:
-								red"
-								th:if="${#fields.hasErrors('memberPw')}"
+								size='15' maxlength='12' th:value="${memberCommand.memberPw}" /><span
+								style="color: red" th:if="${#fields.hasErrors('memberPw')}"
 								th:errors="*{memberPw}"></span></td>
 
 						</tr>
@@ -154,9 +150,8 @@ body {
 							<th><label for="memberPwCon">비밀번호 확인</label></th>
 							<td><input type='password' name='memberPwCon'
 								id="memberPwCon" size='15' maxlength='12'
-								th:value="${memberCommand.memberPwCon}"/><span
-								style="
-								color: red" th:if="${#fields.hasErrors('memberPwCon')}"
+								th:value="${memberCommand.memberPwCon}" /><span
+								style="color: red" th:if="${#fields.hasErrors('memberPwCon')}"
 								th:errors="*{memberPwCon}"></span></td>
 
 						</tr>
@@ -166,10 +161,8 @@ body {
 						<tr>
 							<th><label for="memberName">사용자 이름</label></th>
 							<td><input type='text' name='memberName' id="memberName"
-								size='15' maxlength='12'
-								th:value="${memberCommand.memberName}"/><span style=" color:
-								red"
-								th:if="${#fields.hasErrors('memberName')}"
+								size='15' maxlength='12' th:value="${memberCommand.memberName}" /><span
+								style="color: red" th:if="${#fields.hasErrors('memberName')}"
 								th:errors="*{memberName}"></span></td>
 
 						</tr>
@@ -184,8 +177,10 @@ body {
 						</tr>
 						<tr>
 							<th>성별</th>
-							<td><input type='radio' name='memberGender' value="M"  th:checked="${memberCommand.memberGender == 'M'}" />남자
-								<input type='radio' name='memberGender' value="F"  th:checked="${memberCommand.memberGender == 'F'}" />여자 <span
+							<td><input type='radio' name='memberGender' value="M"
+								th:checked="${memberCommand.memberGender == 'M'}" />남자 <input
+								type='radio' name='memberGender' value="F"
+								th:checked="${memberCommand.memberGender == 'F'}" />여자 <span
 								style="color: red" th:if="${#fields.hasErrors('memberGender')}"
 								th:errors="*{memberGender}"></span></td>
 
@@ -196,38 +191,31 @@ body {
 						<tr>
 							<th><label for='memberEmail'>사용자 이메일</label></th>
 							<td><input type='email' name='memberEmail' id="memberEmail"
-								th:value="${memberCommand.memberEmail}"/>
-								<span style="
-								color: red"
+								th:value="${memberCommand.memberEmail}" placeholder="-@- 필수" />
+								<span style="color: red"
 								th:if="${#fields.hasErrors('memberEmail')}"
 								th:errors="*{memberEmail}"></span></td>
 						</tr>
 						<tr>
 							<th><label for="memberAddr">사용자 주소</label></th>
 							<td><input type='text' name='memberAddr' id="memberAddr"
-								th:value="${memberCommand.memberAddr}"/>
-								<span style="
-								color: red"
-								th:if="${#fields.hasErrors('memberAddr')}"
+								th:value="${memberCommand.memberAddr}" /> <span
+								style="color: red" th:if="${#fields.hasErrors('memberAddr')}"
 								th:errors="*{memberAddr}"></span></td>
 						</tr>
 						<tr>
 							<th><label for="memberPhone">연락처</label></th>
 							<td><input type='tel' size='26' maxlength='13'
 								name="memberPhone" id="memberPhone" placeholder='123-123-1234'
-								th:value="${memberCommand.memberPhone}"/>
-								<span style="
-								color: red"
-								th:if="${#fields.hasErrors('memberPhone')}"
+								th:value="${memberCommand.memberPhone}" /> <span
+								style="color: red" th:if="${#fields.hasErrors('memberPhone')}"
 								th:errors="*{memberPhone}"></span></td>
-
 						</tr>
 					</tbody>
 				</table>
 
 			</form>
 		</div>
-
 
 		<!-- End page content -->
 	</div>
@@ -240,8 +228,6 @@ body {
 				title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a>
 		</p>
 	</div>
-
-
 
 </body>
 </html>

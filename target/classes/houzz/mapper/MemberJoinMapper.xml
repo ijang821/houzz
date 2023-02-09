@@ -5,21 +5,27 @@
 
 <mapper namespace="houzz.mapper.MemberJoinMapper">
 	<sql id="memberBase">
-		MEMBER_NUM memberNum, MEMBER_NAME memberName, MEMBER_ID memberId, MEMBER_PW
-		memberPw, MEMBER_PHONE memberPhone, MEMBER_EMAIL memberEmail,
+		MEMBER_NUM memberNum, MEMBER_NAME memberName, MEMBER_ID
+		memberId, MEMBER_PW
+		memberPw, MEMBER_PHONE memberPhone, MEMBER_EMAIL
+		memberEmail,
 		MEMBER_ADDR memberAddr, MEMBER_GENDER memberGender,
-		MEMBER_BIRTH memberBirth, MEMBER_JOIN_DATE memberJoinDate, MEMBER_JOIN_CK
+		MEMBER_BIRTH memberBirth, MEMBER_JOIN_DATE memberJoinDate,
+		MEMBER_JOIN_CK
 		memberJoinCk, ACCOUNT_ADDRESS accountAddress
 	</sql>
 
+	<sql id="insertBase">
+		MEMBER_NUM , MEMBER_NAME , MEMBER_ID , MEMBER_PW , MEMBER_PHONE , MEMBER_EMAIL ,
+		MEMBER_ADDR , MEMBER_GENDER ,
+		MEMBER_BIRTH , MEMBER_JOIN_DATE 
+	</sql>
+
 	<insert id="memberJoinInsert" parameterType="memberDTO">
-		insert into member(
-		<include refid="memberBase" />
-		)
+		insert into member(<include refid="insertBase" />)
 		values(#{memberNum}, #{memberName}, #{memberId}, #{memberPw},
-		#{memberPhone},
-		#{memberEmail}, #{memberAddr}, #{memberGender},
-		#{memberBirth}, sysdate, 'N', #{accountAddress})
+		#{memberPhone}, #{memberEmail}, #{memberAddr}, #{memberGender},
+		#{memberBirth}, sysdate)
 	</insert>
 
 </mapper>

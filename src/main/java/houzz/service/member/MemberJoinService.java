@@ -29,8 +29,8 @@ public class MemberJoinService {
 		memDTO.setMemberNum(memberCommand.getMemberNum());
 		memDTO.setMemberPhone(memberCommand.getMemberPhone());
 		memDTO.setMemberPw(passwordEncoder.encode(memberCommand.getMemberPw()));
-		model.addAttribute("MemberName",memDTO.getMemberName());
 		i = memberJoinMapper.memberJoinInsert(memDTO);
+		model.addAttribute("memberName",memDTO.getMemberName());
 		return i;	
 
 	}

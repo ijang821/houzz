@@ -66,7 +66,7 @@ function w3_close() {
   <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
     <h1 class="w3-jumbo"><b>HOUZZ</b></h1>
-    <h1 class="w3-xxxlarge w3-text-green"><b>REGIST TO HOUZZ</b></h1>
+    <h1 class="w3-xxxlarge w3-text-green"><b>Member Information Update</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
     
   </div>
@@ -75,15 +75,19 @@ function w3_close() {
 
   <!-- MemberRegist -->
   <div class="w3-container" id="services" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-green"><b>회원 등록</b></h1>
+    <h1 class="w3-xxxlarge w3-text-green"><b>회원 정보 수정</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
-    <form action="memberRegist" method="post" th:object="${memberCommand}">
-
+    <form action="memberModify" method="post" th:object="${memberCommand}">
+    [[${memberCommand.memberName}]] 회원정보 <br />
+    <input type="hidden" name="memberPw" value="111111a!" />
+	<input type="hidden" name="memberPwCon" value="111111a!" />
+	<input type="hidden" name="memberJoinDate" value="2023-01-01"/>
     <table border=1>
     	<tr>
-    		<th>회원 번호</th>
+    		<th>번호</th>
     		<td>
-    			<input type="text" name="memberNum" th:value="${memberCommand.memberNum}">
+    			<input type="text" name="memberNum" th:value="${memberCommand.memberNum}" readonly="readonly">
+    			<span style="color:red" th:if="${#fields.hasErrors('memberNum')}" th:errors="*{memberNum}"></span>
     		</td>
     	</tr>
     	<tr>
@@ -96,24 +100,11 @@ function w3_close() {
     	<tr>
     		<th>ID</th>
     		<td>
-    			<input type="text" name="memberId" th:value="${memberCommand.memberId}">
+    			<input type="text" name="memberId" th:value="${memberCommand.memberId}" >
     			<span id="idCheck"></span>
 				<span style="color:red" th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}"></span>
     		</td>
     	</tr>
-    	<tr>
-    		<th>PW</th>
-    		<td>
-    			<input type="password" name="memberPw" th:value="${memberCommand.memberPw}">
-    			<span style="color:red" th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<th>PW Check</th>
-    		<td>
-    			<input type="password" name="memberPwCon" th:value="${memberCommand.memberPwCon}">
-    			<span style="color:red" th:if="${#fields.hasErrors('memberPwCon')}" th:errors="*{memberPwCon}"></span>
-    		</td>
     	</tr>
     	<tr>
     		<th>연락처</th>
@@ -140,8 +131,8 @@ function w3_close() {
     	<tr>
     		<th>성별</th>
     		<td>
-    			<input type="radio" name="memberGender" value="F" th:checked="${memberCommand.memberGender=='F'}" />여자 
-				<input type="radio" name="memberGender" value="M" th:checked="${memberCommand.memberGender=='M'}" />남자
+    			<input type="radio" name="memberGender" value="F" th:checked="${memberCommand.memberGender=='F'}" />여자
+	 			<input type="radio" name="memberGender" value="M" th:checked="${memberCommand.memberGender=='M'}" />남자 
 				<span style="color:red" th:if="${#fields.hasErrors('memberGender')}" th:errors="*{memberGender}"></span>
 			</td>
     	</tr>
@@ -149,7 +140,7 @@ function w3_close() {
     		<th>생년월일</th>
     		<td>
     			<input type="date" name="memberBirth" th:value="${#dates.format(memberCommand.memberBirth,'yyyy-MM-dd')}">
-    			<span style="color:red" th:if="${#fields.hasErrors('memberBirth')}" th:errors="*{memberBirth}"></span>
+    			 <span style="color:red" th:if="${#fields.hasErrors('memberBirth')}" th:errors="*{memberBirth}"></span><br />
     		</td>
     	</tr>
     	<tr>
@@ -161,7 +152,7 @@ function w3_close() {
     	</tr>
     	<tr>
     		<td>
-    			<input type="submit" value="REGISTER"/>
+    			<input type="submit" value="Member Update"/>
     		</td>
     	</tr>
     </table>

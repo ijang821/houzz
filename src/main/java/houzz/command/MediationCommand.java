@@ -13,7 +13,7 @@ public class MediationCommand {
 	@NotBlank(message = "사업자 번호를 입력해주세요")
 	String businessRegiNum;
 	@NotBlank(message = "아이디를 입력해주세요")
-	@Size(min = 2 , max = 5)
+	@Size(min = 5 , max = 12)
 	String mediationId;
 	@Pattern(regexp = "^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-+]).{8,}$",
 			message = "영문자와 숫자 그리고 특수문자가 포함된 8글자 이상")

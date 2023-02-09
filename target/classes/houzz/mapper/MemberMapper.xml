@@ -9,6 +9,11 @@ MEMBER_ADDR memberAddr, MEMBER_GENDER memberGender,
 MEMBER_BIRTH memberBirth, MEMBER_JOIN_DATE memberJoinDate, MEMBER_JOIN_CK memberJoinCk, ACCOUNT_ADDRESS accountAddress
 </sql>
 
+<sql id="insertBase">
+MEMBER_NUM , MEMBER_NAME , MEMBER_ID , MEMBER_PW , MEMBER_PHONE , MEMBER_EMAIL , 
+MEMBER_ADDR , MEMBER_GENDER , 
+MEMBER_BIRTH , MEMBER_JOIN_DATE , MEMBER_JOIN_CK , ACCOUNT_ADDRESS 
+</sql>
 
 <select id="memberNumGenerate" resultType="string">
 	select concat('mem',nvl(max(substr(member_num,4)),100000)+ 1) 
@@ -16,7 +21,7 @@ MEMBER_BIRTH memberBirth, MEMBER_JOIN_DATE memberJoinDate, MEMBER_JOIN_CK member
 </select>	
 
 <insert id="memberInsert" parameterType="memberDTO">
-	insert into member(<include refid="memberBase" />)
+	insert into member(<include refid="insertBase" />)
 	values(#{memberNum}, #{memberName}, #{memberId}, #{memberPw}, #{memberPhone}, #{memberEmail}, #{memberAddr}, #{memberGender},
            #{memberBirth}, sysdate, 'N', '')
         

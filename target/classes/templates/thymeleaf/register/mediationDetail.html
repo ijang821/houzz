@@ -36,6 +36,10 @@ body {
 	font-weight: normal;
 	font-style: normal;
 }
+
+a{
+	text-decoration-line : none;
+}
 </style>
 <script>
 	// Script to open and close sidebar
@@ -100,43 +104,79 @@ body {
 				<b>HOUZZ</b>
 			</h1>
 			<h1 class="w3-xxxlarge w3-text-green">
-				<b>약관 동의 페이지</b>
+				<b>공인중개소 상세정보 보기 </b>
 			</h1>
 			<hr style="width: 50px; border: 5px solid green" class="w3-round">
 		</div>
 
 		<!-- MemberRegist -->
-		<div class="w3-container" id="services" style="margin-top: 75px">
-			<h1 class="w3-xxxlarge w3-text-green">
-				<b>개인 회원가입 </b>
-			</h1>
-			
-			<h2>약관 내용</h2>
-			<p>약관....(생략)</p>
-			개인 가입을 위한 조건<br />
-			<form th:action="@{regist}" method="post">
-				<input type="checkbox" name="agree" value="true" required="required" />
-				<input type="submit" value="개인 가입" />
+		<div class="w3-container" id="services" style="margin-top: 60px">
+
+			<form action="mediationRegist" method="post" th:object="${mediationCommand}">
+				<table width='250' align='center' border='1'>
+					
+						<tr>
+							<th colspan='2'>공인중개소 ID와 비밀번호 입력</th>
+						</tr>
+						<tr>
+							<th align="left"><label for="mediationId">* 공인중개소 아이디</label></th>
+							<td>[[${mediationCommand.mediationId}]]</td>
+						</tr>
+						
+						<tr>
+							<th colspan='2'>공인중개소 기본 정보</th>
+						</tr>
+						<tr>
+							<th align="left"><label for='mediationNum'>중개 등록 번호</label></th>
+							<td>[[${mediationCommand.mediationNum}]]</td>
+						</tr>
+
+						<br />
+						<tr>
+							<th align="left"><label for="businessRegiNum">사업자 등록번호</label></th>
+							<td>[[${mediationCommand.businessRegiNum}]]</td>
+						</tr>
+						<tr>
+							<th align="left"><label for="mediationName">중개소 이름</label></th>
+							<td>[[${mediationCommand.mediationName}]]</td>
+
+						</tr>
+						<tr>
+							<th align="left"><label for="ceoName">대표자명</label></th>
+							<td>[[${mediationCommand.ceoName}]]</td>
+						</tr>
+
+						<tr>
+							<th colspan='2'>연락처</th>
+						</tr>
+						<tr>
+							<th align="left"><label for='mediationEmail'>이메일</label></th>
+							<td>[[${mediationCommand.mediationEmail}]]</td>
+						</tr>
+						<tr>
+							<th align="left"><label for="mediationAddr">소재지</label></th>
+							<td>[[${mediationCommand.mediationAddr}]]</td>
+						</tr>
+						<tr>
+							<th align="left"><label for="mediationPhone">전화 번호</label></th>
+							<td>[[${mediationCommand.mediationPhone}]]</td>
+						</tr>
+						<tr>
+						<td colspan="2" align="center">	  
+						<a th:href="|../mediationModify?mediationNum=${mediationCommand.mediationNum}|"> 수정</a> &nbsp; | &nbsp; 
+				        <a th:href="|../mediationDelete?mediationNum=${mediationCommand.mediationNum}|"> 삭제</a>&nbsp; | &nbsp;
+			         	<a th:href="|../mediationList|">중개소목록</a> </td>
+						</tr>
+
+				</table>
+				 
+				
 			</form>
-			
-			<hr />
-            <h1 class="w3-xxxlarge w3-text-green">
-				<b>공인 중개소 회원가입 </b>
-			</h1>
-			<h2>약관 내용</h2>
-			<p>약관....(생략)</p>
-			중개사 가입을 위한 조건<br />
-			<form th:action="@{regist1}" method="post">
-				<input type="checkbox" name="agree" value="true" required="required" />
-				<input type="submit" value="중개사 가입" />
-			</form> <br/>
-			<hr />
-			<input type='button' value='뒤로 가기' onclick="javascript:location.href='/'" />
-
 		</div>
+	</div>
 
 
-		<!-- End page content -->
+	<!-- End page content -->
 	</div>
 
 	<!-- W3.CSS Container -->
@@ -147,8 +187,6 @@ body {
 				title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a>
 		</p>
 	</div>
-
-
 
 </body>
 </html>

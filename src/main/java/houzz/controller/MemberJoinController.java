@@ -27,12 +27,13 @@ public class MemberJoinController {
 	
 	@RequestMapping("agree")
 	public String agree1() {
-		return "thymeleaf/register/agree";
+		return "thymeleaf/register/agreeCk";
 	}
+	
 
-	@RequestMapping(value = "regist", method = RequestMethod.GET)
+	@RequestMapping(value = "memberType", method = RequestMethod.GET)
 	public String agree() {
-		return "thymeleaf/register/agree";
+		return "thymeleaf/register/memagree";
 	}
 
 	@RequestMapping(value = "regist", method = RequestMethod.POST)
@@ -60,4 +61,5 @@ public class MemberJoinController {
 		memberJoinService.execute(memberCommand,model);
 		return "thymeleaf/membership/welcomeMem";
 	}
+	
 }

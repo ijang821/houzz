@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,24 +102,45 @@ body {
 				<b>HOUZZ</b>
 			</h1>
 			<h1 class="w3-xxxlarge w3-text-green">
-				<b>공인 중개소 등록을 환영합니다.</b>
+				<b>공인 중개사 리스트</b>
 			</h1>
 			<hr style="width: 50px; border: 5px solid green" class="w3-round">
 
 		</div>
 
 
-
 		<!-- MemberRegist -->
 		<div class="w3-container" id="services" style="margin-top: 75px">
-			<h3 class="w3-xxxlarge w3-text-black">
-		   [[${mediationName}]] 등록이 완료되었습니다. </h3><br /> 
-		    
-		</div>
-		 &nbsp;&nbsp;&nbsp;&nbsp;
-		 <a href="/login">로그인하기</a><br/>
-		
+			<form action="mediationList" method="get">
+				<input type="search" name="mediationWord" size="50"
+					th:value="${mediationWord}" placeholder="공인 중개소 검색..." /> <input
+					type="submit" value="검색" />
+			</form>
+          
+			<br />
+			<form action="mediationDels" method="post">
+				<table border="1">
+					<tr>
+						<td>중개등록 번호</td>
+						<td>대표자명</td>
+						<td>전화번호</td>
+						<td>이메일</td>
+						<td><input type="submit" value="삭제"></td>
+					</tr>
+					<tr th:each="MediationDTO : ${list}">
+						<td><a
+							th:href="|mediationDetail/${MediationDTO.mediationNum}|">[[${MediationDTO.mediationNum}
+								]]</a></td>
 
+						<td>[[${MediationDTO.ceoName} ]]</td>
+						<td>[[${MediationDTO.mediationPhone} ]]</td>
+						<td>[[${MediationDTO.mediationEmail} ]]</td>
+						<td><input type="checkbox" name="medDels"
+							th:value="${MediationDTO.mediationNum}"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
 
 		<!-- End page content -->
 	</div>
@@ -131,7 +154,11 @@ body {
 		</p>
 	</div>
 
-
-
 </body>
 </html>
+
+
+
+
+
+

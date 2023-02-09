@@ -100,23 +100,27 @@ body {
 				<b>HOUZZ</b>
 			</h1>
 			<h1 class="w3-xxxlarge w3-text-green">
-				<b>공인 중개소 등록을 환영합니다.</b>
+				<b>약관 동의 페이지</b>
 			</h1>
 			<hr style="width: 50px; border: 5px solid green" class="w3-round">
-
 		</div>
-
-
 
 		<!-- MemberRegist -->
 		<div class="w3-container" id="services" style="margin-top: 75px">
-			<h3 class="w3-xxxlarge w3-text-black">
-		   [[${mediationName}]] 등록이 완료되었습니다. </h3><br /> 
-		    
+			<h1 class="w3-xxxlarge w3-text-green">
+			
+		<b>공인 중개소 회원가입 </b>
+			</h1>
+			<h2>약관 내용</h2>
+			<p>약관....(생략)</p>
+			중개사 가입을 위한 조건<br />
+			<form th:action="@{regist1}" method="post">
+				<input type="checkbox" name="agree" value="true" required="required" />
+				<input type="submit" value="중개사 가입" />
+			</form> <br/>
+			<hr />
+			<input type='button' value='뒤로 가기' onclick="javascript:location.href='/'" />
 		</div>
-		 &nbsp;&nbsp;&nbsp;&nbsp;
-		 <a href="/login">로그인하기</a><br/>
-		
 
 
 		<!-- End page content -->

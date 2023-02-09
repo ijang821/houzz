@@ -3,34 +3,28 @@ package houzz.service.mediation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import houzz.command.MediationCommand;
 import houzz.domain.MediationDTO;
 import houzz.mapper.MediationMapper;
 
 @Service
-public class MediationService {
+public class MediationModifyService {
+	
 	@Autowired
 	MediationMapper mediationMapper;
-    @Autowired
-    PasswordEncoder passwordEncoder;
-	public Integer execute(MediationCommand mediationCommand, Model model) {
+	Integer i;
+	public Integer execute(MediationCommand mediationCommand) {
 		MediationDTO dto = new MediationDTO();
-		dto.setMediationId(mediationCommand.getMediationId());
-		dto.setMediationPw(passwordEncoder.encode(mediationCommand.getMediationPw()));
 		dto.setBusinessRegiNum(mediationCommand.getBusinessRegiNum());
 		dto.setCeoName(mediationCommand.getCeoName());
 		dto.setMediationAddr(mediationCommand.getMediationAddr());
 		dto.setMediationEmail(mediationCommand.getMediationEmail());
 		dto.setMediationName(mediationCommand.getMediationName());
 		dto.setMediationPhone(mediationCommand.getMediationPhone());
-		dto.setAbleAdCount(mediationCommand.getAbleAdCount());
 		dto.setMediationNum(mediationCommand.getMediationNum());
-		model.addAttribute("MediationName",dto.getMediationName());
-		Integer i = mediationMapper.mediationJoinInsert(dto);
-		System.out.println(i +"개가 삽입되었습니다.");
+		Integer i = mediationMapper.mediationUpdate(dto);
+		System.out.println(i +"개가 업데이트 되었습니다.");
 		return i;
 	}
-
 }

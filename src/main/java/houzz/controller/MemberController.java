@@ -137,4 +137,5 @@ public class MemberController {
 		memberDelsService.execute(memDels);
 		return "redirect:memberList";
 	}
+	
 }

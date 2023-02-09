@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>regist form</title>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <style>
@@ -10,8 +13,11 @@ body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
 .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
 .w3-half img:hover{opacity:1}
-a{
-	text-decoration-line : none;
+@font-face {
+    font-family: 'BMJUA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 </style>
 <script>
@@ -26,13 +32,6 @@ function w3_close() {
   document.getElementById("myOverlay").style.display = "none";
 }
 
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
-}
 </script>
 </head>
 <body>
@@ -41,11 +40,9 @@ function onClick(element) {
 <nav class="w3-sidebar w3-green w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
   <div class="w3-container">
-    <h3 class="w3-padding-64"><b>HOUZZ</b></h3> 
-     
+    <h3 class="w3-padding-64"><b>HOUZZ</b></h3>
   </div>
   <div class="w3-bar-block">
-    <a href="login" class="w3-bar-item w3-button w3-hover-white">HOUZZ 로그인</a>
     <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
     <a href="#showcase" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Showcase</a> 
     <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Services</a> 
@@ -70,46 +67,77 @@ function onClick(element) {
   <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
     <h1 class="w3-jumbo"><b>HOUZZ</b></h1>
-    <h1 class="w3-xxxlarge w3-text-green"><b>기본 인덱스 요소</b></h1>
+      <h1 class="w3-xxxlarge w3-text-green"><b>공인중개소 정보 수정페이지 </b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
   </div>
-  <div class="w3-row-padding">
-    <div class="w3-half w3-margin-bottom">
-      <ul class="w3-ul w3-light-grey w3-center">
-        <li class="w3-dark-grey w3-xlarge w3-padding-32">Basic</li>
-        <li class="w3-padding-16"><a href="/">HOME</a></li>
-        <li class="w3-padding-16"><a href="/member/memberList">회원 관리</a></li>
-        <li class="w3-padding-16"><a href="/employee/empList">직원 관리</a></li>
-        <li class="w3-padding-16"><a href="/register/mediationList">공인 중개소 관리</a></li>
-        <li class="w3-padding-16"><a href="/estate/estateList">상품 관리</a></li>
-        <li class="w3-padding-16">
-          <h2>$ 199</h2>
-          <span class="w3-opacity">per room</span>
-        </li>
-        <li class="w3-light-grey w3-padding-24">
-          <button class="w3-button w3-white w3-padding-large w3-hover-black">Sign Up</button>
-        </li>
-      </ul>
-    </div>
-        
-    <div class="w3-half">
-      <ul class="w3-ul w3-light-grey w3-center">
-        <li class="w3-green w3-xlarge w3-padding-32">Pro</li>
-        <li class="w3-padding-16">Floorplanning</li>
-        <li class="w3-padding-16">50 hours support</li>
-        <li class="w3-padding-16">Photography</li>
-        <li class="w3-padding-16">50% furniture discount</li>
-        <li class="w3-padding-16">GREAT deals</li>
-        <li class="w3-padding-16">
-          <h2>$ 249</h2>
-          <span class="w3-opacity">per room</span>
-        </li>
-        <li class="w3-light-grey w3-padding-24">
-          <button class="w3-button w3-green w3-padding-large w3-hover-black">Sign Up</button>
-        </li>
-      </ul>
-    </div>
+  
+  <!-- MemberRegist -->
+  <div class="w3-container" id="services" style="margin-top:60px">
+   <form action="mediationModify" method="post" th:object="${mediationCommand}">
+      
+			<table width='600' align='center' border='1'>
+				<tfoot>
+					<tr>
+						<th colspan="2">
+						  <input type="submit" value="Mediation Update"/>
+						  
+						</th>
+					</tr>
+				</tfoot>
+				<tbody>
+					
+					
+					<tr>
+						<th colspan='2'>공인중개소 기본 정보</th>
+					</tr>
+					<tr>
+						<th><label for='mediationNum'>중개 등록 번호</label></th>
+						<td><input type='text' name='mediationNum' id="mediationNum"  th:value="${mediationCommand.mediationNum}" readonly="readonly"/>
+						</td>
+					</tr>
+					
+					<br />
+					<tr>
+						<th><label for="businessRegiNum">사업자 등록번호</label></th>
+						<td><input type='text' name='businessRegiNum'
+							id="businessRegiNum" th:value="${mediationCommand.businessRegiNum}"/></td>
+					</tr>
+					<tr>
+						<th><label for="mediationName">중개소 이름</label></th>
+						<td><input type='text' name='mediationName'
+							id="mediationName" size='15' maxlength='12' th:value="${mediationCommand.mediationName}"/>	</span></td>
+					
+					</tr>
+					<tr>
+						<th><label for="ceoName">대표자명</label></th>
+						<td><input type='text' name='ceoName' id="ceoName" th:value="${mediationCommand.ceoName}"></td>
+					</tr>
+
+					<tr>
+						<th colspan='2'>연락처</th>
+					</tr>
+					<tr>
+						<th><label for='mediationEmail'>이메일</label></th>
+						<td><input type='email' name='mediationEmail'
+							id="mediationEmail" placeholder="-@-필수" th:value="${mediationCommand.mediationEmail}"/></td>
+					</tr>
+					<tr>
+						<th><label for="mediationAddr">소재지</label></th>
+						<td><input type='text' name='mediationAddr'
+							id="sample4_roadAddress"  th:value="${mediationCommand.mediationAddr}" /> <a
+							href="javascript:sample4_execDaumPostcode();">주소검색</a><br /></td>
+					</tr>
+					<tr>
+						<th><label for="mediationPhone">전화 번호</label></th>
+						<td><input type='tel' size='26' maxlength='13'
+							name="mediationPhone" id="mediationPhone"
+							placeholder='010-1234-1234' th:value="${mediationCommand.mediationPhone}"/></td>
+					</tr>
+				</tbody>
+			</table>
+	</form>
   </div>
+
 
 <!-- End page content -->
 </div>

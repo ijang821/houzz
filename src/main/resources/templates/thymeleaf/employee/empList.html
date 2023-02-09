@@ -16,9 +16,6 @@ body {font-size:16px;}
     font-weight: normal;
     font-style: normal;
 }
-a {
-	text-decoration-line:none;
-}
 </style>
 <script>
 // Script to open and close sidebar
@@ -31,6 +28,7 @@ function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
   document.getElementById("myOverlay").style.display = "none";
 }
+
 </script>
 </head>
 <body>
@@ -66,85 +64,23 @@ function w3_close() {
   <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
     <h1 class="w3-jumbo"><b>HOUZZ</b></h1>
-    <h1 class="w3-xxxlarge w3-text-green"><b>HOUZZ MEMBER [[${memberCommand.memberName}]]</b></h1>
+    <h1 class="w3-xxxlarge w3-text-green"><b>CO-Wokers Of Houzz</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
-    <form action="memberRegist" method="post" th:object="${memberCommand}">
-    <table border=1>
-    	<tr>
-    		<th>회원 번호</th>
-    		<td>
-    			[[${memberCommand.memberNum}]]
-    		</td>
-    	</tr>
-    	<tr>
-    		<th>등록일</th>
-    		<td>
-    			<span th:text="${#dates.format(memberCommand.memberJoinDate,'yyyy-MM-dd')}"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<th>이름</th>
-    		<td>
-    			[[${memberCommand.memberName}]]
-    		</td>
-    	</tr>
-    	<tr>
-    		<th>ID</th>
-    		<td>
-    			[[${memberCommand.memberId}]]
-    		</td>
-    	</tr>
-    	<tr>
-    		<th>연락처</th>
-    		<td>
-    			[[${memberCommand.memberPhone}]]
-    		</td>
-    	</tr>
-    	<tr>
-    		<th>이메일</th>
-    		<td>
-    			[[${memberCommand.memberEmail}]]
-			</td>
-    	</tr>
-    	<tr>
-    		<th>주소</th>
-    		<td>
-    			[[${memberCommand.memberAddr}]]
-    		</td>
-    	</tr>
-    	<tr>
-    		<th>성별</th>
-    		<td>
-    			<span th:if="${memberCommand.memberGender == 'M'}" th:text="남자"></span> 
-				<span th:if="${memberCommand.memberGender == 'F'}" th:text="여자"></span>
-			</td>
-    	</tr>
-    	<tr>
-    		<th>생년월일</th>
-    		<td>
-    			<span th:text="${#dates.format(memberCommand.memberBirth,'yyyy-MM-dd')}"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<th>지갑주소</th>
-    		<td>
-    			[[${memberCommand.accountAddress}]]
-    		</td>
-    	</tr>
-    	
-    	<tfoot align="center" colspan="2">
-    		<td>
-				<a th:href="|../memberModify?memberNum=${memberCommand.memberNum}|">회원 수정</a>
-				<span> | </span>
-				<a th:href="|../memberDelete?memberNum=${memberCommand.memberNum}|">회원 삭제</a>
-				<span> | </span>
-				<a th:href="|../memberList|">회원 리스트</a>
-    		</td>
-    	</tfoot>
-    </table>
-    </form>
+    
   </div>
   
+
+
+  <!-- EmployeeRegist -->
+  <div class="w3-container" id="services" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-green"><b>직원 등록</b></h1>
+    <hr style="width:50px;border:5px solid green" class="w3-round">
+    <p>
+    <a href="empRegist">NEW CO-WORKER</a>
+    </p>
+  </div>
+
+
 <!-- End page content -->
 </div>
 

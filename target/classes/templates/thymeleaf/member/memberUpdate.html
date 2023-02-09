@@ -144,13 +144,6 @@ function w3_close() {
     		</td>
     	</tr>
     	<tr>
-    		<th>지갑주소</th>
-    		<td>
-    			<input type="text" name="accountAddress" th:value="${memberCommand.accountAddress}">
-    			<span style="color:red" th:if="${#fields.hasErrors('accountAddress')}" th:errors="*{accountAddress}"></span>
-    		</td>
-    	</tr>
-    	<tr>
     		<td>
     			<input type="submit" value="Member Update"/>
     		</td>

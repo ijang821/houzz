@@ -1,7 +1,5 @@
 package houzz.service.member;
 
-import java.sql.Timestamp;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +13,6 @@ public class MemberModifyService {
 	MemberMapper memberMapper;
 	public void execute(MemberCommand memberCommand) {
 		MemberDTO memDTO = new MemberDTO();
-		memDTO.setAccountAddress(memberCommand.getAccountAddress());
 		memDTO.setMemberAddr(memberCommand.getMemberAddr());
 		memDTO.setMemberEmail(memberCommand.getMemberEmail());
 		memDTO.setMemberName(memberCommand.getMemberName());

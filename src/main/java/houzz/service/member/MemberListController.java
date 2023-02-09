@@ -13,8 +13,9 @@ import houzz.mapper.MemberMapper;
 public class MemberListController {
 	@Autowired
 	MemberMapper memberMapper;
-	public void execute(Model model) {
-		List<MemberDTO> list = memberMapper.selectAll();
+	public void execute(String memberWord, Model model) {
+		List<MemberDTO> list = memberMapper.selectAll(memberWord);
 		model.addAttribute("list", list);
+		model.addAttribute("memberWord", memberWord);
 	}
 }

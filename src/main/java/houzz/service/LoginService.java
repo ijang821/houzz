@@ -18,8 +18,8 @@ public class LoginService {
 		AuthInfoDTO authInfoDTO = loginMapper.loginselect(loginCommand.getUserId()); // 사용자 정보 가져옴
 		// session 생성
 		session.setAttribute("authInfoDTO", authInfoDTO);
-		
 		System.out.println("session");
+		
 	}
 }
 

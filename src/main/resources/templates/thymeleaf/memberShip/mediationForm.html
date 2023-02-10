@@ -208,8 +208,15 @@ function w3_close() {
 					<tr>
 						<th><label for="mediationAddr">소재지</label></th>
 						<td><input type='text' name='mediationAddr'
-							id="sample4_roadAddress"  th:value="${mediationCommand.mediationAddr}" /> <a
-							href="javascript:sample4_execDaumPostcode();">주소검색</a><br /><span style="color: red"
+							id="sample4_roadAddress"  th:value="${mediationCommand.mediationAddr}" /> 
+							<a href="javascript:sample4_execDaumPostcode();">주소검색</a><br />
+						<tr>
+							<th><label for="memberPhone">우편번호</label></th>
+							<td><input type="text" id="sample4_postcode"></td>
+						</tr>	
+							
+							
+							<span style="color: red"
 							th:if="${#fields.hasErrors('mediationAddr')}"
 							th:errors="*{mediationAddr}"></span></td>
 					</tr>

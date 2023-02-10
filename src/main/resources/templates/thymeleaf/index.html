@@ -99,6 +99,7 @@ function onClick(element) {
         </th:block>
         
         <span th:if="${session.authInfoDTO == null}">
+        
         <form action="/login/loginPro" name="frm" id="frm" method="post" th:object="${loginCommand}">
 		<table border="1" align="center" width="30%" height="30%">
 		     <tr>

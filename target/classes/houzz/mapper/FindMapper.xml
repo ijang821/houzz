@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 	
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="houzz.mapper.FindMapper">
+	<select id="findId" parameterType="String"
+		resultType="authInfoDTO">
+		select member_id userId, member_Phone phone, MEMBER_EMAIL userEmail
+		from member
+		where member_email = lower(#{email})
+		union
+		select emp_id , emp_phone , emp_email
+		from employees
+		where emp_email = lower(#{email})
+        union
+		select MEDIATION_ID , MEDIATION_PHONE , MEDIATION_EMAIL
+		from mediation
+		where MEDIATION_EMAIL = lower(#{mediationEmail})
+	</select>
+	
+		<select id="findPw" parameterType="houzz.command.FindPwCommand"
+		resultType="authInfoDTO">
+		select 'mem' from member
+		where member_id =#{userId}
+		and member_Phone =#{userPhone} 
+		and MEMBER_EMAIL =#{userEmail}
+		union
+		select 'emp' from employees
+		where emp_id =#{userId}
+		and emp_phone =#{userPhone} 
+		and emp_email =#{userEmail}
+        union   
+		select 'med' from mediation
+		where MEDIATION_ID =#{userId}
+		and MEDIATION_PHONE =#{userPhone} 
+		and MEDIATION_EMAIL =#{userEmail}
+	</select>
+	
+	
+
+</mapper>

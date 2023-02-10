@@ -116,10 +116,12 @@ body {
 			개인 가입을 위한 조건<br />
 			<form th:action="@{regist}" method="post">
 				<input type="checkbox" name="agree" value="true" required="required" />
-				<input type="submit" value="개인 가입" />
-			</form>
+				&nbsp;&nbsp;<input type="submit" value="개인 가입" />
+			</form><br />
 			
 			<hr />
+			
+			<input type='button' value='뒤로 가기' onclick="javascript:location.href='/'" />
             <h1 class="w3-xxxlarge w3-text-green">
 		</div>
 

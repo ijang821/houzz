@@ -10,7 +10,11 @@
         union
         select mediation_id, mediation_Pw, MEDIATION_EMAIL, 'med' 
         from mediation
-        where mediation_id= #{userId}        
+        where mediation_id= #{userId}
+        union
+        select EMP_ID, EMP_PW, EMP_EMAIL, 'emp'
+        from employees
+        where emp_id= #{userId}   
 	</select>
 
 </mapper>

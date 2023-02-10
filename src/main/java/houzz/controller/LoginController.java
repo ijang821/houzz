@@ -1,5 +1,8 @@
 package houzz.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -11,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import houzz.command.LoginCommand;
 import houzz.service.LoginService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.jsp.jstl.sql.Result;
 
 @Controller
 public class LoginController {
@@ -37,17 +41,52 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login/loginPro", method = RequestMethod.POST)
-	public String loginPro(@Validated LoginCommand loginCommand, BindingResult result, HttpSession session) {
+	public String loginPro(@Validated LoginCommand loginCommand, BindingResult result, 
+			HttpSession session,HttpServletResponse response) {
 		if (result.hasErrors()) {
 			return "thymeleaf/login";
-		} 
-			loginService.execute(loginCommand, session);
-			return "redirect:/";
 		}
-	@RequestMapping("/login/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/";
+		String path = loginService.execute(loginCommand, result,session, response);
+		return path;
 	}
 
+	@RequestMapping("/login/logout")
+	public String logout(HttpSession session, HttpServletResponse response) {
+		Cookie cookie = new Cookie("autoLogin", "");
+		cookie.setPath("/");
+		cookie.setMaxAge(0);
+		response.addCookie(cookie);
+		
+		session.invalidate();
+		return "thymeleaf/loginItem";
+	}
+
+	@RequestMapping(value = "/login/item.login", method = RequestMethod.GET)
+	public String item(LoginCommand loginCommand) {
+		return "thymeleaf/login";
+	}
+
+	@RequestMapping(value = "/login/item.login", method = RequestMethod.POST)
+	public String item(@Validated LoginCommand loginCommand, BindingResult result,
+			HttpSession session, HttpServletResponse response) {	
+		loginService.execute(loginCommand, result,session,response);
+		if(result.hasErrors()) {
+			return "thymeleaf/login";
+		}
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = null;
+		
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		String str = "<script language='javascript'>"
+				   + " opener.location.reload();"
+				   + " window.self.close();"
+				   + "</script>";
+		out.print(str);
+		out.close();
+		return null;
+	}
 }

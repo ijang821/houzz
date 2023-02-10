@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import houzz.command.LoginCommand;
+import houzz.service.CookiesService;
 import houzz.service.LoginService;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
@@ -29,9 +32,11 @@ public class LoginController {
 	LoginService loginService;
 	@Autowired
 	PasswordEncoder passwordEncoder;
-
-	@RequestMapping("login")
-	public String login() {
+	@Autowired
+	CookiesService cookiesService;
+	@RequestMapping("/login")
+	public String login(HttpServletRequest request, Model model) {
+		cookiesService.executeMain(request, model);
 		return "thymeleaf/login";
 	}
 
@@ -42,12 +47,12 @@ public class LoginController {
 
 	@RequestMapping(value = "/login/loginPro", method = RequestMethod.POST)
 	public String loginPro(@Validated LoginCommand loginCommand, BindingResult result, 
-			HttpSession session,HttpServletResponse response) {
+			HttpSession session,HttpServletResponse response) {	
+		loginService.execute(loginCommand, result,session, response);
 		if (result.hasErrors()) {
 			return "thymeleaf/login";
 		}
-		String path = loginService.execute(loginCommand, result,session, response);
-		return path;
+		return "redirect:/";
 	}
 
 	@RequestMapping("/login/logout")
@@ -58,12 +63,12 @@ public class LoginController {
 		response.addCookie(cookie);
 		
 		session.invalidate();
-		return "thymeleaf/loginItem";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/login/item.login", method = RequestMethod.GET)
 	public String item(LoginCommand loginCommand) {
-		return "thymeleaf/login";
+		return "thymeleaf/loginItem";
 	}
 
 	@RequestMapping(value = "/login/item.login", method = RequestMethod.POST)
@@ -71,7 +76,7 @@ public class LoginController {
 			HttpSession session, HttpServletResponse response) {	
 		loginService.execute(loginCommand, result,session,response);
 		if(result.hasErrors()) {
-			return "thymeleaf/login";
+			return "thymeleaf/loginItem";
 		}
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = null;

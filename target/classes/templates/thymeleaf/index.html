@@ -40,12 +40,21 @@ function onClick(element) {
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-green w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
-  <div class="w3-container">
-    <h3 class="w3-padding-64"><b><a href="/">HOUZZ</a></b></h3> 
-     
-  </div>
-  <div class="w3-bar-block">
+    
+    <div class="w3-container">
+        <h3 class="w3-padding-64"><b><a href="/">HOUZZ</a></b></h3>  
+        </div>
+    <div class="w3-bar-block">
+        <span th:if="${session.authInfoDTO == null}">
     <a href="login" class="w3-bar-item w3-button w3-hover-white">HOUZZ 로그인</a>
+    </div>
+    
+    <div class="w3-bar-block"> 
+        <span th:if="${session.authInfoDTO != null}">
+    <a href="/login/logout" class="w3-bar-item w3-button w3-hover-white">HOUZZ 로그아웃</a>
+    </div>
+    
+  <div class="w3-bar-block">
     <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
     <a href="#showcase" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Showcase</a> 
     <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Services</a> 
@@ -78,11 +87,7 @@ function onClick(element) {
       <ul class="w3-ul w3-light-grey w3-center">
         <li class="w3-dark-grey w3-xlarge w3-padding-32">Basic</li>
         <li class="w3-padding-16"><a href="/">HOME</a></li>
-        
-        <span th:if="${session.authInfoDTO != null}">
-         
-            <a href="/login/logout">로그아웃</a><br />
-       
+        <span th:if="${session.authInfoDTO != null}"> 
 	    <span th:switch="${session.authInfoDTO.grade}">
 	    
 		<th:block th:case="mem">
@@ -101,7 +106,7 @@ function onClick(element) {
         
         <span th:if="${session.authInfoDTO == null}">
         
-        <form action="/login/loginPro" name="frm" id="frm" method="post" th:object="${loginCommand}">
+        <form action="/login/item.login" name="frm" id="frm" method="post" th:object="${loginCommand}">
 		<table border="1" align="center" width="30%" height="30%">
 		     <tr>
 				<td colspan="3" align="center" style="background-color: green">
@@ -120,10 +125,11 @@ function onClick(element) {
 				<td colspan="3" align="center" style="color : green">
 				<input type="submit" value="로그인">
 			<tr>
+			
 			<tr>
 				<td colspan="3">자동 로그인 <input type="checkbox" name="autoLogin" />
 					&nbsp;&nbsp;&nbsp;&nbsp; 아이디 저장 <input type="checkbox"
-					name="idStore" />
+					name="idStore" th:checked="${loginCommand.idStore != null && loginCommand.idStore}"/>
 				</td>
 		</table>
 		<table align="center">
@@ -145,7 +151,7 @@ function onClick(element) {
         </li>
       </ul>
     </div>
-        
+    
     <div class="w3-half">
       <ul class="w3-ul w3-light-grey w3-center">
         <li class="w3-green w3-xlarge w3-padding-32">Pro</li>

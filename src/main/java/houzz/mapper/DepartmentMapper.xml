@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 	
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="houzz.mapper.DepartmentMapper">
+<insert id="departmentInsert" parameterType="departmentDTO">
+	insert into department(department_num, department_name)
+	values(#{departmentNum}, #{departmentName})
+</insert>
+
+<select id="selectAll" resultType="departmentDTO">
+	select DEPARTMENT_NUM departmentNum, DEPARTMENT_NAME departmentName from DEPARTMENT
+</select>
+</mapper>

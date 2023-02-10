@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 	
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="houzz.mapper.EmployeeMapper">
+<sql id="insertBase">
+	EMP_NUM, DEPARTMENT_NUM, EMP_ID, EMP_PW, EMP_NAME, EMP_PHONE, EMP_EMAIL, EMP_ADDR, EMP_GENDER, EMP_BIRTH
+</sql>
+
+<sql id="empBase">
+	EMP_NUM empNum, DEPARTMENT_NUM departmentNum, EMP_ID empId, EMP_PW empPw, EMP_NAME empName, EMP_PHONE empPhone, EMP_EMAIL empEmail, 
+	EMP_ADDR empAddr, EMP_GENDER empGender, EMP_BIRTH empBirth
+</sql>
+<select id="employeeNumGenerate" resultType="string">
+	select concat('emp',nvl(max(substr(emp_num,4)),100000)+1)
+	from employees
+</select>
+
+<insert id="employeeInsert" parameterType="empDTO">
+	insert into employees(<include refid="insertBase"/>)
+	values(#{empNum}, #{departmentNum}, #{empId}, #{empPw}, #{empName}, #{empPhone}, #{empEmail}, #{empAddr}, #{empGender}, #{empBirth})
+</insert>
+
+<select id="selectAll" parameterType="string" resultType="empDTO">
+	select <include refid="empBase"/>
+	from employees
+	<where>
+		<if test="empWord != null">
+			EMP_NUM like '%'||#{empWord}||'%'
+			or DEPARTMENT_NUM like '%'||#{empWord}||'%'
+			or EMP_ID like '%'||#{empWord}||'%'
+			or EMP_NAME like '%'||#{empWord}||'%'
+		</if>
+	</where>
+</select>
+
+<select id="selectOne" resultType="empDTO" parameterType="string">
+	select <include refid="empBase" />
+	from employees
+	where emp_num = #{empNum}
+</select>
+
+<update id="empUpdate" parameterType="empDTO" >
+	update employees
+	set department_num = #{departmentNum}, EMP_NAME = #{empName}, EMP_ID = #{empId}, EMP_PHONE = #{empPhone}, EMP_EMAIL = #{empEmail}, EMP_ADDR = #{empAddr}
+	where EMP_NUM = #{empNum}
+</update>
+
+<delete id="empDelete" parameterType="string">
+	delete from employees
+	where emp_num = #{empNum}
+</delete>
+</mapper>

@@ -41,7 +41,7 @@ function onClick(element) {
 <nav class="w3-sidebar w3-green w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
   <div class="w3-container">
-    <h3 class="w3-padding-64"><b>HOUZZ</b></h3> 
+    <h3 class="w3-padding-64"><b><a href="/">HOUZZ</a></b></h3> 
      
   </div>
   <div class="w3-bar-block">
@@ -96,6 +96,7 @@ function onClick(element) {
         
         <th:block th:case="emp">
               <li class="w3-padding-16"><a href="/employee/empList">직원 관리</a></li>
+              <li class="w3-padding-16"><a href="/department/departmentList">부서 관리</a></li>
         </th:block>
         
         <span th:if="${session.authInfoDTO == null}">

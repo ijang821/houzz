@@ -33,9 +33,14 @@ public class MediationController {
 	@Autowired
 	MediationService mediationService;
 	
+	/**
+	 * 회원 유형 선택에서 공인 중개소 주소
+	 * @return
+	 */
+	
 	@RequestMapping("mediationType")
 	 public String mediationType() {
-		return "thymeleaf/regist/mediationagree";
+		return "thymeleaf/register/mediationagree";
 	}
 	/**
 	 * 약관 동의 여부

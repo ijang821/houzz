@@ -44,5 +44,10 @@ public class LoginController {
 			loginService.execute(loginCommand, session);
 			return "redirect:/";
 		}
+	@RequestMapping("/login/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
 
 }

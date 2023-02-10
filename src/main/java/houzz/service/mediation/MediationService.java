@@ -27,7 +27,7 @@ public class MediationService {
 		dto.setMediationPhone(mediationCommand.getMediationPhone());
 		dto.setAbleAdCount(mediationCommand.getAbleAdCount());
 		dto.setMediationNum(mediationCommand.getMediationNum());
-		model.addAttribute("MediationName",dto.getMediationName());
+		model.addAttribute("mediationName",dto.getMediationName());
 		Integer i = mediationMapper.mediationJoinInsert(dto);
 		System.out.println(i +"개가 삽입되었습니다.");
 		return i;

@@ -8,10 +8,9 @@
         from member
         where member_id= #{userId}
         union
-        select mediation_id userId, mediation_Pw userPw, MEDIATION_EMAIL userEmail, 'med' 
+        select mediation_id, mediation_Pw, MEDIATION_EMAIL, 'med' 
         from mediation
-        where mediation_id= #{userId}
-        
+        where mediation_id= #{userId}        
 	</select>
 
 </mapper>

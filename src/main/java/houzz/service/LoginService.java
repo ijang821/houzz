@@ -14,13 +14,12 @@ public class LoginService {
 	@Autowired
 	LoginMapper loginMapper;
 	
-	public String execute(LoginCommand loginCommand, HttpSession session) {
-		AuthInfoDTO authInfoDTO =(AuthInfoDTO) session.getAttribute("authInfoDTO");
+	public void execute(LoginCommand loginCommand, HttpSession session) {
+		AuthInfoDTO authInfoDTO = loginMapper.loginselect(loginCommand.getUserId()); // 사용자 정보 가져옴
+		// session 생성
 		session.setAttribute("authInfoDTO", authInfoDTO);
-		authInfoDTO = loginMapper.loginselect(loginCommand.getUserId());
+		
 		System.out.println("session");
-		return "thymeleaf/index";
-
 	}
 }
 

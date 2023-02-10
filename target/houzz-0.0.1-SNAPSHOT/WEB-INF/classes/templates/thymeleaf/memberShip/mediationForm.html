@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>regist form</title>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
+@font-face {
+    font-family: 'BMJUA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+</style>
+<script>
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+</script>
+</head>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-green w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container">
+    <h3 class="w3-padding-64"><b>HOUZZ</b></h3>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
+    <a href="#showcase" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Showcase</a> 
+    <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Services</a> 
+    <a href="#designers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Designers</a> 
+    <a href="#packages" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Packages</a> 
+    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Contact</a>
+  </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-green w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-green w3-margin-right" onclick="w3_open()">☰</a>
+  <span>Company Name</span>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px" id="showcase">
+    <h1 class="w3-jumbo"><b>HOUZZ</b></h1>
+      <h1 class="w3-xxxlarge w3-text-green"><b>공인중개소 회원가입 </b></h1>
+    <hr style="width:50px;border:5px solid green" class="w3-round">
+  </div>
+  
+  <!-- MemberRegist -->
+  <div class="w3-container" id="services" style="margin-top:60px">
+   <form action="mediationJoinAction" method="post" th:object="${mediationCommand}">
+		<input type="hidden" name="ableAdCount" value="0" > 
+			<table width='600' align='center' border='1'>
+				<tfoot>
+					<tr>
+						<th colspan="2"><input type='submit' value='가입완료' id="submit" />&nbsp;&nbsp;
+							<input type='reset' value='다시 입력' />&nbsp;&nbsp; <input
+							type='button' value='가입 안함'
+							onclick="javascript:location.href='/'" /></th>
+					</tr>
+				</tfoot>
+				<tbody>
+					<tr>
+						<th colspan='2'>공인중개소 ID와 비밀번호 입력</th>
+					</tr>
+					<tr>
+						<th><label for="mediationId">* 공인중개소 아이디</label></th>
+						<td><input type='text' name="mediationId" id="mediationId"
+							size='15' maxlength='12' autofocus="autofocus" th:value="${mediationCommand.mediationId}" 
+							 /><span style="color: red" th:if="${#fields.hasErrors('mediationId')}"
+							th:errors="*{mediationId}"></span></td>
+					</tr>
+					<tr>
+						<th><label for="mediationPw">비밀번호</label></th>
+						<td><input type='password' name='mediationPw'
+							id="mediationPw" size='15' maxlength='12'  th:value="${mediationCommand.mediationPw}"/><span style="color: red"
+							th:if="${#fields.hasErrors('mediationPw')}"
+							th:errors="*{mediationPw}"></span></td>
+					</tr>
+					<tr>
+						<th><label for="mediationPwCon">비밀번호 확인</label></th>
+						<td><input type='password' name='mediationPwCon'
+							id="mediationPwCon" size='15' maxlength='12' th:value="${mediationCommand.mediationPwCon}" /><span style="color: red"
+							th:if="${#fields.hasErrors('mediationPwCon')}"
+							th:errors="*{mediationPwCon}"></span></td>
+					</tr>
+					<tr>
+						<th colspan='2'>공인중개소 기본 정보</th>
+					</tr>
+					<tr>
+						<th><label for='mediationNum'>중개 등록 번호</label></th>
+						<td><input type='text' name='mediationNum' id="mediationNum"  th:value="${mediationCommand.mediationNum}"/>
+						<span style="color: red"
+						th:if="${#fields.hasErrors('mediationNum')}"
+						th:errors="*{mediationNum}"></span>
+					</tr>
+					
+					<br />
+					<tr>
+						<th><label for="businessRegiNum">사업자 등록번호</label></th>
+						<td><input type='text' name='businessRegiNum'
+							id="businessRegiNum" th:value="${mediationCommand.businessRegiNum}"/><span style="color: red"
+							th:if="${#fields.hasErrors('businessRegiNum')}"
+							th:errors="*{businessRegiNum}"></span></td>
+					</tr>
+					<tr>
+						<th><label for="mediationName">중개소 이름</label></th>
+						<td><input type='text' name='mediationName'
+							id="mediationName" size='15' maxlength='12' th:value="${mediationCommand.mediationName}"/>	<span style="color: red"
+							th:if="${#fields.hasErrors('mediationName')}"
+							th:errors="*{mediationName}"></span></td>
+					
+					</tr>
+					<tr>
+						<th><label for="ceoName">대표자명</label></th>
+						<td><input type='text' name='ceoName' id="ceoName" th:value="${mediationCommand.ceoName}"><span style="color: red" th:if="${#fields.hasErrors('ceoName')}"
+							th:errors="*{ceoName}"></span></td>
+					</tr>
+
+					<tr>
+						<th colspan='2'>연락처</th>
+					</tr>
+					<tr>
+						<th><label for='mediationEmail'>이메일</label></th>
+						<td><input type='email' name='mediationEmail'
+							id="mediationEmail" placeholder="-@-필수" th:value="${mediationCommand.mediationEmail}"/><span style="color: red"
+							th:if="${#fields.hasErrors('mediationEmail')}"
+							th:errors="*{mediationEmail}"></span></td>
+					</tr>
+					<tr>
+						<th><label for="mediationAddr">소재지</label></th>
+						<td><input type='text' name='mediationAddr'
+							id="sample4_roadAddress"  th:value="${mediationCommand.mediationAddr}" /> <a
+							href="javascript:sample4_execDaumPostcode();">주소검색</a><br /><span style="color: red"
+							th:if="${#fields.hasErrors('mediationAddr')}"
+							th:errors="*{mediationAddr}"></span></td>
+					</tr>
+					<tr>
+						<th><label for="mediationPhone">전화 번호</label></th>
+						<td><input type='tel' size='26' maxlength='13'
+							name="mediationPhone" id="mediationPhone"
+							placeholder='010-1234-1234' th:value="${mediationCommand.mediationPhone}"/><span style="color: red"
+							th:if="${#fields.hasErrors('mediationPhone')}"
+							th:errors="*{mediationPhone}"></span></td>
+					</tr>
+				</tbody>
+			</table>
+	</form>
+  </div>
+
+
+<!-- End page content -->
+</div>
+
+<!-- W3.CSS Container -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
+
+</body>
+</html>

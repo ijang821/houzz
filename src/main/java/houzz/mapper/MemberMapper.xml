@@ -46,8 +46,7 @@
 		</where>
 	</select>
 
-	<select id="selectOne" resultType="memberDTO"
-		parameterType="string">
+	<select id="selectOne" resultType="memberDTO" parameterType="string">
 		select
 		<include refid="memberBase" />
 		from member

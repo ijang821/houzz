@@ -71,72 +71,86 @@ function w3_close() {
   <div class="w3-container" id="services" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-green"><b>직원 등록</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
-    <form action="empRegist" id="frm" method="post">
+    <form action="empRegist" id="frm" method="post" th:object=${employeeCommand}>
     	<table border="1">
     		<tr>
     			<td>직원 번호</td>
     			<td>
-    				<input type="text" name="empNum">
+    				<input type="text" name="empNum" th:value="${employeeCommand.empNum}">
+    				<span style="color:red" th:if="${#fields.hasErrors('empNum')}" th:errors="*{empNum}"></span>
     			</td>
     		</tr>
     		<tr>
     			<td>부서 번호</td>
     			<td>
-    				<input type="text" name="departmentNum">
+    				<input type="radio" name="departmentNum" value="101" th:checked="${employeeCommand.departmentNum=='101'}" />인사팀
+					<input type="radio" name="departmentNum" value="201" th:checked="${employeeCommand.departmentNum=='201'}" />매물관리팀
+					<input type="radio" name="departmentNum" value="301" th:checked="${employeeCommand.departmentNum=='301'}" />고객대응팀
+    				<span style="color:red" th:if="${#fields.hasErrors('departmentNum')}" th:errors="*{departmentNum}"></span>
     			</td>
     		</tr>
     		<tr>
     			<td>아이디</td>
     			<td>
-    				<input type="text" name="empId">
+    				<input type="text" name="empId" th:value="${employeeCommand.empId}">
+    				<span style="color:red" th:if="${#fields.hasErrors('empId')}" th:errors="*{empId}"></span>
     			</td>
     		</tr>
     		<tr>
     			<td>비밀번호</td>
     			<td>
-    				<input type="text" name="empPw">
+    				<input type="password" name="empPw" th:value="${employeeCommand.empPw}">
+    				<span style="color:red" th:if="${#fields.hasErrors('empPw')}" th:errors="*{empPw}"></span>
     			</td>
     		</tr>
     		<tr>
     			<td>비밀번호 확인</td>
     			<td>
-    				<input type="text" name="empPwCon">
+    				<input type="password" name="empPwCon" th:value="${employeeCommand.empPwCon}">
+    				<span style="color:red" th:if="${#fields.hasErrors('empPwCon')}" th:errors="*{empPwCon}"></span>
     			</td>
     		</tr>
     		<tr>
     			<td>직원 이름</td>
     			<td>
-    				<input type="text" name="empName">
+    				<input type="text" name="empName" th:value="${employeeCommand.empName}">
+    				<span style="color:red" th:if="${#fields.hasErrors('empName')}" th:errors="*{empName}"></span>
     			</td>
     		</tr>
     		<tr>
     			<td>연락처</td>
     			<td>
-    				<input type="text" name="empPhone">
+    				<input type="tel" name="empPhone" th:value="${employeeCommand.empPhone}">
+    				<span style="color:red" th:if="${#fields.hasErrors('empPhone')}" th:errors="*{empPhone}"></span>
     			</td>
     		</tr>
     		<tr>
     			<td>이메일</td>
     			<td>
-    				<input type="text" name="empEmail">
+    				<input type="email" name="empEmail" th:value="${employeeCommand.empEmail}">
+    				<span style="color:red" th:if="${#fields.hasErrors('empEmail')}" th:errors="*{empEmail}"></span>
     			</td>
     		</tr>
     		<tr>
     			<td>주소</td>
     			<td>
-    				<input type="text" name="empAddr">
+    				<input type="text" name="empAddr" th:value="${employeeCommand.empAddr}">
+    				<span style="color:red" th:if="${#fields.hasErrors('empAddr')}" th:errors="*{empAddr}"></span>
     			</td>
     		</tr>
     		<tr>
     			<td>성별</td>
     			<td>
-    				<input type="text" name="empGender">
+    				<input type="radio" name="empGender" value="F" th:checked="${employeeCommand.empGender=='F'}" />여자 
+					<input type="radio" name="empGender" value="M" th:checked="${employeeCommand.empGender=='M'}" />남자
+					<span style="color:red" th:if="${#fields.hasErrors('empGender')}" th:errors="*{empGender}"></span>
     			</td>
     		</tr>
     		<tr>
     			<td>생년월일</td>
     			<td>
-    				<input type="text" name="empBirth">
+    				<input type="date" name="empBirth" th:value="${employeeCommand.empBirth}">
+    				<span style="color:red" th:if="${#fields.hasErrors('empBirth')}" th:errors="*{empBirth}"></span>
     			</td>
     		</tr>
     		<tr>

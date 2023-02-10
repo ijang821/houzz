@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>regist form</title>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Poppins">
+<style>
+body, h1, h2, h3, h4, h5 {
+	font-family: "Poppins", sans-serif
+}
+
+body {
+	font-size: 16px;
+}
+
+.w3-half img {
+	margin-bottom: -6px;
+	margin-top: 16px;
+	opacity: 0.8;
+	cursor: pointer
+}
+
+.w3-half img:hover {
+	opacity: 1
+}
+
+@font-face {
+	font-family: 'BMJUA';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+</style>
+<script>
+	// Script to open and close sidebar
+	function w3_open() {
+		document.getElementById("mySidebar").style.display = "block";
+		document.getElementById("myOverlay").style.display = "block";
+	}
+
+	function w3_close() {
+		document.getElementById("mySidebar").style.display = "none";
+		document.getElementById("myOverlay").style.display = "none";
+	}
+</script>
+</head>
+<body>
+
+	<!-- Sidebar/menu -->
+	<nav class="w3-sidebar w3-green w3-collapse w3-top w3-large w3-padding"
+		style="z-index: 3; width: 300px; font-weight: bold;" id="mySidebar">
+		<br> <a href="javascript:void(0)" onclick="w3_close()"
+			class="w3-button w3-hide-large w3-display-topleft"
+			style="width: 100%; font-size: 22px">Close Menu</a>
+		<div class="w3-container">
+			<h3 class="w3-padding-64">
+				<b>HOUZZ</b>
+			</h3>
+		</div>
+		<div class="w3-bar-block">
+			<a href="#" onclick="w3_close()"
+				class="w3-bar-item w3-button w3-hover-white">Home</a> <a
+				href="#showcase" onclick="w3_close()"
+				class="w3-bar-item w3-button w3-hover-white">Showcase</a> <a
+				href="#services" onclick="w3_close()"
+				class="w3-bar-item w3-button w3-hover-white">Services</a> <a
+				href="#designers" onclick="w3_close()"
+				class="w3-bar-item w3-button w3-hover-white">Designers</a> <a
+				href="#packages" onclick="w3_close()"
+				class="w3-bar-item w3-button w3-hover-white">Packages</a> <a
+				href="#contact" onclick="w3_close()"
+				class="w3-bar-item w3-button w3-hover-white">Contact</a>
+		</div>
+	</nav>
+
+	<!-- Top menu on small screens -->
+	<header
+		class="w3-container w3-top w3-hide-large w3-green w3-xlarge w3-padding">
+		<a href="javascript:void(0)"
+			class="w3-button w3-green w3-margin-right" onclick="w3_open()">☰</a>
+		<span>Company Name</span>
+	</header>
+
+	<!-- Overlay effect when opening sidebar on small screens -->
+	<div class="w3-overlay w3-hide-large" onclick="w3_close()"
+		style="cursor: pointer" title="close side menu" id="myOverlay"></div>
+
+	<!-- !PAGE CONTENT! -->
+	<div class="w3-main" style="margin-left: 340px; margin-right: 40px">
+
+		<!-- Header -->
+		<div class="w3-container" style="margin-top: 80px" id="showcase">
+			<h1 class="w3-jumbo">
+				<b>HOUZZ</b>
+			</h1>
+			<h1 class="w3-xxxlarge w3-text-green">
+				<b>개인 회원가입 </b>
+			</h1>
+			<hr style="width: 50px; border: 5px solid green" class="w3-round">
+		</div>
+
+		<!-- MemberRegist -->
+		<div class="w3-container" id="services" style="margin-top: 50px">
+			<form action="memberJoinAction" method="post"
+				th:object="${memberCommand}">
+				<input type="hidden" name="memberNum" value="123456789"> <input
+					type="hidden" name="memberJoinDate" value="1999-12-30"> <span
+					style="color: red" th:if="${#fields.hasErrors('memberJoinDate')}"
+					th:errors="*{memberJoinDate}"></span> <input type="hidden"
+					name="accountAddress" value="abcd"> <span
+					style="color: red" th:if="${#fields.hasErrors('accountAddress')}"
+					th:errors="*{accountAddress}"></span>
+				<table width='600' align='center' border='1'>
+					<tfoot>
+						<tr>
+							<th colspan="2"><input type='submit' value='가입완료'
+								id="submit" />&nbsp;&nbsp; <input type='reset' value='다시 입력' />&nbsp;&nbsp;
+								<input type='button' value='가입 안함'
+								onclick="javascript:location.href='/'" /></th>
+						</tr>
+					</tfoot>
+					<tbody>
+						<tr>
+							<th colspan='2'>사용자 ID와 비밀번호 입력</th>
+						</tr>
+						<tr>
+							<th><label for="memberId">* 사용자 아이디</label></th>
+							<td><input type='text' name="memberId" id="memberId"
+								size='15' maxlength='12' autofocus="autofocus"
+								th:value="${memberCommand.memberId}" /> <span style="color: red"
+								th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}"></span></td>
+
+
+						</tr>
+						<tr>
+							<th><label for="memberPw">비밀번호</label></th>
+							<td><input type='password' name='memberPw' id="memberPw"
+								size='15' maxlength='12' th:value="${memberCommand.memberPw}" /><span
+								style="color: red" th:if="${#fields.hasErrors('memberPw')}"
+								th:errors="*{memberPw}"></span></td>
+
+						</tr>
+						<tr>
+							<th><label for="memberPwCon">비밀번호 확인</label></th>
+							<td><input type='password' name='memberPwCon'
+								id="memberPwCon" size='15' maxlength='12'
+								th:value="${memberCommand.memberPwCon}" /><span
+								style="color: red" th:if="${#fields.hasErrors('memberPwCon')}"
+								th:errors="*{memberPwCon}"></span></td>
+
+						</tr>
+						<tr>
+							<th colspan='2'>사용자 기본 정보</th>
+						</tr>
+						<tr>
+							<th><label for="memberName">사용자 이름</label></th>
+							<td><input type='text' name='memberName' id="memberName"
+								size='15' maxlength='12' th:value="${memberCommand.memberName}" /><span
+								style="color: red" th:if="${#fields.hasErrors('memberName')}"
+								th:errors="*{memberName}"></span></td>
+
+						</tr>
+						<tr>
+							<th><label for="memberBirth">생년원일</label></th>
+							<td><input type='date' name='memberBirth' id="memberBirth"
+								placeholder='2000-01-01'
+								th:value="${#dates.format(memberCommand.memberBirth,'yyyy-MM-dd')}" /><span
+								style="color: red" th:if="${#fields.hasErrors('memberBirth')}"
+								th:errors="*{memberBirth}"></span></td>
+
+						</tr>
+						<tr>
+							<th>성별</th>
+							<td><input type='radio' name='memberGender' value="M"
+								th:checked="${memberCommand.memberGender == 'M'}" />남자 <input
+								type='radio' name='memberGender' value="F"
+								th:checked="${memberCommand.memberGender == 'F'}" />여자 <span
+								style="color: red" th:if="${#fields.hasErrors('memberGender')}"
+								th:errors="*{memberGender}"></span></td>
+
+						</tr>
+						<tr>
+							<th colspan='2'>사용자 연락처</th>
+						</tr>
+						<tr>
+							<th><label for='memberEmail'>사용자 이메일</label></th>
+							<td><input type='email' name='memberEmail' id="memberEmail"
+								th:value="${memberCommand.memberEmail}" placeholder="-@- 필수" />
+								<span style="color: red"
+								th:if="${#fields.hasErrors('memberEmail')}"
+								th:errors="*{memberEmail}"></span></td>
+						</tr>
+						<tr>
+							<th><label for="memberAddr">사용자 주소</label></th>
+							<td><input type='text' name='memberAddr' id="memberAddr"
+								th:value="${memberCommand.memberAddr}" /> <span
+								style="color: red" th:if="${#fields.hasErrors('memberAddr')}"
+								th:errors="*{memberAddr}"></span></td>
+						</tr>
+						<tr>
+							<th><label for="memberPhone">연락처</label></th>
+							<td><input type='tel' size='26' maxlength='13'
+								name="memberPhone" id="memberPhone" placeholder='123-123-1234'
+								th:value="${memberCommand.memberPhone}" /> <span
+								style="color: red" th:if="${#fields.hasErrors('memberPhone')}"
+								th:errors="*{memberPhone}"></span></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</form>
+		</div>
+
+		<!-- End page content -->
+	</div>
+
+	<!-- W3.CSS Container -->
+	<div class="w3-light-grey w3-container w3-padding-32"
+		style="margin-top: 75px; padding-right: 58px">
+		<p class="w3-right">
+			Powered by <a href="https://www.w3schools.com/w3css/default.asp"
+				title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a>
+		</p>
+	</div>
+
+</body>
+</html>

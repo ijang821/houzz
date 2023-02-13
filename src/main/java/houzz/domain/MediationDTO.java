@@ -2,9 +2,13 @@ package houzz.domain;
 
 import org.apache.ibatis.type.Alias;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Alias("mediationDTO")
 public class MediationDTO {
 	String mediationNum;

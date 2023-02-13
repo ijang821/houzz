@@ -6,6 +6,5 @@ import houzz.domain.MediationDTO;
 
 @Repository("houzz.mapper.MediationShipMapper")
 public interface MediationShipMapper {
-	
 	public MediationDTO selectMed(String medId);
 }

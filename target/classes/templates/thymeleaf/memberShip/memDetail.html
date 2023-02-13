@@ -69,34 +69,84 @@ function w3_close() {
   <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
     <h1 class="w3-jumbo"><b>HOUZZ</b></h1>
-    <h1 class="w3-xxxlarge w3-text-green"><b>FIND PASSWORD TO HOUZZ</b></h1>
+    <h1 class="w3-xxxlarge w3-text-green"><b>MemberInfomation</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
+    
   </div>
   
+
+
   <!-- MemberRegist -->
   <div class="w3-container" id="services" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-green"><b>비밀 번호 찾기</b></h1>
+    <h1 class="w3-xxxlarge w3-text-green"><b>내정보</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">					
-	<form action="findPw" method="post" th:object="${findPwCommand}">
-	<table>
-		<tr><th>아이디</th>
-			<td><input type="text" name="userId" /><br />
-			<span th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" ></span></td>
-		</tr>
-		<tr><th>연락처</th>
-			<td><input type="text" name="userPhone"/><br />
-			<span th:if="${#fields.hasErrors('userPhone')}" th:errors="*{userPhone}" ></span></td>
-		</tr>
-		<tr><th>이메일</th>
-			<td><input type="text" name="userEmail"/><br />
-			<span th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}" ></span></td>
-		</tr>
-		<tr>
-			<th><input type="submit" value="전송" /></th>
-		</tr>
-	</table>
-</form>
+ <table border=1 width="30%" >
+    	<tr>
+    		<th>회원 번호</th>
+    		<td>
+    			[[${memberCommand.memberNum}]]
+    		</td>
+    	</tr>
+    	<tr>
+    		<th>등록일</th>
+    		<td>
+    			<span th:text="${#dates.format(memberCommand.memberJoinDate,'yyyy-MM-dd')}" ></span>
+    		</td>
+    	</tr>
+    	<tr>
+    		<th>이름</th>
+    		<td>
+    			[[${memberCommand.memberName}]]
+    		</td>
+    	</tr>
+    	<tr>
+    		<th>ID</th>
+    		<td>
+    			[[${memberCommand.memberId}]]
+    		</td>
+    	</tr>
+    	<tr>
+    		<th>연락처</th>
+    		<td>
+    			[[${memberCommand.memberPhone}]]
+    		</td>
+    	</tr>
+    	<tr>
+    		<th>이메일</th>
+    		<td>
+    			[[${memberCommand.memberEmail}]]
+			</td>
+    	</tr>
+    	<tr>
+    		<th>주소</th>
+    		<td>
+    			[[${memberCommand.memberAddr}]]
+    		</td>
+    	</tr>
+    	<tr>
+    		<th>성별</th>
+    		<td>
+    			<span th:if="${memberCommand.memberGender == 'M'}" th:text="남자"></span> 
+				<span th:if="${memberCommand.memberGender == 'F'}" th:text="여자"></span>
+			</td>
+    	</tr>
+    	<tr>
+    		<th>생년월일</th>
+    		<td>
+    			<span th:text="${#dates.format(memberCommand.memberBirth,'yyyy-MM-dd')}"></span>
+    		</td>
+    	</tr>
+    	<tr>
+    		<th>지갑주소</th>
+    		<td>
+    			[[${memberCommand.accountAddress}]]
+    		</td>
+    	</tr>
+    </table>
+    
+    
   </div>
+
 
 <!-- End page content -->
 </div>
@@ -108,3 +158,10 @@ function w3_close() {
 
 </body>
 </html>
+
+
+
+
+
+
+

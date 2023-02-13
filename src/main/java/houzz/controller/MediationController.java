@@ -61,7 +61,7 @@ public class MediationController {
 	   if(agree == false) {
 		   return "thymeleaf/regist/agree";
 	   }
-	   return "thymeleaf/memberShip/mediationForm";
+	   return "thymeleaf/mediation/mediationForm";
 	}
 	@Autowired
 	MediationListService mediationListService;
@@ -87,14 +87,14 @@ public class MediationController {
 	@RequestMapping(value = "mediationJoinAction", method = RequestMethod.POST)
 	public String mediationJoinAction(@Validated MediationCommand mediationCommand, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			return "thymeleaf/memberShip/mediationForm";
+			return "thymeleaf/mediation/mediationForm";
 		}
 		if (!mediationCommand.isMediationPwEqualsMediationPwCon()) {
 			result.rejectValue("mediationPw", "mediationCommand.mediationPw", "비밀번호와 비밀번호 확인이 다릅니다.");
-			return "thymeleaf/memberShip/mediationForm";
+			return "thymeleaf/mediation/mediationForm";
 		}
 		mediationService.execute(mediationCommand, model);
-		return "thymeleaf/memberShip/welcomeMed";
+		return "thymeleaf/mediation/welcomeMed";
 	}
 	/**
 	 * 중개소 정보 상세 페이지

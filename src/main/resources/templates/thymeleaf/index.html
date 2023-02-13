@@ -91,17 +91,30 @@ function onClick(element) {
 	    <span th:switch="${session.authInfoDTO.grade}">
 	    
 		<th:block th:case="mem">
-              <li class="w3-padding-16"><a href="/member/memberList">회원 관리</a></li>
-              <li class="w3-padding-16"><a href="/estate/estateList">매물 관리</a></li>
+              <li class="w3-padding-16"><a href="/myPage/memDetail">내정보 보기</a></li>
+              <li class="w3-padding-16"><a href="/myPage/memPass">비밀번호 수정</a></li>
+              <li class="w3-padding-16"><a href="/myPage/memModify">내정보 수정</a></li>
+              <li class="w3-padding-16"><a href="/myPage/memDelete">회원 탈퇴</a></li>
+              <li class="w3-padding-16"><a href="/corner/interestList">관심 매물</a></li>
+              <li class="w3-padding-16"><a href="/estate/estateList">등록매물 관리</a></li> 
         </th:block>
          
         <th:block th:case="med">
-              <li class="w3-padding-16"><a href="/register/mediationList">공인 중개소 관리</a></li>
+              <li class="w3-padding-16"><a href="/register/mediationDetail">내정보 보기</a></li>
+              <li class="w3-padding-16"><a href="/register/mediationModify">내정보 수정</a></li>
+              <li class="w3-padding-16"><a href="/register/mediationPwChange">비밀번호 변경</a></li>
+              <li class="w3-padding-16"><a href="/estate/estateList">등록매물 관리</a></li> 
         </th:block>
         
         <th:block th:case="emp">
+              <li class="w3-padding-16"><a href="/emloyee/empDetail">내정보 보기</a></li>
+              <li class="w3-padding-16"><a href="/emloyee/empModify">내정보 수정</a></li>
+              <li class="w3-padding-16"><a href="/emloyee/empPWChange">비밀번호 변경</a></li>
               <li class="w3-padding-16"><a href="/employee/empList">직원 관리</a></li>
-              <li class="w3-padding-16"><a href="/department/departmentList">부서 관리</a></li>
+              <li class="w3-padding-16"><a href="/member/memberList">회원 관리</a></li>
+              <li class="w3-padding-16"><a href="/department/departmentList">부서 관리</a></li>   
+              <li class="w3-padding-16"><a href="/estate/estateList">매물 관리</a></li>
+              <li class="w3-padding-16"><a href="/register/mediationList">공인 중개소 관리</a></li>
         </th:block>
         
         <span th:if="${session.authInfoDTO == null}">

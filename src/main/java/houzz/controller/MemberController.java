@@ -78,9 +78,9 @@ public class MemberController {
 	 */
 	@Autowired
 	MemberDetailService memberDetailService;
-	@RequestMapping(value = "memberDetail/{memberNum}")
-	public String memberDetail(@PathVariable(value = "memberNum")String memberNum, Model model) {
-		memberDetailService.execute(memberNum, model);
+	@RequestMapping(value = "memberDetail/")
+	public String memberDetail(MemberCommand memberCommand, Model model) {
+		memberDetailService.execute(memberCommand, model);
 		return "thymeleaf/member/memberDetail";
 	}
 	/**

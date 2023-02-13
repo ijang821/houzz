@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,7 +104,7 @@ a {
 				<b>HOUZZ</b>
 			</h1>
 			<h1 class="w3-xxxlarge w3-text-green">
-				<b>FIND PASSWORD TO HOUZZ</b>
+				<b>PassWord Change</b>
 			</h1>
 			<hr style="width: 50px; border: 5px solid green" class="w3-round">
 
@@ -116,17 +114,15 @@ a {
 
 		<!-- MemberRegist -->
 		<div class="w3-container" id="services" style="margin-top: 75px">
-			<h1 class="w3-xxxlarge w3-text-green">
-				<b>비밀번호 찾기</b>
-			</h1>
-			<hr style="width: 50px; border: 5px solid green" class="w3-round">
-
-			[[${findPwCommand.userId}]]님 [[${findPwCommand.userEmail}]]로 임시 비밀번호가
-			전송되었습니다. <br/>
-			<hr />
-			
-			<a href="/login">로그인 하기</a>
-
+			<form action="memPwModify" name="frm" id="frm" method="post">
+				현재 비밀번호 : <input type="password" name="oldPw" /> <span
+					th:if="${err_pw != null}" th:text="${err_pw}" style="color: red"></span>
+				<br /> 바꿀 비밀번호 : <input type="password" name="memberPw"
+					id="memberPw" /> <span th:if="${err_pw_con != null}"
+					th:text="${err_pw_con}" style="color: red"></span> <br /> 비밀번호 확인
+				: <input type="password" name="memberPwCon" id="memberPwCon" /> <br />
+				<input type="submit" value="비밀번호 변경하기" />
+			</form>
 		</div>
 
 
@@ -142,6 +138,7 @@ a {
 		</p>
 	</div>
 
+
+
 </body>
 </html>
-

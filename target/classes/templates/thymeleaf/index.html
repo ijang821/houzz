@@ -91,18 +91,19 @@ function onClick(element) {
 	    <span th:switch="${session.authInfoDTO.grade}">
 	    
 		<th:block th:case="mem">
-              <li class="w3-padding-16"><a href="/myPage/memDetail">내정보 보기</a></li>
-              <li class="w3-padding-16"><a href="/myPage/memPass">비밀번호 수정</a></li>
-              <li class="w3-padding-16"><a href="/myPage/memModify">내정보 수정</a></li>
-              <li class="w3-padding-16"><a href="/myPage/memDelete">회원 탈퇴</a></li>
+              <li class="w3-padding-16"><a href="memDetail">내정보 보기</a></li>
+              <li class="w3-padding-16"><a href="memPass">비밀번호 수정</a></li>
+              <li class="w3-padding-16"><a href="memModify">내정보 수정</a></li>
+              <li class="w3-padding-16"><a href="memDelete1">회원 탈퇴</a></li>
               <li class="w3-padding-16"><a href="/corner/interestList">관심 매물</a></li>
               <li class="w3-padding-16"><a href="/estate/estateList">등록매물 관리</a></li> 
         </th:block>
          
         <th:block th:case="med">
-              <li class="w3-padding-16"><a href="/register/mediationDetail">내정보 보기</a></li>
-              <li class="w3-padding-16"><a href="/register/mediationModify">내정보 수정</a></li>
-              <li class="w3-padding-16"><a href="/register/mediationPwChange">비밀번호 변경</a></li>
+              <li class="w3-padding-16"><a href="mediationDetail">내정보 보기</a></li>
+              <li class="w3-padding-16"><a href="mediationPwChange">비밀번호 수정</a></li>
+              <li class="w3-padding-16"><a href="mediationModify">내정보 수정</a></li>
+              <li class="w3-padding-16"><a href="memDelete1">공인중개소 폐업</a></li>
               <li class="w3-padding-16"><a href="/estate/estateList">등록매물 관리</a></li> 
         </th:block>
         

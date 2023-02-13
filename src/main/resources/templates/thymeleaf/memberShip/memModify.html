@@ -81,22 +81,27 @@ function w3_close() {
   <!-- MemberRegist -->
   <div class="w3-container" id="services" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-green"><b>회원 수정 페이지</b></h1>
-    <hr style="width:50px;border:5px solid green" class="w3-round">		   		
-			<form action="memInfoUpdate	" method="post" th:object="${memberCommand}">
+    <hr style="width:50px;border:5px solid green" class="w3-round">	
+    	   		
+			<form action="memInfoUpdate" method="post" th:object="${memberCommand}">
+			
 				<input type="hidden" name="memberNum" value="123456789"> 
+				
 				<input type="hidden" name="memberJoinDate" value="1999-12-30"> 
-				<span style="color: red" th:if="${#fields.hasErrors('memberJoinDate')}"
-					th:errors="*{memberJoinDate}"></span> 
+				
+			
 				<input type="hidden" name="accountAddress" value="abcd"> 
-				<span style="color: red" th:if="${#fields.hasErrors('accountAddress')}"
-					th:errors="*{accountAddress}"></span>
+				
+				<input type="hidden" name="memberPw" value="12341234!q"> 
+				
+				<input type="hidden" name="memberPwCon" value="12341234!q"> 
 				
 				<table width='600' align='center' border='1'>
 					<tfoot>
 						<tr>
-							<th colspan="2"><input type='submit' value='가입완료'
-								id="submit" />&nbsp;&nbsp; <input type='reset' value='다시 입력' />&nbsp;&nbsp;
-								<input type='button' value='가입 안함'
+							<th colspan="2"><input type='submit' value='수정완료'
+								id="submit" />&nbsp;&nbsp; <input type='reset' value='재입력' />&nbsp;&nbsp;
+								<input type='button' value='뒤로 가기'
 								onclick="javascript:location.href='/'" /></th>
 						</tr>
 					</tfoot>
@@ -108,7 +113,7 @@ function w3_close() {
 							<th><label for="memberId">* 사용자 아이디</label></th>
 							<td><input type='text' name="memberId" id="memberId"
 								size='15' maxlength='12' autofocus="autofocus"
-								th:value="${memberCommand.memberId}" /> <span style="color: red"
+								th:value="${memberCommand.memberId}" readonly="readonly"/> <span style="color: red"
 								th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}"></span></td>
                         </tr>
                          <tr>
@@ -163,7 +168,7 @@ function w3_close() {
 								th:errors="*{memberAddr}"></span></td>
 						</tr>
 						<tr>
-							<th><label for="memberPhone">우편번호</label></th>
+							<th><label for="memberAddr">우편번호</label></th>
 							<td><input type="text" id="sample4_postcode"></td>
 						</tr>
 

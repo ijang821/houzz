@@ -44,23 +44,30 @@
 	      where member_id = #{memberId}
 	</update>
 	
-	<update id="updateMem" parameterType="string" >
+	<update id="updateMem" parameterType="memberDTO" >
 	      update member
-	      set MEMBER_NAME = #{emberName}, MEMBER_PHONE = #{memberPhone}, MEMBER_EMAIL = #{memberEmail},
-		       MEMBER_ADDR = #{memberAddr}
+	      set MEMBER_NAME = #{memberName}, MEMBER_PHONE = #{memberPhone}, MEMBER_EMAIL = #{memberEmail},
+		       MEMBER_ADDR = #{memberAddr}, member_birth = #{memberBirth}
 	      where member_id = #{memberId}
 	</update>
 	
 	<select id="selectOne" parameterType="string" resultType="memberDTO">
-	     select MEMBER_NUM memberNum, MEMBER_NAME memberName, MEMBER_ID memberID, MEMBER_PW memberPw,
-		MEMBER_PHONE memberPhone,
-		MEMBER_EMAIL memberEmail, MEMBER_ADDR memberAddr, MEMBER_GENDER memberGender,
-		MEMBER_BIRTH memberBrith, 
+	     select MEMBER_NUM , MEMBER_NAME , MEMBER_ID , MEMBER_PW ,
+		        MEMBER_PHONE ,
+	        	MEMBER_EMAIL , MEMBER_ADDR , MEMBER_GENDER ,
+		        MEMBER_BIRTH , MEMBER_JOIN_DATE ,
+		MEMBER_JOIN_CK, ACCOUNT_ADDRESS 
+		
 	     from member
+	     where member_id = #{memberId}
+	</select>
+	
+	<delete id="memDel" parameterType="string">
+	     delete from member
 	     where member_id = #{memberId}
 	
 	
-	</select>
+	</delete>
 
 
 </mapper>

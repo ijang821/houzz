@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="houzz.mapper.MediationShipMapper">
+    
+
+	<resultMap type="mediationDTO" id="medConstructorMap">
+		<constructor>
+			<idArg column="mediation_num" javaType="string" />
+			<arg column="business_regi_num" javaType="string" />
+			<arg column="mediation_id" javaType="string" />
+			<arg column="mediation_pw" javaType="string" />
+			<arg column="ceo_name" javaType="string" />
+			<arg column="mediation_name" javaType="string" />
+			<arg column="mediation_addr" javaType="string" />
+			<arg column="mediation_phone" javaType="string" />
+			<arg column="mediation_email" javaType="string" />
+			<arg column="able_ad_count" javaType="integer" />
+		</constructor>
+	</resultMap>
+
+	<select id="selectMed" parameterType="string" resultMap="medConstructorMap">
+		select mediation_num, business_regi_num, mediation_id, mediation_pw, ceo_name,
+		       mediation_name, mediation_addr, mediation_phone, mediation_email, able_ad_count
+		from mediation
+		where mediation_id = #{mediationId}
+	</select>
+
+
+</mapper>

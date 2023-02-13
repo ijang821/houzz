@@ -13,14 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import houzz.command.MemberCommand;
 import houzz.domain.AuthInfoDTO;
+import houzz.service.memberShip.MemDelete1Service;
 import houzz.service.memberShip.MemberInfoService;
 import houzz.service.memberShip.MemberInfoUpdateService;
 import houzz.service.memberShip.MemberPasswordService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("myPage")
-public class MyPageController {
+
+public class MyPageMemController {
 	@Autowired
 	MemberInfoService memberInfoService ;
 	@Autowired
@@ -34,7 +35,7 @@ public class MyPageController {
 	 * @return
 	 */
 	@RequestMapping("memDetail")
-	    public String memInfo( Model model, HttpSession session) {
+	    public String memInfo(Model model, HttpSession session) {
 		memberInfoService.execute(model, session);
 		return "thymeleaf/memberShip/memDetail";
 	}
@@ -60,8 +61,13 @@ public class MyPageController {
 			return "thymeleaf/memberShip/memModify";
 		}
 		memberInfoUpdateService.execute(memberCommand, model,session);
-		return "redirec:memDetail/"+memberCommand.getMemberNum();
+		return "redirect:memDetail";
 	}
+	/**
+	 * 내정보 수정 
+	 * @return
+	 */
+	
 	
 	/**
 	 * 회원 비밀번호 수정(회원 비밀번호 세션 가져옴)
@@ -103,6 +109,14 @@ public class MyPageController {
 		}
 		memberPasswordService.execute(memberPw, session);
 	     	return "thymeleaf/memberShip/memPassCk";
-		
 	}
+	@Autowired
+	MemDelete1Service memDelete1Service;
+	@RequestMapping("memDelete1")
+	public String memDelete1(HttpSession session) {
+		memDelete1Service.execute(session);
+		session.invalidate();
+		return "thymeleaf/memberShip/memsecession";
+	}
+	
 }

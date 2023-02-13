@@ -4,17 +4,23 @@
 
 <mapper namespace="houzz.mapper.MediationMapper">
 	<sql id="mediationBase">
-		MEDIATION_NUM mediationNum, BUSINESS_REGI_NUM businessRegiNum, MEDIATION_ID
+		MEDIATION_NUM mediationNum, BUSINESS_REGI_NUM
+		businessRegiNum, MEDIATION_ID
 		mediationId,
-		MEDIATION_PW mediationPw, CEO_NAME ceoName, MEDIATION_NAME mediationName,
-		MEDIATION_ADDR mediationAddr, MEDIATION_PHONE mediationPhone,
-		MEDIATION_EMAIL mediationEmail,
+		MEDIATION_PW mediationPw,
+		CEO_NAME ceoName, MEDIATION_NAME mediationName,
+		MEDIATION_ADDR
+		mediationAddr, MEDIATION_PHONE mediationPhone,
+		MEDIATION_EMAIL
+		mediationEmail,
 		ABLE_AD_COUNT ableAdCount
 	</sql>
 
 	<sql id="mediationBase insert">
-		MEDIATION_NUM, BUSINESS_REGI_NUM, MEDIATION_ID, MEDIATION_PW,
-		CEO_NAME, MEDIATION_NAME, MEDIATION_ADDR, MEDIATION_PHONE, MEDIATION_EMAIL,
+		MEDIATION_NUM, BUSINESS_REGI_NUM, MEDIATION_ID,
+		MEDIATION_PW,
+		CEO_NAME, MEDIATION_NAME, MEDIATION_ADDR,
+		MEDIATION_PHONE, MEDIATION_EMAIL,
 		ABLE_AD_COUNT
 	</sql>
 
@@ -57,29 +63,30 @@
 			</if>
 		</where>
 	</select>
-	
-	<update id="mediationUpdate" parameterType="mediationDTO" >
-	     update mediation
-	     set BUSINESS_REGI_NUM = #{businessRegiNum}, 
-		 CEO_NAME =#{ceoName}, MEDIATION_NAME =#{mediationName},
-	     MEDIATION_ADDR=#{mediationAddr}, MEDIATION_PHONE =#{mediationPhone},
-		 MEDIATION_EMAIL=#{mediationEmail}
-	     where mediation_num = #{mediationNum}	
+
+	<update id="mediationUpdate" parameterType="mediationDTO">
+		update mediation
+		set BUSINESS_REGI_NUM = #{businessRegiNum},
+		CEO_NAME =#{ceoName}, MEDIATION_NAME =#{mediationName},
+		MEDIATION_ADDR=#{mediationAddr}, MEDIATION_PHONE =#{mediationPhone},
+		MEDIATION_EMAIL=#{mediationEmail}
+		where mediation_num = #{mediationNum}
 	</update>
-	
+
 	<delete id="mediationDelete" parameterType="string">
-	        delete from mediation
-	        where mediation_num = #{mediationNum}	
+		delete from mediation
+		where mediation_num = #{mediationNum}
 	</delete>
-	
-	<delete id="mediationRemove" parameterType="string" >
-	        delete from mediation
-	        where mediation_num in
-	        <foreach collection="mediationNums" item="mediationNum"
-	        index="index" open="(" close=")" separator=",">
-	        #{mediationNum}
-	        </foreach>
+
+	<delete id="mediationRemove" parameterType="string">
+		delete from mediation
+		where mediation_num in
+		<foreach collection="mediationNums" item="mediationNum"
+			index="index" open="(" close=")" separator=",">
+			#{mediationNum}
+		</foreach>
 	</delete>
+
 
 
 </mapper>

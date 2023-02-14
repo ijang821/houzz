@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import houzz.command.EstateCommand;
+import houzz.command.FileInfo;
 import houzz.service.estate.EstateDeleteService;
 import houzz.service.estate.EstateDetailService;
 import houzz.service.estate.EstateListController;
 import houzz.service.estate.EstateModifyService;
 import houzz.service.estate.EstateNumService;
 import houzz.service.estate.EstateRegistService;
+import houzz.service.estate.FileDelService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -56,7 +58,9 @@ public class EstateController {
 	@Autowired
 	EstateRegistService estateRegistService;
 	@RequestMapping(value = "estateRegist", method = RequestMethod.POST)
-	public String estateRegist(@Validated EstateCommand estateCommand, HttpSession session, BindingResult result) {
+	public String estateRegist(@Validated EstateCommand estateCommand,
+							   @RequestParam(value="fileName", required = false) String fileName, 
+							   HttpSession session, BindingResult result) {
 		if(result.hasErrors()) {
 			return "thymeleaf/estate/estateForm";
 		}
@@ -65,7 +69,8 @@ public class EstateController {
 			return "thymeleaf/estate/estateForm";
 		}
 		estateRegistService.execute(estateCommand, session);
-		return "redirect:estateList";
+		estateRegistService.createPdf(estateCommand, fileName);
+		return "thymeleaf/estate/registDone";
 	}
 	/**
 	 * 매물 상세 정보 보기
@@ -119,5 +124,19 @@ public class EstateController {
 	public String estateDelete(@RequestParam(value = "estateNum")String estateNum, HttpServletRequest request) {
 		estateDeleteService.execute(estateNum, request);
 		return "redirect:estateList";
+	}
+	/**
+	 * 파일 삭제 서비스
+	 * @param fileInfo
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@Autowired
+	FileDelService fileDelService;
+	@RequestMapping(value = "fileDel")
+	public String fileDel(FileInfo fileInfo, HttpSession session, Model model) {
+		fileDelService.execute(fileInfo, session, model);
+		return "thymeleaf/estate/delPage";
 	}
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 	
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="houzz.mapper.EmployeeShipMapper">
+
+	<resultMap type="empDTO" id="empConstructorMap">
+		<constructor>
+			<idArg column="EMP_NUM" javaType="string" />
+			<arg column="DEPARTMENT_NUM" javaType="string" />
+			<arg column="EMP_ID" javaType="string" />
+			<arg column="EMP_PW" javaType="string" />
+			<arg column="EMP_NAME" javaType="string" />
+			<arg column="EMP_PHONE" javaType="string" />
+			<arg column="EMP_EMAIL" javaType="string" />
+			<arg column="EMP_ADDR" javaType="string" />
+			<arg column="EMP_GENDER" javaType="string" />
+			<arg column="EMP_BIRTH" javaType="java.util.Date" />
+		</constructor>
+	</resultMap>
+
+	<select id="selectEmp" parameterType="string"
+		resultMap="empConstructorMap">
+		select EMP_NUM, DEPARTMENT_NUM, EMP_ID, EMP_PW, EMP_NAME, EMP_PHONE,
+		EMP_EMAIL, EMP_ADDR, EMP_GENDER, EMP_BIRTH
+		from employees
+		where emp_id = #{empId}
+	</select>
+
+	<update id="updateEmp" parameterType="empDTO">
+		update employees
+		set EMP_NAME= #{empName}, EMP_PHONE=#{empPhone}, EMP_EMAIL=#{empEmail},
+		EMP_ADDR=#{empAddr}, EMP_BIRTH =#{empBirth}
+		where emp_id = #{empId}
+	</update>
+
+   <update id="updatePwEmp" parameterType="empDTO">
+       update employees
+		set emp_pw = #{empPw}
+		where emp_id = #{empId}
+   </update>
+
+    <delete id="empDel" parameterType="string">
+        delete from employees
+        where emp_id = #{empId}
+    </delete>
+
+</mapper>

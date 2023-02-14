@@ -14,12 +14,18 @@ import jakarta.servlet.http.HttpSession;
 public class MemberInfoUpdateService {
 	@Autowired
 	MemberShipMapper memberShipMapper;
-
-	public void execute( MemberCommand memberCommand, Model model, HttpSession session) {
-		AuthInfoDTO authInfoDTO = (AuthInfoDTO) session.getAttribute("authInfoDTO"); // 세션 가져옴
-		String memId = authInfoDTO.getUserId(); // authInfod의 userId를 memId에 대입
-		System.out.println(memId); // memId 확인
-		MemberDTO dto = memberShipMapper.updateMem(memId);
+	public void execute(MemberCommand memberCommand, Model model, HttpSession session) {
+		AuthInfoDTO authInfoDTO = (AuthInfoDTO) session.getAttribute("authInfoDTO"); 
+		String memId = authInfoDTO.getUserId(); 
+		
+		MemberDTO dto =  new MemberDTO();
+		dto.setMemberAddr(memberCommand.getMemberAddr());
+		dto.setMemberEmail(memberCommand.getMemberEmail());
+		dto.setMemberPhone(memberCommand.getMemberPhone());
+		dto.setMemberName(memberCommand.getMemberName());
+		dto.setMemberId(memberCommand.getMemberId());
+		dto.setMemberBirth(memberCommand.getMemberBirth());
+		memberShipMapper.updateMem(dto);
 		model.addAttribute("memberCommand", dto);
 	}
 }

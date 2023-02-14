@@ -16,4 +16,10 @@ public interface MediationMapper {
 	public Integer mediationDelete(String mediationNum);
 	public Integer mediationRemove(HashMap<String, Object> condition);
 	
+	
+	
+	
+		
 	}
+	
+

@@ -9,8 +9,10 @@ import houzz.domain.MemberDTO;
 public interface MemberShipMapper {
     public MemberDTO selectMem(String memId);
 	public Integer updatePw(MemberDTO dto);
-	public MemberDTO updateMem(String memId);
 	public MemberDTO selectOne(String memberNum);
+	public void updateMem(MemberDTO dto);
+	public void memDel(String memId);
+	
 	
 	}
 

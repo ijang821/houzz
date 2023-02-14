@@ -18,14 +18,14 @@
 	<sql id="insertBase">
 		MEMBER_NUM , MEMBER_NAME , MEMBER_ID , MEMBER_PW , MEMBER_PHONE , MEMBER_EMAIL ,
 		MEMBER_ADDR , MEMBER_GENDER ,
-		MEMBER_BIRTH , MEMBER_JOIN_DATE 
+		MEMBER_BIRTH , MEMBER_JOIN_DATE , MEMBER_JOIN_CK,ACCOUNT_ADDRESS
 	</sql>
 
 	<insert id="memberJoinInsert" parameterType="memberDTO">
 		insert into member(<include refid="insertBase" />)
 		values(#{memberNum}, #{memberName}, #{memberId}, #{memberPw},
 		#{memberPhone}, #{memberEmail}, #{memberAddr}, #{memberGender},
-		#{memberBirth}, sysdate)
+		#{memberBirth}, sysdate,'N', '')
 	</insert>
 
 </mapper>

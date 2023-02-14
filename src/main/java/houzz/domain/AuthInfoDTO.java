@@ -13,4 +13,5 @@ public class AuthInfoDTO {
      String grade;
      //String memberJoinCk;
      String Phone;
+     String memberNum;
 }

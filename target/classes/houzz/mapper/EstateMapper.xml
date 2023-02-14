@@ -5,7 +5,7 @@
 <mapper namespace="houzz.mapper.EstateMapper">
 	<sql id="estateBase">
 		ESTATE_NUM estateNum, ESTATE_NAME estateName, ESTATE_ADDR estateAddr, ESTATE_PRICE estatePrice, ESTATE_INFO estateInfo, ESTATE_PIC estatePic, 
-		ORIGINAL_ESTATE_PIC origianlEstatePic, ESTATE_EXPLAIN estateExplain, ESTATE_REGI_DATE estateRegiDate
+		ORIGINAL_ESTATE_PIC originalEstatePic, ESTATE_EXPLAIN estateExplain, ESTATE_REGI_DATE estateRegiDate
 	</sql>
 	
 	<select id="estateNumGenerate" resultType="string">
@@ -22,7 +22,7 @@
 	<insert id="estateOptions" parameterType="optionsDTO">
 		insert into options(ESTATE_NUM, AIR_CONDITIONER, WASHER, BED, DESK, CLOSET, TV, SHOE_SHELF, REFRIGERATOR, 
 							GAS_STOVE, INDUCTION, MICROWAVE, DOOR_LOCK, BIDET)
-		values(#{estNum}, #{airConditioner}, #{washer}, #{bed}, #{desk}, #{closet}, #{tv}, #{shoeShelf}, #{refrigerator}, 
+		values(#{estateNum}, #{airConditioner}, #{washer}, #{bed}, #{desk}, #{closet}, #{tv}, #{shoeShelf}, #{refrigerator}, 
 				#{gasStove}, #{induction}, #{microwave}, #{doorLock}, #{bidet})
 	</insert>
 	
@@ -44,13 +44,13 @@
 	</select>
 	
 	<sql id="optionBase">
-		ESTATE_NUM estNum, AIR_CONDITIONER airConditioner, WASHER washer, BED bed, DESK desk, CLOSET closet, TV tv, SHOE_SHELF shoeShelf, REFRIGERATOR refrigerator, 
+		ESTATE_NUM estateNum, AIR_CONDITIONER airConditioner, WASHER washer, BED bed, DESK desk, CLOSET closet, TV tv, SHOE_SHELF shoeShelf, REFRIGERATOR refrigerator, 
 		GAS_STOVE gasStove, INDUCTION induction, MICROWAVE microwave, DOOR_LOCK doorLock, BIDET bidet
 	</sql>
 	<select id="selectOptOne" parameterType="string" resultType="optionsDTO">
 		select <include refid="optionBase"/>
 		from options
-		where estate_num = #{estNum}
+		where estate_num = #{estateNum}
 	</select>
 	
 	<update id="estateUpdate" parameterType="estateDTO">
@@ -62,10 +62,10 @@
 	
 	<update id="updateOptions" parameterType="optionsDTO">
 		update options
-		set AIR_CONDITIONER = #{airConditioner}, WASHER = #{washer,} BED = #{bed}, DESK = #{desk}, CLOSET = #{closet}, TV = #{tv}, 
+		set AIR_CONDITIONER = #{airConditioner}, WASHER = #{washer}, BED = #{bed}, DESK = #{desk}, CLOSET = #{closet}, TV = #{tv}, 
 		SHOE_SHELF = #{shoeShelf}, REFRIGERATOR = #{refrigerator}, GAS_STOVE = #{gasStove}, INDUCTION = #{induction}, MICROWAVE = #{microwave}, 
 		DOOR_LOCK = #{doorLock}, BIDET = #{bidet}
-		where estate_num = #{estNum}
+		where estate_num = #{estateNum}
 	</update>
 	
 	<delete id="estateDelete" parameterType="string">

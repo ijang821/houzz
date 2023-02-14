@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @Alias(value = "optionsDTO")
 public class OptionsDTO {
-	String estNum;
+	String estateNum;
 	String airConditioner;
 	String washer;
 	String bed;

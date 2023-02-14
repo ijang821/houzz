@@ -170,7 +170,7 @@ public class EstateModifyService {
 		}else {
 			opDTO.setWasher(N);
 		}		
-		opDTO.setEstNum(estateCommand.getEstateNum());
+		opDTO.setEstateNum(estateCommand.getEstateNum());
 		 
 		estateMapper.updateOptions(opDTO);
 	}

@@ -1,11 +1,23 @@
 package houzz.service.estate;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import houzz.command.EstateCommand;
 import houzz.domain.AuthInfoDTO;
@@ -131,12 +143,12 @@ public class EstateRegistService {
 		}else {
 			opDTO.setWasher(N);
 		}		
-		opDTO.setEstNum(estateCommand.getEstateNum());
+		opDTO.setEstateNum(estateCommand.getEstateNum());
 		 
 		estateMapper.estateOptions(opDTO);
 	}
 	
-	/*
+	
 	public void createPdf(EstateCommand estateCommand, String fileName) {
 		String result = ""; 
 		try {
@@ -180,7 +192,7 @@ public class EstateRegistService {
             PdfPCell cell31 = new PdfPCell(new Phrase("매물 가격", font));
             cell31.setHorizontalAlignment(Element.ALIGN_CENTER);
  
-            PdfPCell cell32 = new PdfPCell(new Phrase(estateCommand.getEstatePrice(), font));
+            PdfPCell cell32 = new PdfPCell(new Phrase(String.valueOf(estateCommand.getEstatePrice()), font));
             cell32.setHorizontalAlignment(Element.ALIGN_CENTER);
             
             // 회원 주소
@@ -210,5 +222,5 @@ public class EstateRegistService {
 		}
 		System.out.println(result);
 	}
-	*/
+	
 }

@@ -19,7 +19,6 @@ body {font-size:16px;}
     font-style: normal;
 }
 </style>
-<script src="https://code.jquery.com/jquery-latest.js"></script>
 <script>
 // Script to open and close sidebar
 function w3_open() {
@@ -32,6 +31,32 @@ function w3_close() {
   document.getElementById("myOverlay").style.display = "none";
 }
 
+function fileDel(orgFile1, strFile1, btn, kind1 ){
+	$.ajax({
+		type : "post",
+		url : "fileDel",
+		dataType : "text",
+		data: {"orgFile":orgFile1,"strFile":strFile1,"kind":kind1},
+		success:function(result){
+			if(result == 1){
+				$(btn).text("삭제 취소");
+				if(kind1 == 'main'){
+					$("#main").css("display","none");
+					$("#mainFile").css("display","");
+				}
+			}else{
+				$(btn).text("삭제");
+				if(kind1 == 'main'){
+					$("#main").css("display","");
+					$("#mainFile").css("display","none");
+				}
+			}
+		},
+		error:function(){
+			
+		}
+	});
+}
 </script>
 </head>
 <body>
@@ -67,27 +92,30 @@ function w3_close() {
   <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
     <h1 class="w3-jumbo"><b>HOUZZ</b></h1>
-    <h1 class="w3-xxxlarge w3-text-green"><b>REGIST NEW HOUZZ</b></h1>
+    <h1 class="w3-xxxlarge w3-text-green"><b>estate Information Update</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
     
   </div>
   
 
 
-  <!-- EstateRegist -->
+  <!-- estateRegist -->
   <div class="w3-container" id="services" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-green"><b>매물 등록</b></h1>
+    <h1 class="w3-xxxlarge w3-text-green"><b>회원 정보 수정</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
-    <form action="estateRegist" method="post" th:object="${estateCommand}" enctype="multipart/form-data">
+    <form action="estateModify" method="post" th:object="${estateCommand}" enctype="multipart/form-data">
+    [[${estateCommand.estateName}]] 매물정보 <br />
+	<input type="hidden" name="estateRegiDate" value="2023-01-01"/>
     <table border=1>
     	<tr>
     		<th>매물 번호</th>
     		<td>
-    			<input type="text" name="estateNum" th:value="${estateCommand.estateNum}">
+    			<input type="text" name="estateNum" th:value="${estateCommand.estateNum}" readonly="readonly">
+    			<span style="color:red" th:if="${#fields.hasErrors('estateNum')}" th:errors="*{estateNum}"></span>
     		</td>
     	</tr>
     	<tr>
-    		<th>매물명</th>
+    		<th>매물 이름</th>
     		<td>
     			<input type="text" name="estateName" th:value="${estateCommand.estateName}">
     			<span style="color:red" th:if="${#fields.hasErrors('estateName')}" th:errors="*{estateName}"></span>
@@ -101,30 +129,12 @@ function w3_close() {
     		</td>
     	</tr>
     	<tr>
-    		<th>가격</th>
+    		<th>매물 가격</th>
     		<td>
-    			<input type="number" name="estatePrice" th:value="${estateCommand.estatePrice}">
-    			<span id="idCheck"></span>
+    			<input type="text" name="estatePrice" th:value="${estateCommand.estatePrice}" >
 				<span style="color:red" th:if="${#fields.hasErrors('estatePrice')}" th:errors="*{estatePrice}"></span>
     		</td>
     	</tr>
-    	<tr>
-    		<th>옵션</th>
-    		<td>
-    			<input type="checkbox" name="airConditioner"  id="airConditioner" />에어컨&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    			<input type="checkbox" name="washer"  id="washer" />세탁기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    			<input type="checkbox" name="bed"  id="bed" />침대 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    			<input type="checkbox" name="desk"  id="desk" />책상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    			<input type="checkbox" name="closet"  id="closet" />옷장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    			<input type="checkbox" name="tv"  id="tv" />TV&nbsp;<br/>
-    			<input type="checkbox" name="shoeShelf"  id="shoeShelf"/>신발장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    			<input type="checkbox" name="refrigerator"  id="refrigerator" />냉장고&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    			<input type="checkbox" name="gasStove"  id="gasStove" />가스레인지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    			<input type="checkbox" name="induction"  id="induction" />인덕션&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    			<input type="checkbox" name="microwave"  id="microwave" />전자레인지&nbsp; <br/>    			
-    			<input type="checkbox" name="doorLock"  id="doorLock" />전자 도어락&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 			
-    			<input type="checkbox" name="bidet"  id="bidet" />비데
-    		</td>
     	</tr>
     	<tr>
     		<th>매물 정보</th>
@@ -134,23 +144,44 @@ function w3_close() {
     		</td>
     	</tr>
     	<tr>
-    		<th>매물 사진</th>
-    		<td>
-    			<input type="file" name="estatePic" multiple="multiple" th:value="${estateCommand.estatePic}">
-    			<span style="color:red" th:if="${#fields.hasErrors('estatePic')}" th:errors="*{estatePic}"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<th>상세 설명</th>
+    		<th>매물 상세설명</th>
     		<td>
     			<input type="text" name="estateExplain" th:value="${estateCommand.estateExplain}">
-    			<span id="emailCk"></span>
 				<span style="color:red" th:if="${#fields.hasErrors('estateExplain')}" th:errors="*{estateExplain}"></span>
 			</td>
     	</tr>
     	<tr>
+			<th>등록된 이미지</th>
+			<td>
+				<div th:each = " file, idx :  ${#strings.arraySplit(estateCommand.originalEstatePic,'-')}">
+					[[${file}]]
+					<button type="button" th:attr="onclick=|fileDel('${file}',
+												  '${#strings.arraySplit(estateCommand.estatePic,'-')[idx.index]}', this,'img');|">삭제</button><br />
+				</div>
+				<input type="file"  name="estatePic" multiple="multiple" />
+			</td>
+		</tr>
+		<tr>
+    		<th>옵션</th>
+    		<td th:object="${estCommand}">
+    			<input type="checkbox" name="airConditioner"  id="airConditioner" th:checked="${estCommand.airConditioner=='Y'}" />에어컨&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input type="checkbox" name="washer"  id="washer" th:checked="${estCommand.washer=='Y'}" />세탁기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input type="checkbox" name="bed"  id="bed" th:checked="${estCommand.bed=='Y'}" />침대 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input type="checkbox" name="desk"  id="desk" th:checked="${estCommand.desk=='Y'}" />책상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input type="checkbox" name="closet"  id="closet" th:checked="${estCommand.closet=='Y'}" />옷장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input type="checkbox" name="tv"  id="tv" th:checked="${estCommand.tv=='Y'}" />TV&nbsp;<br/>
+    			<input type="checkbox" name="shoeShelf"  id="shoeShelf" th:checked="${estCommand.shoeShelf=='Y'}" />신발장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input type="checkbox" name="refrigerator"  id="refrigerator" th:checked="${estCommand.refrigerator=='Y'}" />냉장고&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input type="checkbox" name="gasStove"  id="gasStove" th:checked="${estCommand.gasStove=='Y'}" />가스레인지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input type="checkbox" name="induction"  id="induction" th:checked="${estCommand.induction=='Y'}" />인덕션&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input type="checkbox" name="microwave"  id="microwave" th:checked="${estCommand.microwave=='Y'}" />전자레인지&nbsp; <br/>    			
+    			<input type="checkbox" name="doorLock"  id="doorLock" th:checked="${estCommand.doorLock=='Y'}" />전자 도어락&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 			
+    			<input type="checkbox" name="bidet"  id="bidet" th:checked="${estCommand.bidet=='Y'}" />비데
+    		</td>
+    	</tr>
+    	<tr>
     		<td>
-    			<input type="submit" value="REGISTER"/>
+    			<input type="submit" value="estate Update"/>
     		</td>
     	</tr>
     </table>

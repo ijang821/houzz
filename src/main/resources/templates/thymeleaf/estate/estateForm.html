@@ -19,6 +19,7 @@ body {font-size:16px;}
     font-style: normal;
 }
 </style>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
 <script>
 // Script to open and close sidebar
 function w3_open() {
@@ -77,8 +78,7 @@ function w3_close() {
   <div class="w3-container" id="services" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-green"><b>매물 등록</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
-    <form action="estateRegist" method="post" th:object="${estateCommand}">
-
+    <form action="estateRegist" method="post" th:object="${estateCommand}" enctype="multipart/form-data">
     <table border=1>
     	<tr>
     		<th>매물 번호</th>
@@ -111,19 +111,19 @@ function w3_close() {
     	<tr>
     		<th>옵션</th>
     		<td>
-    			<input type="radio" name="airConditioner" value="Y" />에어컨
-    			<input type="radio" name="washer" value="Y" />세탁기
-    			<input type="radio" name="bed" value="Y" />침대
-    			<input type="radio" name="desk" value="Y"/>책상
-    			<input type="radio" name="closet" value="Y" />옷장
-    			<input type="radio" name="tv" value="Y" />TV
-    			<input type="radio" name="shoeShelf" value="Y"/>신발장
-    			<input type="radio" name="refrigerator" value="Y" />냉장고
-    			<input type="radio" name="gasStove" value="Y"/>가스레인지
-    			<input type="radio" name="induction" value="Y"/>인덕션
-    			<input type="radio" name="microwave" value="Y"/>전자레인지
-    			<input type="radio" name="doorLock" value="Y" />전자 도어락
-    			<input type="radio" name="bidet" value="Y" />비데
+    			<input type="checkbox" name="airConditioner"  id="airConditioner" />에어컨&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input type="checkbox" name="washer"  id="washer" />세탁기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input type="checkbox" name="bed"  id="bed" />침대 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input type="checkbox" name="desk"  id="desk" />책상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input type="checkbox" name="closet"  id="closet" />옷장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input type="checkbox" name="tv"  id="tv" />TV&nbsp;<br/>
+    			<input type="checkbox" name="shoeShelf"  id="shoeShelf"/>신발장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input type="checkbox" name="refrigerator"  id="refrigerator" />냉장고&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input type="checkbox" name="gasStove"  id="gasStove" />가스레인지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input type="checkbox" name="induction"  id="induction" />인덕션&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<input type="checkbox" name="microwave"  id="microwave" />전자레인지&nbsp; <br/>    			
+    			<input type="checkbox" name="doorLock"  id="doorLock" />전자 도어락&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 			
+    			<input type="checkbox" name="bidet"  id="bidet" />비데
     		</td>
     	</tr>
     	<tr>
@@ -136,7 +136,7 @@ function w3_close() {
     	<tr>
     		<th>매물 사진</th>
     		<td>
-    			<input type="tel" name="estatePic" th:value="${estateCommand.estatePic}">
+    			<input type="file" name="estatePic" multiple="multiple" th:value="${estateCommand.estatePic}">
     			<span style="color:red" th:if="${#fields.hasErrors('estatePic')}" th:errors="*{estatePic}"></span>
     		</td>
     	</tr>

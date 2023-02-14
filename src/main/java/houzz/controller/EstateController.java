@@ -70,7 +70,7 @@ public class EstateController {
 		}
 		estateRegistService.execute(estateCommand, session);
 		estateRegistService.createPdf(estateCommand, fileName);
-		return "redirect:estateList";
+		return "thymeleaf/estate/registDone";
 	}
 	/**
 	 * 매물 상세 정보 보기

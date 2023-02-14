@@ -2,6 +2,8 @@ package houzz.service.estate;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -151,6 +153,13 @@ public class EstateRegistService {
 	
 	public void createPdf(EstateCommand estateCommand, String fileName) {
 		String result = ""; 
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date(System.currentTimeMillis());
+		
+		fileName = estateCommand.getEstateName() + formatter.format(date);
+		fileName += ".pdf";
+		
 		try {
 			Document document = new Document(); // pdf문서를 처리하는 객체
 			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(fileName));
@@ -173,7 +182,7 @@ public class EstateRegistService {
             cell.setHorizontalAlignment(Element.ALIGN_CENTER); // 셀의 정렬방식을 지정한다. (가운데정렬)
             cell.setColspan(2);
             
-            /// 회원 번호
+            /// 매물 번호
             PdfPCell cell1 = new PdfPCell(new Phrase("매물 번호", font)); // 셀의 이름과 폰트를 지정해서 셀을 생성한다.
             cell1.setHorizontalAlignment(Element.ALIGN_CENTER); // 셀의 정렬방식을 지정한다. (가운데정렬)
  
@@ -181,21 +190,21 @@ public class EstateRegistService {
             cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
  
             
-            // 회원아이디
+            // 매물명
             PdfPCell cell21 = new PdfPCell(new Phrase("매물명", font));
             cell21.setHorizontalAlignment(Element.ALIGN_CENTER);
  
             PdfPCell cell22 = new PdfPCell(new Phrase(estateCommand.getEstateName(), font));
             cell22.setHorizontalAlignment(Element.ALIGN_CENTER);
  
-            // 회원 이름
+            // 매물 가격
             PdfPCell cell31 = new PdfPCell(new Phrase("매물 가격", font));
             cell31.setHorizontalAlignment(Element.ALIGN_CENTER);
  
             PdfPCell cell32 = new PdfPCell(new Phrase(String.valueOf(estateCommand.getEstatePrice()), font));
             cell32.setHorizontalAlignment(Element.ALIGN_CENTER);
             
-            // 회원 주소
+            // 매물 주소
             PdfPCell cell41 = new PdfPCell(new Phrase("주소", font));
             cell41.setHorizontalAlignment(Element.ALIGN_CENTER);
  

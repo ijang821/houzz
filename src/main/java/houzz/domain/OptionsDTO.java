@@ -1,10 +1,13 @@
 package houzz.domain;
 
+import org.apache.ibatis.type.Alias;
+
 import lombok.Data;
 
 @Data
-public class OptionDTO {
-	String estateNum;
+@Alias(value = "optionsDTO")
+public class OptionsDTO {
+	String estNum;
 	String airConditioner;
 	String washer;
 	String bed;

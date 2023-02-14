@@ -3,8 +3,73 @@
 	"-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="houzz.mapper.EstateMapper">
+	<sql id="estateBase">
+		ESTATE_NUM estateNum, ESTATE_NAME estateName, ESTATE_ADDR estateAddr, ESTATE_PRICE estatePrice, ESTATE_INFO estateInfo, ESTATE_PIC estatePic, 
+		ORIGINAL_ESTATE_PIC origianlEstatePic, ESTATE_EXPLAIN estateExplain, ESTATE_REGI_DATE estateRegiDate
+	</sql>
+	
 	<select id="estateNumGenerate" resultType="string">
 		select concat('est',nvl(max(substr(estate_num,4)),10000000)+ 1)
-		from member
+		from estate
 	</select>
+	
+	<insert id="estateInsert" parameterType="estateDTO">
+		insert into estate(ESTATE_NUM, ESTATE_NAME, ESTATE_ADDR, ESTATE_PRICE, ESTATE_INFO, ESTATE_PIC, 
+							ORIGINAL_ESTATE_PIC, ESTATE_EXPLAIN, ESTATE_REGI_DATE)
+		values(#{estateNum}, #{estateName}, #{estateAddr}, #{estatePrice}, #{estateInfo}, #{estatePic}, 
+				#{originalEstatePic}, #{estateExplain}, sysdate)
+	</insert>
+	<insert id="estateOptions" parameterType="optionsDTO">
+		insert into options(ESTATE_NUM, AIR_CONDITIONER, WASHER, BED, DESK, CLOSET, TV, SHOE_SHELF, REFRIGERATOR, 
+							GAS_STOVE, INDUCTION, MICROWAVE, DOOR_LOCK, BIDET)
+		values(#{estNum}, #{airConditioner}, #{washer}, #{bed}, #{desk}, #{closet}, #{tv}, #{shoeShelf}, #{refrigerator}, 
+				#{gasStove}, #{induction}, #{microwave}, #{doorLock}, #{bidet})
+	</insert>
+	
+	<select id="selectAll" parameterType="string" resultType="estateDTO">
+		select <include refid="estateBase"/> from estate
+		<where>
+			<if test="estateWord != null">
+				ESTATE_NUM like '%'||#{estateWord}||'%'
+				or ESTATE_NAME like '%'||#{estateWord}||'%'
+				or ESTATE_ADDR like '%'||#{estateWord}||'%'
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectOne" parameterType="string" resultType="estateDTO">
+		select <include refid="estateBase"/>
+		from estate
+		where estate_num = #{estateNum}
+	</select>
+	
+	<sql id="optionBase">
+		ESTATE_NUM estNum, AIR_CONDITIONER airConditioner, WASHER washer, BED bed, DESK desk, CLOSET closet, TV tv, SHOE_SHELF shoeShelf, REFRIGERATOR refrigerator, 
+		GAS_STOVE gasStove, INDUCTION induction, MICROWAVE microwave, DOOR_LOCK doorLock, BIDET bidet
+	</sql>
+	<select id="selectOptOne" parameterType="string" resultType="optionsDTO">
+		select <include refid="optionBase"/>
+		from options
+		where estate_num = #{estNum}
+	</select>
+	
+	<update id="estateUpdate" parameterType="estateDTO">
+		update estate
+		set estate_info = #{estateInfo}, estate_explain = #{estateExplain}, estate_addr = #{estateAddr}, estate_name = #{estateName}, 
+			estate_price = #{estatePrice}, estate_pic = #{estatePic}, original_estate_pic = #{originalEstatePic}
+			where estate_num = #{estateNum}
+	</update>
+	
+	<update id="updateOptions" parameterType="optionsDTO">
+		update options
+		set AIR_CONDITIONER = #{airConditioner}, WASHER = #{washer,} BED = #{bed}, DESK = #{desk}, CLOSET = #{closet}, TV = #{tv}, 
+		SHOE_SHELF = #{shoeShelf}, REFRIGERATOR = #{refrigerator}, GAS_STOVE = #{gasStove}, INDUCTION = #{induction}, MICROWAVE = #{microwave}, 
+		DOOR_LOCK = #{doorLock}, BIDET = #{bidet}
+		where estate_num = #{estNum}
+	</update>
+	
+	<delete id="estateDelete" parameterType="string">
+		delete from estate
+		where estate_num = #{estateNum}
+	</delete>
 </mapper>

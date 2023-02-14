@@ -66,39 +66,34 @@ function w3_close() {
     <h1 class="w3-jumbo"><b>HOUZZ</b></h1>
     <h1 class="w3-xxxlarge w3-text-green"><b>REAL ESTATE</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
-    <form action="memberList" method="get" >
-		<input type="search" name="memberWord" size="50" th:value="${memberWord}" placeholder="회원 검색..."/> 
+    <form action="estateList" method="get" >
+		<input type="search" name="estateWord" size="50" th:value="${estateWord}" placeholder="매물 검색..."/> 
 		<input type="submit" value="검색" />
 	</form>
 	<br/>
-    <form action="memberDels" method="post">
+
 	<table border="1">
 		<tr>
 			<td>번호</td>
 			<td>이름</td>
-			<td>아이디</td>
-			<td>생일</td>
-			<td><input type="submit" value="삭제"></td>
+			<td>주소</td>
+			<td>가격</td>
 		</tr>
-		<tr th:each="memberDTO : ${list}">
+		<tr th:each=" estateDTO : ${list}">
 			<td>
-				<a th:href="|memberDetail/${memberDTO.memberNum}|">[[${memberDTO.memberNum}]]</a>
+				<a th:href="|estateDetail/${estateDTO.estateNum}|">[[${estateDTO.estateNum}]]</a>
 			</td>
 			<td>
-				[[${memberDTO.memberName} ]]
+				[[${estateDTO.estateName} ]]
 			</td>
 			<td>
-				[[${memberDTO.memberId}]]
+				[[${estateDTO.estateAddr}]]
 			</td>
 			<td>
-				<span th:text="${#dates.format(memberDTO.memberBirth,'yyyy-MM-dd')}"></span>
-			</td>
-			<td>
-				<input type="checkbox" name="memDels" th:value="${memberDTO.memberNum}">
+				[[${estateDTO.estatePrice}]]
 			</td>
 		</tr>
 	</table>
-	</form>
   </div>
   
 

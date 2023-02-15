@@ -56,10 +56,8 @@
 		<where>
 			<if test="mediationWord != null">
 				MEDIATION_NUM like '%'||#{mediationWord}||'%'
-				or CEO_NAME
-				like '%'||#{mediationWord}||'%'
-				or MEDIATION_PHONE like
-				'%'||#{mediationWord}||'%'
+				or CEO_NAME like '%'||#{mediationWord}||'%'
+				or MEDIATION_PHONE like '%'||#{mediationWord}||'%'
 			</if>
 		</where>
 	</select>

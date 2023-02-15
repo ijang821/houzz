@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 	
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="houzz.mapper.InquiryMapper">
+
+	<sql id="inquiryBase">
+		INQUIRY_NUM, MEMBER_NUM, INQUIRY_DATE, INQUIRY_TITLE,
+		INQUIRY_CONTENT,
+		EMP_NUM, ANSWER_CONTENT, ANSWER_DATE
+	</sql>
+
+	<sql id="inquiryBase1">
+		INQUIRY_NUM inquiryNum, MEMBER_NUM memberNum, INQUIRY_DATE inquiryDate,
+		INQUIRY_TITLE inquiryTitle, INQUIRY_CONTENT inquiryContent,
+		EMP_NUM
+		empNum, ANSWER_CONTENT answerContent, ANSWER_DATE answerDate
+	</sql>
+
+	<select id="inquiryNumGenerate" resultType="string">
+		select concat('inq',
+		nvl(max(substr(inquiry_num,4)),100000)+ 1)
+		from INQUIRY
+	</select>
+
+	<insert id="inquiryInsert" parameterType="inquiryDTO">
+		insert into inquiry(INQUIRY_NUM, MEMBER_NUM, INQUIRY_DATE, INQUIRY_TITLE,
+		INQUIRY_CONTENT, EMP_NUM, ANSWER_CONTENT, ANSWER_DATE)
+		values((select concat('inq', nvl(max(substr(inquiry_num,4)),100000)+ 1) from INQUIRY),
+		#{memberNum},#{inquiryDate},#{inquiryTitle},#{inquiryContent},'1','0000',sysdate)
+	</insert>
+
+	<select id="selectMem" parameterType="string"
+		resultType="inquiryDTO">
+		select member_num from member
+		where member_id = #{userId}
+	</select>
+	
+	<select id="selectAll" parameterType="string" resultType="inquiryDTO" >
+	     select INQUIRY_NUM inquiryNum, MEMBER_NUM memberNum, INQUIRY_DATE inquiryDate,
+		        INQUIRY_TITLE inquiryTitle, INQUIRY_CONTENT inquiryContent,
+		        EMP_NUM empNum, ANSWER_CONTENT answerContent, ANSWER_DATE answerDate
+	     from INQUIRY
+	     <where>
+	        <if test="inquiryWord != null">
+	             INQUIRY_NUM like '%'||#{inquiryWord}||'%'
+				or MEMBER_NUM like '%'||#{inquiryWord}||'%'
+				or INQUIRY_TITLE like '%'||#{inquiryWord}||'%'       
+	        </if>
+	     </where>
+	</select>
+	
+	<select id="selectOne" parameterType="string" resultType="inquiryDTO">
+	     select INQUIRY_NUM inquiryNum, MEMBER_NUM memberNum, INQUIRY_DATE inquiryDate,
+		        INQUIRY_TITLE inquiryTitle, INQUIRY_CONTENT inquiryContent,
+		        EMP_NUM empNum, ANSWER_CONTENT answerContent, ANSWER_DATE answerDate
+	     from INQUIRY
+	     where INQUIRY_NUM =#{inquiryNum}
+	</select>
+	
+	<update id="inquiryUpdate" parameterType="inquiryDTO">
+	    update INQUIRY
+	    set INQUIRY_TITLE=#{inquiryTitle}, 
+	        INQUIRY_CONTENT=#{inquiryContent},
+	        INQUIRY_DATE= #{inquiryDate}
+	    where INQUIRY_NUM =#{inquiryNum}
+	</update>
+	
+	<update id="inquiryDelete" parameterType="string">
+	     delete from INQUIRY
+	     where INQUIRY_NUM =#{inquiryNum}
+	</update>
+	
+	<delete id="mediationRemove" parameterType="string">
+	      delete from INQUIRY
+	      where INQUIRY_NUM in
+	      <foreach collection="inquiryNums" item="inquiryNum"
+			   index="index" open="(" close=")" separator=",">
+			   #{inquiryNum}
+	      </foreach>
+	</delete>
+</mapper>

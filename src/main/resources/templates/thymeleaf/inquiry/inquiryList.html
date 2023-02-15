@@ -119,9 +119,9 @@ body {
 					<td>등록일</td>
 					<td>제목</td>
 					<td>직원 번호</td>
-					<td>답변 등록일</td>
 					<td>답변 내용</td>
-			<td><input type="submit" value="삭제"></td>
+					<td>답변 등록일</td>
+			        <td><input type="submit" value="삭제"></td>
 				</tr>
 				<tr th:each="inquiryDTO : ${list}">
 			<td>
@@ -135,12 +135,17 @@ body {
 			</td>
 			<td>
 				[[${inquiryDTO.inquiryTitle}]]
+			</td>
+			
+			
+			<td>
+				[[${inquiryDTO.empNum}]]
 			</td>	
 			<td>
-				[[${inquiryDTO.inquiryTitle}]]
+				[[${inquiryDTO.answerContent}]]
 			</td>
 			<td>
-				[[${inquiryDTO.inquiryTitle}]]
+			<span th:text="${#dates.format(inquiryDTO.answerDate,'yyyy-MM-dd')}"></span>
 			</td>
 			<td>
 				<input type="checkbox" name="inqDels" th:value="${inquiryDTO.inquiryNum}">

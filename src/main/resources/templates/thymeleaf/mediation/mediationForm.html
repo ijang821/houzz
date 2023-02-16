@@ -73,6 +73,7 @@ body {font-size:16px;}
 }
 
 </style>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
 <script>
 // Script to open and close sidebar
 function w3_open() {
@@ -84,7 +85,35 @@ function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
   document.getElementById("myOverlay").style.display = "none";
 }
-
+$(function(){
+	$("#mediationId").keyup(function(){
+		$.ajax({
+			type:"post",
+			url:"../mediation/medIdCheck",
+			dataType:"text",
+			data:{"mediationId":$("#mediationId").val()},
+			success: function(result){
+				$("#idCheck").html(result);
+				if(result.trim == "사용가능한 id입니다."){
+					$("#idCheck").css("color","blue");
+				}else{
+					$("#idCheck").css("color","red");
+				}
+			},
+			error: function(){
+				alert("서버오류");
+				return;
+			}
+		});
+	});
+	$("#submit").click(function(){
+		if($("#idCheck").text().trim() != "사용가능한 id입니다."){
+			alert("아이디 중복확인을 해주세요.")
+			return false;
+		}
+		this.submit();
+	});
+});
 </script>
 </head>
 <body>
@@ -143,10 +172,9 @@ function w3_close() {
 					</tr>
 					<tr>
 						<th><label for="mediationId">* 공인중개소 아이디</label></th>
-						<td><input type='text' name="mediationId" id="mediationId"
-							size='15' maxlength='12' autofocus="autofocus" th:value="${mediationCommand.mediationId}" 
-							 /><span style="color: red" th:if="${#fields.hasErrors('mediationId')}"
-							th:errors="*{mediationId}"></span></td>
+						<td><input type='text' name="mediationId" id="mediationId" size='15' maxlength='12' autofocus="autofocus" th:value="${mediationCommand.mediationId}" />
+						<span id="idCheck"></span>
+						<span style="color: red" th:if="${#fields.hasErrors('mediationId')}" th:errors="*{mediationId}"></span></td>
 					</tr>
 					<tr>
 						<th><label for="mediationPw">비밀번호</label></th>

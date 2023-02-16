@@ -31,7 +31,7 @@ function w3_close() {
 }
 $(function(){
 	$("#empId").keyup(function(){
-		$ajax({
+		$.ajax({
 			type:"post",
 			url:"../employee/empIdCheck",
 			dataType:"text",

@@ -79,4 +79,5 @@
 			   #{inquiryNum}
 	      </foreach>
 	</delete>
+	
 </mapper>

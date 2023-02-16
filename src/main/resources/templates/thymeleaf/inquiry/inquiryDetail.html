@@ -137,9 +137,16 @@ a {
 				</tr>
 				<tr>
 				<td colspan="2">
+				<span th:if="${session.authInfoDTO != null}"> 
+	            <span th:switch="${session.authInfoDTO.grade}">
+	            <th:block th:case="mem">
 					<a th:href="|../inquiryModify?inquiryNum=${inquiryCommand.inquiryNum}|">문의 수정</a> <span> | </span>
 				    <a th:href="|../inquiryDelete?inquiryNum=${inquiryCommand.inquiryNum}|">문의 삭제</a> <span> | </span>
-					<a th:href="|../inquiryList|">문의글 리스트</a>
+					<a th:href="|../inquiryList|">문의글 리스트</a> 
+			    </th:block>
+			    <th:block th:case="emp">
+				<span> | </span>	<a th:href="|../inquiryAnswer|">답글</a>
+				</th:block>
 					</td>
 				</tr>
 			</table>

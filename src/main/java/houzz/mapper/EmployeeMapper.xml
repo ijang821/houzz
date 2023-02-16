@@ -37,7 +37,9 @@
 <select id="selectOne" resultType="empDTO" parameterType="string">
 	select <include refid="empBase" />
 	from employees
-	where emp_num = #{empNum}
+	where emp_num = #{empNum} 
+	or emp_id = #{empNum} 
+	
 </select>
 
 <update id="empUpdate" parameterType="empDTO" >

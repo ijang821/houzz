@@ -130,7 +130,7 @@ a {
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td><textarea rows="6" cols="23" name="inquiryContent" th:value="${inquiryCommand.inquiryContent}"></textarea></td>
+					<td><textarea rows="6" cols="23" name="inquiryContent" th:value="${inquiryCommand.inquiryContent}">[[${inquiryCommand.inquiryContent}]]</textarea></td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" value="문의 등록"></td>

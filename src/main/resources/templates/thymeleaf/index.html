@@ -87,17 +87,19 @@ function onClick(element) {
       <ul class="w3-ul w3-light-grey w3-center">
         <li class="w3-dark-grey w3-xlarge w3-padding-32">Basic</li>
         <li class="w3-padding-16"><a href="/">HOME</a></li>
+          <li class="w3-padding-16"><a href="/employee/empList">직원 등록</a></li>
         <span th:if="${session.authInfoDTO != null}"> 
 	    <span th:switch="${session.authInfoDTO.grade}">
-	    
+	  
 		<th:block th:case="mem">
               <li class="w3-padding-16"><a href="memDetail">내정보 보기</a></li>
               <li class="w3-padding-16"><a href="memPass">비밀번호 수정</a></li>
               <li class="w3-padding-16"><a href="memModify">내정보 수정</a></li>
-              <li class="w3-padding-16"><a href="memDelete1">회원 탈퇴</a></li>
-              <li class="w3-padding-16"><a href="inquiryWrite">문의하기</a></li>
+              <li class="w3-padding-16"><a href="inquiryList">문의하기</a></li>  
               <li class="w3-padding-16"><a href="/corner/interestList">관심 매물</a></li>
               <li class="w3-padding-16"><a href="/estate/estateList">등록매물 관리</a></li> 
+              <li class="w3-padding-16"><a href="memDelete1">회원 탈퇴</a></li>
+             
         </th:block>
          
         <th:block th:case="med">

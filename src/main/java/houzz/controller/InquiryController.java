@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import houzz.command.InquiryCommand;
+import houzz.domain.AuthInfoDTO;
+import houzz.domain.EmployeeDTO;
+import houzz.domain.MemberDTO;
+import houzz.mapper.EmployeeMapper;
+import houzz.service.inquiry.InquiryAnswerService;
 import houzz.service.inquiry.InquiryAutoNum;
 import houzz.service.inquiry.InquiryDeleteService;
 import houzz.service.inquiry.InquiryDelsService;
@@ -40,8 +45,8 @@ public class InquiryController {
 	@Autowired
 	InquiryAutoNum inquiryAutoNum;
 	@RequestMapping("inquiryWrite")
-	public String inquiryWrite(InquiryCommand inquiryCommand,HttpSession session,Model model) {
-		inquiryAutoNum.execute(inquiryCommand,session,model);
+	public String inquiryWrite(InquiryCommand inquiryCommand,HttpSession session) {
+		inquiryAutoNum.execute(inquiryCommand,session);
 		return "thymeleaf/inquiry/inquiryForm";
 	}
 	/**
@@ -121,5 +126,18 @@ public class InquiryController {
 		inquiryDelsService.execute(inqDels);
 		return "redirect:inquiryList";
 	}
+	/**
+	 * 직원이 문의 답변
+	 * 
+	 * @return
+	 */
 	
+	@Autowired
+	InquiryAnswerService inquiryAnswerService;
+	@RequestMapping(value = "inquiryAnswer")
+	public String inquiryAnswer(InquiryCommand inquiryCommand, HttpSession session) {
+		inquiryAnswerService.execute(inquiryCommand,session);
+		return"thymeleaf/inquiry/inquieyAnswer";
+	}
+
 }

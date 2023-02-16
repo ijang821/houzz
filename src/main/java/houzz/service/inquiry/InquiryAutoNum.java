@@ -19,7 +19,7 @@ public class InquiryAutoNum {
     InquiryMapper inquiryMapper;
     @Autowired
     MemberShipMapper memberShipMapper;
-	public void execute(InquiryCommand inquiryCommand,HttpSession session,Model model) {  
+	public void execute(InquiryCommand inquiryCommand,HttpSession session) {  
 		AuthInfoDTO authInfoDTO = (AuthInfoDTO) session.getAttribute("authInfoDTO");
 		MemberDTO memDTO = memberShipMapper.selectOne(authInfoDTO.getUserId());
 		

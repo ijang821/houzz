@@ -118,9 +118,6 @@ body {
 					<td>회원 아이디</td>
 					<td>등록일</td>
 					<td>제목</td>
-					<td>직원 번호</td>
-					<td>답변 내용</td>
-					<td>답변 등록일</td>
 			        <td><input type="submit" value="삭제"></td>
 				</tr>
 				<tr th:each="inquiryDTO : ${list}">
@@ -136,17 +133,6 @@ body {
 			<td>
 				[[${inquiryDTO.inquiryTitle}]]
 			</td>
-			
-			
-			<td>
-				[[${inquiryDTO.empNum}]]
-			</td>	
-			<td>
-				[[${inquiryDTO.answerContent}]]
-			</td>
-			<td>
-			<span th:text="${#dates.format(inquiryDTO.answerDate,'yyyy-MM-dd')}"></span>
-			</td>
 			<td>
 				<input type="checkbox" name="inqDels" th:value="${inquiryDTO.inquiryNum}">
 			</td>
@@ -154,12 +140,13 @@ body {
    </table>
  </form>
 	<!-- MemberRegist -->
-  <div class="w3-container" id="services" style="margin-top:75px">
+ <div class="w3-container" id="services" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-green"><b>문의</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
     <p>
     <a href="inquiryWrite">문의글 등록</a>
     </p>
+  </div>
   </div>
 
 	<!-- End page content -->

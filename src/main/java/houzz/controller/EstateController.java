@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import houzz.command.EstateCommand;
 import houzz.command.FileInfo;
+import houzz.service.FileDownLoad;
 import houzz.service.estate.EstateDeleteService;
 import houzz.service.estate.EstateDetailService;
 import houzz.service.estate.EstateListController;
@@ -20,6 +21,7 @@ import houzz.service.estate.EstateNumService;
 import houzz.service.estate.EstateRegistService;
 import houzz.service.estate.FileDelService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -58,7 +60,7 @@ public class EstateController {
 	@Autowired
 	EstateRegistService estateRegistService;
 	@RequestMapping(value = "estateRegist", method = RequestMethod.POST)
-	public String estateRegist(@Validated EstateCommand estateCommand,
+	public String estateRegist(@Validated EstateCommand estateCommand, 
 							   @RequestParam(value="fileName", required = false) String fileName, 
 							   HttpSession session, BindingResult result) {
 		if(result.hasErrors()) {
@@ -72,6 +74,24 @@ public class EstateController {
 		estateRegistService.createPdf(estateCommand, fileName);
 		return "thymeleaf/estate/registDone";
 	}
+	
+	/**
+	 * pdf다운로드
+	 * @param path
+	 * @param fileName
+	 * @param ofileName
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@Autowired
+	FileDownLoad fileDownLoad;
+	@RequestMapping(value = "downPDF", method = RequestMethod.GET)
+	public String downPDF(String path, String fileName, String ofileName ,HttpServletRequest request, HttpServletResponse response) {
+		fileDownLoad.fileDownLoad(path, fileName, ofileName, request, response);
+		return "redirect:estateList";
+	}
+	
 	/**
 	 * 매물 상세 정보 보기
 	 * @param estateNum
@@ -139,4 +159,6 @@ public class EstateController {
 		fileDelService.execute(fileInfo, session, model);
 		return "thymeleaf/estate/delPage";
 	}
+	
+	
 }

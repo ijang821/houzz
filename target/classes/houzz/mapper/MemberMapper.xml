@@ -74,4 +74,33 @@
 			#{memberNum}
 		</foreach>
 	</delete>
+	
+	<select id="memberEmail" parameterType="string" resultType="authInfoDTO">
+		select member_email userEmail, member_id userId from member
+		where member_email = #{memberEmail}
+		union 
+		select emp_email userEmail, emp_id userId from employees
+		where emp_email = #{memberEmail}
+		union 
+		select MEDIATION_EMAIL userEmail, MEDIATION_ID userId from MEDIATION
+		where MEDIATION_EMAIL = #{memberEmail}
+	</select>
+	
+	<select id="memberIdCk" parameterType="string" resultType="string">
+		select member_id from member
+		where member_id = #{memberId}
+		union
+		select emp_id from employees
+		where emp_id = #{memberId}
+		union
+		select MEDIATION_ID from MEDIATION
+		where MEDIATION_ID = #{memberId}
+	</select>
+	
+	<update id="memJoinCk" parameterType="string">
+		update member
+		set MEMBER_JOIN_CK = 'Y'
+		where member_email = #{memberEmail}
+		and MEMBER_JOIN_CK = 'N'
+	</update>
 </mapper>

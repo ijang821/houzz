@@ -89,6 +89,7 @@ body {
 	font-style: normal;
 }
 </style>
+
 <script>
 	// Script to open and close sidebar
 	function w3_open() {
@@ -100,6 +101,62 @@ body {
 		document.getElementById("mySidebar").style.display = "none";
 		document.getElementById("myOverlay").style.display = "none";
 	}
+</script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
+<script  type="text/javascript">	
+	$(function(){
+		$("#memberEmail").keyup(function(){
+			$.ajax({
+				type:"post",
+				url:"../member/memberEmailCk",
+				dataType:"text",
+				data:{"memberEmail":$("#memberEmail").val(), "memberId":"[[${memberCommand.memberId}]]"},
+				success: function(result){
+					$("#emailCheck").html(result);
+					if(result == "사용가능한 email입니다."){
+						$("#emailCheck").css("color","blue");
+					}else{
+						$("#emailCheck").css("color","red");
+					}
+				},
+				error: function(){
+					alert("서버오류");
+					return;
+				}
+			});
+		});
+		$("#memberId").keyup(function(){
+			$.ajax({
+				type:"post",
+				url:"../member/memberIdCk",
+				dataType:"text",
+				data:{"memberId":$("#memberId").val()},
+				success: function(result){
+					$("#idCheck").html(result);
+					if(result.trim == "사용가능한 id입니다."){
+						$("#idCheck").css("color","blue");
+					}else{
+						$("#idCheck").css("color","red");
+					}
+				},
+				error: function(){
+					alert("서버오류");
+					return;
+				}
+			});
+		});
+		$("#submit").click(function(){
+			if($("#idCheck").text().trim() != "사용가능한 id입니다."){
+				alert("아이디 중복확인을 해주세요.")
+				return false;
+			}
+			if($("#emailCheck").text().trim() != "사용가능한 email입니다."){
+				alert("이메일 중복확인을 해주세요.")
+				return false;
+			}
+			this.submit();
+		});
+	});
 </script>
 </head>
 <body>
@@ -161,20 +218,19 @@ body {
 		<div class="w3-container" id="services" style="margin-top: 50px">
 			<form action="memberJoinAction" method="post"
 				th:object="${memberCommand}">
-				<input type="hidden" name="memberNum" value="123456789"> <input
-					type="hidden" name="memberJoinDate" value="1999-12-30"> <span
-					style="color: red" th:if="${#fields.hasErrors('memberJoinDate')}"
-					th:errors="*{memberJoinDate}"></span> <input type="hidden"
-					name="accountAddress" value="abcd"> <span
-					style="color: red" th:if="${#fields.hasErrors('accountAddress')}"
-					th:errors="*{accountAddress}"></span>
+				<input type="hidden" name="memberNum" th:value="${memberCommand.memberNum}"> 
+				<input type="hidden" name="memberJoinDate" value="1999-12-30"> 
+				<span style="color: red" th:if="${#fields.hasErrors('memberJoinDate')}" th:errors="*{memberJoinDate}"></span> 
+				<input type="hidden" name="accountAddress" value="abcd"> 
+				<span style="color: red" th:if="${#fields.hasErrors('accountAddress')}" th:errors="*{accountAddress}"></span>
 				<table width='600' align='center' border='1'>
 					<tfoot>
 						<tr>
-							<th colspan="2"><input type='submit' value='가입완료'
-								id="submit" />&nbsp;&nbsp; <input type='reset' value='다시 입력' />&nbsp;&nbsp;
-								<input type='button' value='가입 안함'
-								onclick="javascript:location.href='/'" /></th>
+							<th colspan="2">
+								<input type='submit' value='가입완료'id="submit" />&nbsp;&nbsp; 
+								<input type='reset' value='다시 입력' />&nbsp;&nbsp;
+								<input type='button' value='가입 안함' onclick="javascript:location.href='/'" />
+							</th>
 						</tr>
 					</tfoot>
 					<tbody>
@@ -183,28 +239,25 @@ body {
 						</tr>
 						<tr>
 							<th><label for="memberId">* 사용자 아이디</label></th>
-							<td><input type='text' name="memberId" id="memberId"
-								size='15' maxlength='12' autofocus="autofocus"
-								th:value="${memberCommand.memberId}" /> <span style="color: red"
-								th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}"></span></td>
+							<td><input type='text' name="memberId" id="memberId" size='15' maxlength='12' autofocus="autofocus" th:value="${memberCommand.memberId}" />
+								<span id="idCheck"></span> 
+								<span th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}"></span></td>
 
 
 						</tr>
 						<tr>
 							<th><label for="memberPw">비밀번호</label></th>
 							<td><input type='password' name='memberPw' id="memberPw"
-								size='15' maxlength='12' th:value="${memberCommand.memberPw}" /><span
-								style="color: red" th:if="${#fields.hasErrors('memberPw')}"
-								th:errors="*{memberPw}"></span></td>
+								size='15' maxlength='12' th:value="${memberCommand.memberPw}" />
+								<span style="color: red" th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}"></span></td>
 
 						</tr>
 						<tr>
 							<th><label for="memberPwCon">비밀번호 확인</label></th>
 							<td><input type='password' name='memberPwCon'
 								id="memberPwCon" size='15' maxlength='12'
-								th:value="${memberCommand.memberPwCon}" /><span
-								style="color: red" th:if="${#fields.hasErrors('memberPwCon')}"
-								th:errors="*{memberPwCon}"></span></td>
+								th:value="${memberCommand.memberPwCon}" />
+								<span style="color: red" th:if="${#fields.hasErrors('memberPwCon')}" th:errors="*{memberPwCon}"></span></td>
 
 						</tr>
 						<tr>
@@ -242,21 +295,15 @@ body {
 						</tr>
 						<tr>
 							<th><label for='memberEmail'>사용자 이메일</label></th>
-							<td><input type='email' name='memberEmail' id="memberEmail"
-								th:value="${memberCommand.memberEmail}" placeholder="-@- 필수" />
-								<span style="color: red"
-								th:if="${#fields.hasErrors('memberEmail')}"
-								th:errors="*{memberEmail}"></span></td>
+							<td><input type='email' name='memberEmail' id="memberEmail" th:value="${memberCommand.memberEmail}" placeholder="-@- 필수" />
+								<span id="emailCheck"></span>
+								<span th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}"></span></td>
 						</tr>
 						<tr>
 							<th><label for="memberAddr">사용자 주소</label></th>
-							<td><input type='text' name='memberAddr' id="sample4_roadAddress" 
-								th:value="${memberCommand.memberAddr}" /> 
-							
+							<td><input type='text' name='memberAddr' id="sample4_roadAddress" th:value="${memberCommand.memberAddr}" /> 
 								<a href="javascript:sample4_execDaumPostcode();">주소검색</a>
-								<span
-								style="color: red" th:if="${#fields.hasErrors('memberAddr')}"
-								th:errors="*{memberAddr}"></span></td>
+								<span style="color: red" th:if="${#fields.hasErrors('memberAddr')}" th:errors="*{memberAddr}"></span></td>
 						</tr>
 						<tr>
 							<th><label for="memberPhone">우편번호</label></th>

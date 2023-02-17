@@ -145,8 +145,8 @@ body {
                   
                    <th:block th:case="emp">
                    
-                <a th:href="|../inquiryAnswer?inquiryNum=${inquiryCommand.inquiryNum}|"><p align="right">답변</p></a>
-                  
+                <a th:href="|../inquiryAnswer?inquiryNum=${inquiryCommand.inquiryNum}|">답변 등록</a> <span> | </span> 
+                  <a th:href="|../inquiryList|">목록으로 가기</a>  
                 <tr th:if="${inquiryCommand.empNum == null && session.authInfoDTO.userId != inquiryCommand.memberNum}">
                <td colspan="2">답변상태 : 미등록</td>
                 </tr>
@@ -156,15 +156,12 @@ body {
                <td colspan="2">답변상태 : 등록완료</td>
                 </tr>
 
-                 
                 </th:block>
                 </td>
             </tr>      
             
             <th:block th:if="${session.authInfoDTO != null}">
-            
-             <th:block th:if="${session.authInfoDTO.userId == inquiryCommand.memberNum}">
-             
+            <th:block th:if="${session.authInfoDTO.userId == inquiryCommand.memberNum}">      
             <th:block th:if="${inquiryCommand.answerContent == null}">      
             <tr>
                <td colspan="2">답변상태 : 검토중</td>

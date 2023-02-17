@@ -129,24 +129,30 @@ body {
                <td>[[${inquiryCommand.inquiryContent}]]  </td>
                <tr>
                   <td colspan="2">
-                <a th:href="|../inquiryModify?inquiryNum=${inquiryCommand.inquiryNum}|">문의 수정</a> <span> | </span>
-                <a th:href="|../inquiryDelete?inquiryNum=${inquiryCommand.inquiryNum}|">문의 삭제</a> <span> | </span> 
-                <a th:href="|../inquiryList|">목록으로 가기</a> 
-                <hr />
+              
+                
                 
                 <span th:if="${session.authInfoDTO != null}"> 
                    <span th:switch="${session.authInfoDTO.grade}">
+                   
+                   <th:block th:case="mem">
+                     <a th:href="|../inquiryModify?inquiryNum=${inquiryCommand.inquiryNum}|">문의 수정</a> <span> | </span>
+                <a th:href="|../inquiryDelete?inquiryNum=${inquiryCommand.inquiryNum}|">문의 삭제</a> <span> | </span> 
+                <a th:href="|../inquiryList|">목록으로 가기</a> 
+                   
+                   </th:block>
+                   <hr />
                   
                    <th:block th:case="emp">
                    
                 <a th:href="|../inquiryAnswer?inquiryNum=${inquiryCommand.inquiryNum}|"><p align="right">답변</p></a>
                   
-                <tr th:if="${inquiryCommand.empNum == null}">
+                <tr th:if="${inquiryCommand.empNum == null && session.authInfoDTO.userId != inquiryCommand.memberNum}">
                <td colspan="2">답변상태 : 미등록</td>
                 </tr>
                 
 
-                <tr th:if="${inquiryCommand.empNum != null}">
+                <tr th:if="${inquiryCommand.empNum != null && session.authInfoDTO.userId != inquiryCommand.memberNum}">
                <td colspan="2">답변상태 : 등록완료</td>
                 </tr>
 
@@ -166,7 +172,11 @@ body {
             
             </th:block>
             
-            <th:block th:if="${inquiryCommand.answerContent != null}">         
+            <th:block th:if="${inquiryCommand.answerContent != null}">       
+              <tr>
+               <td colspan="2">관리자 답변 </td>
+               
+            </tr>
             <tr>
                <td>문의글 번호</td>
                <td>[[${inquiryCommand.inquiryNum}]] </td>

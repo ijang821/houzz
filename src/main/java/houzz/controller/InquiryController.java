@@ -14,6 +14,7 @@ import houzz.domain.EmployeeDTO;
 import houzz.domain.MemberDTO;
 import houzz.mapper.EmployeeMapper;
 import houzz.service.inquiry.InquiryAnswerService;
+import houzz.service.inquiry.InquiryAnswerUpateService;
 import houzz.service.inquiry.InquiryAutoNum;
 import houzz.service.inquiry.InquiryDeleteService;
 import houzz.service.inquiry.InquiryDelsService;
@@ -127,7 +128,7 @@ public class InquiryController {
 		return "redirect:inquiryList";
 	}
 	/**
-	 * 직원이 문의 답변
+	 * 직원이 문의 답변 화면
 	 * 
 	 * @return
 	 */
@@ -135,9 +136,23 @@ public class InquiryController {
 	@Autowired
 	InquiryAnswerService inquiryAnswerService;
 	@RequestMapping(value = "inquiryAnswer")
-	public String inquiryAnswer(InquiryCommand inquiryCommand, HttpSession session) {
-		inquiryAnswerService.execute(inquiryCommand,session);
+	public String inquiryAnswer(
+			@RequestParam(value = "inquiryNum") String inquiryNum, HttpSession session, Model model) {
+		inquiryAnswerService.execute(inquiryNum,session,model);
 		return"thymeleaf/inquiry/inquieyAnswer";
+	}
+	/**
+	 * 직원이 문의 답변 (업데이트)
+	 * 
+	 * @return
+	 */
+	
+	@Autowired
+	InquiryAnswerUpateService inquiryAnswerUpateService;
+	@RequestMapping(value = "inquiryUpdate", method = RequestMethod.POST)
+	public String inquiryUpdate(InquiryCommand inquiryCommand,HttpSession session) {
+		inquiryAnswerUpateService.execute(inquiryCommand,session);
+		return "redirect:inquiryDetail/"+inquiryCommand.getInquiryNum();
 	}
 
 }

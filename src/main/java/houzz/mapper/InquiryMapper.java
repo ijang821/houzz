@@ -19,6 +19,8 @@ public interface InquiryMapper {
 	public Integer inquiryUpdate(InquiryDTO dto);
 	public Integer inquiryDelete(String inquiryNum);
 	public Integer mediationRemove(HashMap<String, Object> condition);
+	public void inquiryAnswerUpdate(InquiryDTO dto);
+	
 	
 	
 }

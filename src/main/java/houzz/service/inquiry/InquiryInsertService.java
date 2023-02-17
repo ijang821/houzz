@@ -27,8 +27,7 @@ public class InquiryInsertService {
 		dto.setInquiryContent(inquiryCommand.getInquiryContent());
 		dto.setInquiryTitle(inquiryCommand.getInquiryTitle());
 		dto.setInquiryDate(inquiryCommand.getInquiryDate());
-		dto.setEmpNum(userId);
-		dto.setInquiryNum(inquiryCommand.getInquiryNum());
+	    dto.setInquiryNum(inquiryCommand.getInquiryNum());
 		i = inquiryMapper.inquiryInsert(dto);
 		System.out.println(i + "삽입 성공");
 		model.addAttribute("inquiryCommand",dto);

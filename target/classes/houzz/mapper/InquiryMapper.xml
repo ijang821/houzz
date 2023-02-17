@@ -25,9 +25,9 @@
 
 	<insert id="inquiryInsert" parameterType="inquiryDTO">
 		insert into inquiry(INQUIRY_NUM, MEMBER_NUM, INQUIRY_DATE, INQUIRY_TITLE,
-		INQUIRY_CONTENT, EMP_NUM, ANSWER_CONTENT, ANSWER_DATE)
+		INQUIRY_CONTENT)
 		values((select concat('inq', nvl(max(substr(inquiry_num,4)),100000)+ 1) from INQUIRY),
-		#{memberNum},#{inquiryDate},#{inquiryTitle},#{inquiryContent},'1','0000',sysdate)
+		#{memberNum}, #{inquiryDate}, #{inquiryTitle}, #{inquiryContent})
 	</insert>
 
 	<select id="selectMem" parameterType="string"
@@ -55,7 +55,7 @@
 		        INQUIRY_TITLE inquiryTitle, INQUIRY_CONTENT inquiryContent,
 		        EMP_NUM empNum, ANSWER_CONTENT answerContent, ANSWER_DATE answerDate
 	     from INQUIRY
-	     where INQUIRY_NUM =#{inquiryNum}
+	     where INQUIRY_NUM = #{inquiryNum}
 	</select>
 	
 	<update id="inquiryUpdate" parameterType="inquiryDTO">
@@ -79,5 +79,20 @@
 			   #{inquiryNum}
 	      </foreach>
 	</delete>
+	
+	<update id="inquiryAnswerUpdate" parameterType="inquiryDTO">
+	      update INQUIRY
+	      set  EMP_NUM = #{empNum},
+	           ANSWER_CONTENT = #{answerContent},
+	           ANSWER_DATE = #{answerDate}
+	    where INQUIRY_NUM =#{inquiryNum}
+	
+	</update>
+	
+	
+	
+	
+	
+	
 	
 </mapper>

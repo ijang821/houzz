@@ -80,11 +80,15 @@ function w3_close() {
   <div class="w3-container" id="services" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-green"><b>문의 답변</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">					
-	<form action="inquiryRegist" method="post" th:object="${inquiryCommand}">
-		<table border=1 width="20%" >
+	<form action="inquiryUpdate" method="post" th:object="${inquiryCommand}">
+		<table border=1 width="40%" >
+		    <tr>
+				<td>문의 글 번호</td>
+				<td><input type="text" name="inquiryNum" th:value="${inquiryNum}"></td>
+			</tr>
 			<tr>
 				<td>직원번호</td>
-				<td><input type="text" name="empNum" th:value="${inquiryCommand.empNum}"></td>
+				<td><input type="text" name="empNum" th:value="${empNum}"></td>
 			</tr>
 			<tr>
 				<td>답변 내용</td>

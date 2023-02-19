@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 	
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="houzz.mapper.ReportMapper">
+	<sql id="reportBase">
+		REPORT_NUM reportNum, ESTATE_NUM estateNum, MEMBER_NUM
+		memeberNum,
+		REPORT_PROCESS reportProcess, REPORT_PROCESS_DATE reportProcessDate,
+		REPORT_TITLE
+		reportTitle,REPORT_CONTENT reportContent,EMP_NUM empNum
+	</sql>
+
+	<sql id="reportBase1">
+		REPORT_NUM , ESTATE_NUM , MEMBER_NUM ,
+		REPORT_PROCESS , REPORT_PROCESS_DATE ,
+		REPORT_TITLE ,REPORT_CONTENT ,EMP_NUM 
+	</sql>
+
+	<select id="selectReportAutoNum" resultType="string">
+		select
+		concat('port',nvl(max(substr(report_num,5)),100000)+ 1)
+		from report
+	</select>
+
+	<select id="selectAll" resultType="reportDTO">
+		select
+		REPORT_NUM reportNum, ESTATE_NUM estateNum, MEMBER_NUM
+		memeberNum,
+		REPORT_PROCESS reportProcess, REPORT_PROCESS_DATE reportProcessDate,
+		REPORT_TITLE reportTitle, REPORT_CONTENT reportContent, EMP_NUM empNum
+		from report
+		
+	</select>
+
+	<insert id="reportInsert" parameterType="reportDTO">
+		insert into
+		report(REPORT_NUM, ESTATE_NUM, MEMBER_NUM,
+		REPORT_TITLE, REPORT_CONTENT)
+		values(#{reportNum}, #{estateNum}, #{memeberNum}, #{reportTitle}, #{reportContent})
+	</insert>
+	
+	<select id="selectOne" parameterType="string" resultType="reportDTO">
+	    select REPORT_NUM reportNum, ESTATE_NUM estateNum, MEMBER_NUM
+		memeberNum,
+		REPORT_PROCESS reportProcess, REPORT_PROCESS_DATE reportProcessDate,
+		REPORT_TITLE reportTitle, REPORT_CONTENT reportContent, EMP_NUM empNum
+	    from report
+	    where REPORT_NUM = #{reportNum}
+	</select>
+	
+	<update id="reportUpdate" parameterType="reportDTO" >
+	    update report
+	    set REPORT_PROCESS = #{reportProcess},
+	        REPORT_PROCESS_DATE = #{reportProcessDate},
+	        EMP_NUM = #{empNum}
+	    
+	</update>
+	
+
+</mapper>

@@ -139,12 +139,14 @@ function w3_close() {
     		</td>
     	</tr>
     	<tfoot align="center" colspan="2">
-    		<td>
+    		<td colspan="2">
 				<a th:href="|../estateModify?estateNum=${estateCommand.estateNum}|">매물 수정</a>
 				<span> | </span>
 				<a th:href="|../estateDelete?estateNum=${estateCommand.estateNum}|">매물 삭제</a>
 				<span> | </span>
-				<a th:href="|../estateList|">매물 리스트</a>
+				<a th:href="|../estateList|">매물 리스트</a> <span> | </span>
+				<a th:href="|../../report/reportWrite?estateNum=${estateCommand.estateNum}|">신고하기</a>
+				
     		</td>
     	</tfoot>
     </table>

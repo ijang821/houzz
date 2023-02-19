@@ -61,6 +61,7 @@ function onClick(element) {
     <a href="#designers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Designers</a> 
     <a href="#packages" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Packages</a> 
     <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Contact</a>
+    <a href="advertise" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Advertisement</a>
   </div>
 </nav>
 
@@ -82,6 +83,21 @@ function onClick(element) {
     <h1 class="w3-xxxlarge w3-text-green"><b>기본 인덱스 요소</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
   </div>
+  
+  <div style="margin-top:40px;margin-bottom:40px;">
+  	<div id="map" style="width:1500px;height:950px;"></div>
+	  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ea3c6e54b06c79a07b748acf502fd530"></script>
+		<script>
+			var container = document.getElementById('map');
+			var options = {
+				center: new kakao.maps.LatLng(33.450701, 126.570667),
+				level: 3
+			};
+
+		var map = new kakao.maps.Map(container, options);
+	</script>
+  </div>
+  
   <div class="w3-row-padding">
     <div class="w3-half w3-margin-bottom">
       <ul class="w3-ul w3-light-grey w3-center">

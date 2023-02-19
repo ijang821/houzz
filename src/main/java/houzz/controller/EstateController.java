@@ -160,5 +160,10 @@ public class EstateController {
 		return "thymeleaf/estate/delPage";
 	}
 	
+	@RequestMapping(value = "estFieldCk", method = RequestMethod.GET)
+	public String estFieldCk(@RequestParam(value = "estateNum")String estateNum, Model model) {
+		estateDetailService.execute(estateNum, model);
+		return "thymeleaf/estate/fieldCheck";
+	}
 	
 }

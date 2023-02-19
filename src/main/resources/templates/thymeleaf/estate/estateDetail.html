@@ -31,6 +31,11 @@ function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
   document.getElementById("myOverlay").style.display = "none";
 }
+
+function fieldCkPop(estaetNum){
+	var url = '../estFieldCk?estateNum='+estateNum;
+    window.open(url,'fieldCk','height:300, width:300'); 
+ }
 </script>
 </head>
 <body>
@@ -68,7 +73,8 @@ function w3_close() {
     <h1 class="w3-jumbo"><b>HOUZZ</b></h1>
     <h1 class="w3-xxxlarge w3-text-green"><b>HOUZZ estate [[${estateCommand.estateName}]]</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
-    <form action="estateRegist" method="post" th:object="${estateCommand}">
+    <form action="estateRegist" name="frm" id="frm" method="post" th:object="${estateCommand}">
+    <input type="hidden" name="estateNum" id="estateNum" th:value="${estateCommand.estateNum}"/>
     <table border=1>
     	<tr>
     		<th>매물 번호</th>
@@ -138,6 +144,9 @@ function w3_close() {
     			<input type="checkbox" name="bidet"  id="bidet" th:checked="${estCommand.bidet=='Y'}" disabled="disabled"/>비데
     		</td>
     	</tr>
+    	<span th:if="${session.authInfoDTO != null}">
+	    <span th:switch="${session.authInfoDTO.grade}">
+	    <th:block th:case="mem">
     	<tfoot align="center" colspan="2">
     		<td>
 				<a th:href="|../estateModify?estateNum=${estateCommand.estateNum}|">매물 수정</a>
@@ -147,6 +156,17 @@ function w3_close() {
 				<a th:href="|../estateList|">매물 리스트</a>
     		</td>
     	</tfoot>
+    	 </th:block>
+    	 
+    	 <th:block th:case="emp">
+    	 <tfoot align="center" colspan="2">
+    		<td>
+				<span onclick="fieldCkPop('a')">매물 현장 확인</span>
+    		</td>
+    	</tfoot>
+    	</th:block>
+    	</span>
+    	</span>
     </table>
     </form>
   </div>

@@ -71,6 +71,30 @@ public class CheckRestController {
 		}
 		return message;
 	}
+	/**
+	 * 공인중개사 id 중복 확인
+	 * @param mediationId
+	 * @return
+	 */
+	@RequestMapping("mediation/medIdCheck")
+	public String medIdCheck(
+			@RequestParam(value="mediationId") String mediationId) {
+		String checkId = idCheckService.execute(mediationId);
+		String message=null;
+		if (checkId == null) {
+			message="사용가능한 id입니다.";
+		}else {
+			message="사용중인 id입니다.";
+		}
+		return message;
+	}
+	
+	
+	/**
+	 * 이메일인증
+	 * @param memberEmail
+	 * @return
+	 */
 	@Autowired
 	MemberEmailService memberEmailService;
 	@RequestMapping(value = "/register/memberMail")

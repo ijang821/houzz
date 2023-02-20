@@ -10,8 +10,9 @@ public class AdvertisementController {
 		return "thymeleaf/advertise/adList";
 	}
 	
-	@RequestMapping("adSignForm")
+	@RequestMapping("INIstdpay_pc_req")
 	public String adSignForm() {
-		return "thymeleaf/advertise/adForm";
+		return "INIstdpay_pc_req";
 	}
+	
 }

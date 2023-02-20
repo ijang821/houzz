@@ -25,6 +25,7 @@ public class ReportEmpUpdateService {
 		dto.setEmpNum(reportCommand.getEmpNum());
 		dto.setReportProcess(reportCommand.getReportProcess());
 		dto.setReportProcessDate(reportCommand.getReportProcessDate());
+		dto.setReportNum(reportCommand.getReportNum());
 		reportMapper.reportUpdate(dto);
 	}
 }

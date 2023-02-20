@@ -116,23 +116,30 @@ body {
 				<b>신고 목록</b>
 			</h1>
 			<hr style="width: 50px; border: 5px solid green" class="w3-round">
-			<form action="report" method="post">
+			<form action="reportList" method="get">
+			<input type="search" name ="reportWord" size="50" th:value="${reportWord}" placeholder="신고글 검색..."/>
+			<input type="submit" value="검색" />
+			</form>
+			<br />
+			<form action="reportDels" method="post">
 			<table border=1>
 				<tr>
 					<td>신고번호</td>
 					<td>매물번호</td>
 					<td>제목</td>
 					<td>신고 처리 여부</td>
-					
+					<td><input type="submit" value="삭제"></td>
 				 </tr>
-				 
+				 <br />
 				 <tr th:each ="reportDTO : ${list}">
 					<td><a th:href="|reportDetail/${reportDTO.reportNum}|">
 					                            [[${reportDTO.reportNum}]]</a></td>
 					<td>[[${reportDTO.estateNum}]]</td>
 					<td>[[${reportDTO.reportTitle}]]</td>
-					<td>[[${reportDTO.reportProcess}]]</td>
-					
+					<td><span th:if="${reportDTO.reportProcess == 'Y'}" th:text="Y"></span> 
+		                <span th:if="${reportDTO.reportProcess == 'N'}" th:text="N"></span>
+					</td>
+					<td><input type="checkbox" name="portDels" th:value="${reportDTO.reportNum}"></td>
 				 </tr>
 				 
 			</table>

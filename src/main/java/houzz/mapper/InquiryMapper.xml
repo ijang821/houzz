@@ -84,7 +84,7 @@
 	      update INQUIRY
 	      set  EMP_NUM = #{empNum},
 	           ANSWER_CONTENT = #{answerContent},
-	           ANSWER_DATE = #{answerDate}
+	           ANSWER_DATE = sysdate
 	    where INQUIRY_NUM =#{inquiryNum}
 	
 	</update>

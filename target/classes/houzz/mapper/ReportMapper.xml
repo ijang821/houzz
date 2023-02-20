@@ -31,7 +31,13 @@
 		REPORT_PROCESS reportProcess, REPORT_PROCESS_DATE reportProcessDate,
 		REPORT_TITLE reportTitle, REPORT_CONTENT reportContent, EMP_NUM empNum
 		from report
-		
+		<where>
+		<if test="reportWord != null">
+		        REPORT_NUM like '%'||#{reportWord}||'%'
+				or ESTATE_NUM like '%'||#{reportWord}||'%'
+				or REPORT_TITLE like '%'||#{reportWord}||'%'
+		</if>
+		</where>
 	</select>
 
 	<insert id="reportInsert" parameterType="reportDTO">
@@ -47,16 +53,27 @@
 		REPORT_PROCESS reportProcess, REPORT_PROCESS_DATE reportProcessDate,
 		REPORT_TITLE reportTitle, REPORT_CONTENT reportContent, EMP_NUM empNum
 	    from report
-	    where REPORT_NUM = #{reportNum}
+	    where ESTATE_NUM = #{estateNum}
+	     or  REPORT_NUM = #{reportNum}
 	</select>
 	
 	<update id="reportUpdate" parameterType="reportDTO" >
 	    update report
 	    set REPORT_PROCESS = #{reportProcess},
-	        REPORT_PROCESS_DATE = #{reportProcessDate},
-	        EMP_NUM = #{empNum}
+	        REPORT_PROCESS_DATE = sysdate,
+	        EMP_NUM = #{empNum}  
+	    where REPORT_NUM = #{reportNum}
 	    
 	</update>
+	
+	<delete id="reportRemove" parameterType="string" >
+	   delete from report
+	   where REPORT_NUM in
+	   <foreach collection="reportNums" item="reportNum"
+		 	    index="index" open="(" close=")" separator=",">
+	            #{reportNum}
+	   </foreach>
+	</delete>
 	
 
 </mapper>

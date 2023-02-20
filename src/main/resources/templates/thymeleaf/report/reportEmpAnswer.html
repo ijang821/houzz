@@ -92,11 +92,12 @@ function w3_close() {
 			</tr>
 			<tr>
 				<td>신고 처리 여부</td>
-				<td><input type="text" name="reportProcess" ></td>
+				<td><input type="radio" name="reportProcess" value="Y" th:checked="${reportCommand.reportProcess=='Y'}" />Y &nbsp;&nbsp;
+				    <input type="radio" name="reportProcess" value="N" th:checked="${reportCommand.reportProcess=='N'}" />N</td>
 			</tr>
 			<tr>
 				<td>신고 처리 날짜</td>
-				<td><input type="date" name="reportProcessDate" ></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="답변처리" ></td>

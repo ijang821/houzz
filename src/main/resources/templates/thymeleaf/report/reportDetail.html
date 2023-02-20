@@ -138,7 +138,9 @@ body {
 					<td>[[${reportCommand.reportContent}]]</td>
 				</tr>
 				<tr>
-				<td colspan="2"><a th:href="|../reportAnswer?reportNum=${reportCommand.reportNum}|">신고 처리 하기</a></td>
+				<td colspan="2"><a th:href="|../reportAnswer?reportNum=${reportCommand.reportNum}|">신고 처리 하기</a>&nbsp;&nbsp; <span> | </span>&nbsp;&nbsp; 
+				                <a th:href="|../reportList|">신고 리스트</a>
+				</td>
 				</tr>
 				  
                 <th:block th:if="${reportCommand.reportProcess == null}"> 

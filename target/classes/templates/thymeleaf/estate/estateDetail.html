@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,11 +75,22 @@ function fieldCkPop(estaetNum){
     <hr style="width:50px;border:5px solid green" class="w3-round">
     <form action="estateRegist" name="frm" id="frm" method="post" th:object="${estateCommand}">
     <input type="hidden" name="estateNum" id="estateNum" th:value="${estateCommand.estateNum}"/>
+
+       <th:block th:if="${reProcess} != null and ${reProcess.reportProcess.equals('Y')}">
+  	   <div style="color:red"><h3>[허위매물]</h3></div>
+       </th:block>
+
+       <th:block th:if="${reProcess} != null and ${reProcess.reportProcess.equals('N')}">
+
+	   <div></div>
+       </th:block>    
+                      
     <table border=1>
+   
     	<tr>
     		<th>매물 번호</th>
     		<td>
-    			[[${estateCommand.estateNum}]]
+    			[[${estateCommand.estateNum}]] 
     		</td>
     	</tr>
     	<tr>
@@ -161,8 +172,8 @@ function fieldCkPop(estaetNum){
     	 </th:block>
     	 
     	 <th:block th:case="emp">
-    	 <tfoot align="center" colspan="2">
-    		<td>
+    	 <tfoot align="left" colspan="2">
+    		<td colspan="2">
 				<span onclick="fieldCkPop('a')">매물 현장 확인</span>
     		</td>
     	</tfoot>

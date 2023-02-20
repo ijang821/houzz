@@ -14,8 +14,8 @@ public class ReportListService {
 	@Autowired
 	ReportMapper reportMapper;
 
-	public void execute(Model model) {
-		List<ReportDTO> list = reportMapper.selectAll();
+	public void execute(String reportWord, Model model) {
+		List<ReportDTO> list = reportMapper.selectAll(reportWord);
 		model.addAttribute("list", list);
 	}
 }

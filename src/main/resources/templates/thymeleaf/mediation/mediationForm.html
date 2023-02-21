@@ -119,13 +119,16 @@ $(function(){
 	
 	$("#businessRegiNum").blur(function(){
 		console.log('------ 1');
+		check3Values()
 		// #businessRegiNum , #mediationName , #ceoName 를 체크하는 function 
 	});
 	$("#mediationName").blur(function(){
 		console.log('------ 2');
+		check3Values()
 	});
 	$("#ceoName").blur(function(){
 		console.log('------ 3');
+		check3Values()
 	});
 });
 
@@ -135,6 +138,17 @@ function check3Values() {
 	var ceoName = $("#ceoName").val();
 	
 	if (buniessRegiNum != null && mediationName != null && ceoName != null) { 
+		{
+			const data = {
+					  "businesses": [
+						    {
+						      "b_no": "2148865615",
+						      "start_dt": "20100917",
+						      "p_nm" : "황성규"
+						    }
+						  ]
+						}
+		
 		$.ajax({
 			type : "post",
 			url : "https://api.odcloud.kr/api/nts-businessman/v1/validate?serviceKey=9WgITHzjmowoZkiwH41zTk74goui769A%2BEo4FxeFb0zKqFc3fcIG8zo7Xb6yFuV78ToR1VdaOiDuXCjrg7VnGw%3D%3D&returnType=JSON",
@@ -175,11 +189,11 @@ function businesses() {
 		accept : "application/json",
 		success : function(result){
 			console.log(result);
-			alert("진위가 확인되었습니다.")
+			
 		},
 		error:function(result){
 			console.log(result.responseText);
-			alert("없는 사업자 번호 입니다.")
+			
 			}
 		})
 	}

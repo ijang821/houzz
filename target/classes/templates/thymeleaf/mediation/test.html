@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.3.min.js"></script>
+<script>
+function businesses() {
+	
+	const data = {
+			  "businesses": [
+				    {
+				    	"b_no" : "2148865615"
+				      
+				    }
+				  ]
+				}
+$.ajax({
+	type : "post",
+	url : "https://api.odcloud.kr/api/nts-businessman/v1/validate?serviceKey=9WgITHzjmowoZkiwH41zTk74goui769A%2BEo4FxeFb0zKqFc3fcIG8zo7Xb6yFuV78ToR1VdaOiDuXCjrg7VnGw%3D%3D&returnType=JSON",
+	data : JSON.stringify(data),
+	dataType : "JSON",
+	contentType : "application/json",
+	accept : "application/json",
+	success : function(result){
+		console.log(result);
+		console.log('진위확인 되었습니다.');	
+	},
+	error:function(result){
+		console.log(result.responseText);
+		console.log('없는 번호입니다.');	
+		}
+	})
+}
+</script>
+
+</head>
+<body>
+
+ <span onclick="businesses()">사업자등록 번호 조회</span>
+</body>
+</html>

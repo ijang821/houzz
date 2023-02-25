@@ -32,9 +32,9 @@ function w3_close() {
   document.getElementById("myOverlay").style.display = "none";
 }
 
-function fieldCkPop(estaetNum){
-	var url = '../estFieldCk?estateNum='+estateNum;
-    window.open(url,'fieldCk','height:300, width:300'); 
+function fieldCkPop(){
+	var url = '../estFieldCk?estateNum='+document.getElementById("estateNum").value;
+    window.open(url,'fieldCk','height:300, width:300');
  }
 </script>
 </head>
@@ -174,7 +174,7 @@ function fieldCkPop(estaetNum){
     	 <th:block th:case="emp">
     	 <tfoot align="left" colspan="2">
     		<td colspan="2">
-				<span onclick="fieldCkPop('a')">매물 현장 확인</span>
+				<span onclick="fieldCkPop()">매물 현장 확인</span>
     		</td>
     	</tfoot>
     	</th:block>

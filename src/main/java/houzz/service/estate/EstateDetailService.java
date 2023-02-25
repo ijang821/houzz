@@ -21,6 +21,7 @@ public class EstateDetailService {
 		OptionsDTO optDTO = estateMapper.selectOptOne(estateNum);
 		model.addAttribute("estateCommand", estDTO);
 		model.addAttribute("estCommand", optDTO);
+		System.out.println("이거다 !!!!"+estDTO);
 		
 		ReportDTO reportDTO = reportMapper.selectOne(estateNum);
 		model.addAttribute("reProcess",reportDTO);

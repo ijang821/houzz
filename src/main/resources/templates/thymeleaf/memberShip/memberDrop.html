@@ -64,7 +64,7 @@ function w3_close() {
   <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
     <h1 class="w3-jumbo"><b>HOUZZ</b></h1>
-    <h1 class="w3-xxxlarge w3-text-green"><b>REGIST TO HOUZZ</b></h1>
+    <h1 class="w3-xxxlarge w3-text-green"><b>MEMBERDELETE TO HOUZZ</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
     
   </div>
@@ -73,32 +73,14 @@ function w3_close() {
 
   <!-- MemberRegist -->
   <div class="w3-container" id="services" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-green"><b>개인 회원가입 </b></h1>
-    <hr style="width:50px;border:5px solid green" class="w3-round">					
-	<form action="/login/loginPro" name="frm" id="frm" method="post">
-		<table border="1" align="center">
-			<tr>
-				<td colspan="3">자동 로그인 <input type="checkbox" name="autoLogin" />
-					&nbsp;&nbsp;&nbsp;&nbsp; 아이디 저장 <input type="checkbox"
-					name="idStore" />
-				</td>
-			</tr>
-			<tr>
-				<td><input type="text" name="userId" id="userId" placeholder="아이디"/><br></td>
-				<td rowspan=2>
-					<input type="image" th:src="@{/static/images/img1.jpg}" width="80" height="80">
-				</td>
-			</tr>
-			<tr>
-				<td><input type="password" name="userPw" id="userPw" placeholder="비밀번호"><br /></td>
-			</tr>
-			<tr>
-				<td colspan="3"><a href="/register/agree">회원가입</a>&nbsp; <a
-					href="/help/findId">아이디 찾기</a>&nbsp; <a href="/help/findPassword">비밀번호
-						찾기</a>&nbsp;</td>
-			</tr>
-		</table>
-	</form>
+    <h1 class="w3-xxxlarge w3-text-green"><b>개인 회원 탈퇴 </b></h1>
+    <hr style="width:50px;border:5px solid green" class="w3-round">	
+    <h3>정말 탈퇴 하시겠습니까?</h3>	
+      <p>탈퇴를 원하시면 체크박스에 동의를 체크해주세요!</p>			
+	  <form th:action="MemDrop" method="post">
+				동의&nbsp;&nbsp;<input type="checkbox" name="agreeDrop" value="true" required="required" />
+				&nbsp;&nbsp;<input type="submit" value="회원 탈퇴" />
+			</form><br />		
   </div>
 
 

@@ -17,12 +17,13 @@
 			<arg column="mediation_phone" javaType="string" />
 			<arg column="mediation_email" javaType="string" />
 			<arg column="able_ad_count" javaType="integer" />
+			<arg column="mediation_join_ok" javaType="string" />
 		</constructor>
 	</resultMap>
 
 	<select id="selectMed" parameterType="string" resultMap="medConstructorMap">
 		select mediation_num, business_regi_num, mediation_id, mediation_pw, ceo_name,
-		       mediation_name, mediation_addr, mediation_phone, mediation_email, able_ad_count
+		       mediation_name, mediation_addr, mediation_phone, mediation_email, able_ad_count, MEDIATION_JOIN_OK
 		from mediation
 		where mediation_id = #{mediationId}
 	</select>
@@ -42,7 +43,7 @@
      
      <delete id="memDel" parameterType="string">
           delete from mediation
-         where mediation_id = #{mediationId}
+          where mediation_id = #{mediationId}
      </delete>
      
      

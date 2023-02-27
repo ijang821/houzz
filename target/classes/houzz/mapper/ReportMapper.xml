@@ -61,7 +61,8 @@
 	    update report
 	    set REPORT_PROCESS = #{reportProcess},
 	        REPORT_PROCESS_DATE = sysdate,
-	        EMP_NUM = #{empNum}  
+	        EMP_NUM = #{empNum}
+	        
 	    where REPORT_NUM = #{reportNum}
 	    
 	</update>

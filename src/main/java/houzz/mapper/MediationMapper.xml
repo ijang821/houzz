@@ -13,7 +13,7 @@
 		mediationAddr, MEDIATION_PHONE mediationPhone,
 		MEDIATION_EMAIL
 		mediationEmail,
-		ABLE_AD_COUNT ableAdCount
+		ABLE_AD_COUNT ableAdCount, MEDIATION_JOIN_OK mediationJoinOk
 	</sql>
 
 	<sql id="mediationBase insert">
@@ -21,7 +21,7 @@
 		MEDIATION_PW,
 		CEO_NAME, MEDIATION_NAME, MEDIATION_ADDR,
 		MEDIATION_PHONE, MEDIATION_EMAIL,
-		ABLE_AD_COUNT
+		ABLE_AD_COUNT, MEDIATION_JOIN_OK
 	</sql>
 
 	<sql id="AutoNum">
@@ -32,12 +32,12 @@
 	<insert id="mediationJoinInsert" parameterType="mediationDTO">
 		insert into mediation(MEDIATION_NUM,BUSINESS_REGI_NUM,
 		MEDIATION_ID,MEDIATION_PW,CEO_NAME,MEDIATION_NAME,
-		MEDIATION_ADDR,MEDIATION_PHONE,MEDIATION_EMAIL,ABLE_AD_COUNT)
+		MEDIATION_ADDR,MEDIATION_PHONE,MEDIATION_EMAIL,ABLE_AD_COUNT,MEDIATION_JOIN_OK)
 		values((
 		<include refid="AutoNum"></include>
 		)
 		,#{businessRegiNum},#{mediationId},#{mediationPw},#{ceoName},
-		#{mediationName},#{mediationAddr},#{mediationPhone},#{mediationEmail},#{ableAdCount})
+		#{mediationName},#{mediationAddr},#{mediationPhone},#{mediationEmail},#{ableAdCount},'N')
 	</insert>
 
 	<select id="selectOne" parameterType="string"
@@ -85,6 +85,12 @@
 		</foreach>
 	</delete>
 
-
+     <update id="mediJoinCk" parameterType="string">
+         update mediation
+         set mediation_join_ok = 'Y'
+         where mediation_email = #{mediationEmail}
+         and mediation_join_ok = 'N'
+     
+     </update>
 
 </mapper>

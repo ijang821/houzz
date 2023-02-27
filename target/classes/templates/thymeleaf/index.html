@@ -54,56 +54,7 @@ function onClick(element) {
     <a href="/login/logout" class="w3-bar-item w3-button w3-hover-white">HOUZZ 로그아웃</a>
     </div>
     
-  <div class="w3-bar-block">
-    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
-    <a href="#showcase" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Showcase</a> 
-    <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Services</a> 
-    <a href="#designers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Designers</a> 
-    <a href="#packages" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Packages</a> 
-    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Contact</a>
-    <a href="advertise" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Advertisement</a>
-  </div>
-</nav>
-
-<!-- Top menu on small screens -->
-<header class="w3-container w3-top w3-hide-large w3-green w3-xlarge w3-padding">
-  <a href="javascript:void(0)" class="w3-button w3-green w3-margin-right" onclick="w3_open()">☰</a>
-  <span>Company Name</span>
-</header>
-
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-
-<!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:340px;margin-right:40px">
-
-  <!-- Header -->
-  <div class="w3-container" style="margin-top:80px" id="showcase">
-    <h1 class="w3-jumbo"><b>HOUZZ</b></h1>
-    <h1 class="w3-xxxlarge w3-text-green"><b>기본 인덱스 요소</b></h1>
-    <hr style="width:50px;border:5px solid green" class="w3-round">
-  </div>
-  
-  <div style="margin-top:40px;margin-bottom:40px;">
-  	<div id="map" style="width:1500px;height:950px;"></div>
-	  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ea3c6e54b06c79a07b748acf502fd530"></script>
-		<script>
-			var container = document.getElementById('map');
-			var options = {
-				center: new kakao.maps.LatLng(33.450701, 126.570667),
-				level: 3
-			};
-
-		var map = new kakao.maps.Map(container, options);
-	</script>
-  </div>
-  
-  <div class="w3-row-padding">
-    <div class="w3-half w3-margin-bottom">
-      <ul class="w3-ul w3-light-grey w3-center">
-        <li class="w3-dark-grey w3-xlarge w3-padding-32">Basic</li>
-        <li class="w3-padding-16"><a href="/">HOME</a></li>
-          <li class="w3-padding-16"><a href="/employee/empList">직원 등록</a></li>
+  <div class="w3-bar-block">    
         <span th:if="${session.authInfoDTO != null}"> 
 	    <span th:switch="${session.authInfoDTO.grade}">
 	  
@@ -116,7 +67,6 @@ function onClick(element) {
               <li class="w3-padding-16"><a href="/corner/interestList">관심 매물</a></li>
               <li class="w3-padding-16"><a href="/estate/estateList">등록매물 관리</a></li> 
               <li class="w3-padding-16"><a href="memDelete1">회원 탈퇴</a></li>
-             
         </th:block>
          
         <th:block th:case="med">
@@ -141,7 +91,8 @@ function onClick(element) {
               <li class="w3-padding-16"><a href="empDelete1">직원 퇴사</a></li>
         </th:block>
         
-        <span th:if="${session.authInfoDTO == null}">
+     
+         <span th:if="${session.authInfoDTO == null}">
         
         <form action="/login/item.login" name="frm" id="frm" method="post" th:object="${loginCommand}">
 		<table border="1" align="center" width="30%" height="30%">
@@ -177,34 +128,50 @@ function onClick(element) {
 				    <a href="/help/findPassword">&nbsp;비밀번호 찾기</a></td>
 			</tr>
 		</table>
-	</form>
-        
-        <li class="w3-padding-16">
-          <h2>$ 199</h2>
-          <span class="w3-opacity">per room</span>
-        </li>
-        <li class="w3-light-grey w3-padding-24">
-          <button class="w3-button w3-white w3-padding-large w3-hover-black">Sign Up</button>
-        </li>
-      </ul>
-    </div>
-    
-    <div class="w3-half">
+	</form>    
+  </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-green w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-green w3-margin-right" onclick="w3_open()">☰</a>
+  <span>Company Name</span>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px" id="showcase">
+    <h1 class="w3-jumbo"><b>HOUZZ</b></h1>
+    <h1 class="w3-xxxlarge w3-text-green"><b>지도</b></h1>
+    <hr style="width:50px;border:5px solid green" class="w3-round">
+  </div>
+  
+  <div style="margin-top:40px;margin-bottom:40px;">
+  	<div id="map" style="width:1500px;height:950px;"></div>
+	  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ea3c6e54b06c79a07b748acf502fd530"></script>
+		<script>
+			var container = document.getElementById('map');
+			var options = {
+				center: new kakao.maps.LatLng(33.450701, 126.570667),
+				level: 3
+			};
+
+		var map = new kakao.maps.Map(container, options);
+	</script>
+  </div>
+  
+  <div class="w3-row-padding">
+    <div class="w3-half w3-margin-bottom">
       <ul class="w3-ul w3-light-grey w3-center">
-        <li class="w3-green w3-xlarge w3-padding-32">Pro</li>
-        <li class="w3-padding-16">Floorplanning</li>
-        <li class="w3-padding-16">50 hours support</li>
-        <li class="w3-padding-16">Photography</li>
-        <li class="w3-padding-16">50% furniture discount</li>
-        <li class="w3-padding-16">GREAT deals</li>
-        <li class="w3-padding-16">
-          <h2>$ 249</h2>
-          <span class="w3-opacity">per room</span>
-        </li>
-        <li class="w3-light-grey w3-padding-24">
-          <button class="w3-button w3-green w3-padding-large w3-hover-black">Sign Up</button>
-        </li>
-      </ul>
+        <li class="w3-dark-grey w3-xlarge w3-padding-32">HOUZZ</li>
+        <span th:if="${session.authInfoDTO == null}">
+        <li class="w3-padding-16"><a href="/">로그인 하시면 매물들을 보실 수 있습니다.</a></li>
+      
     </div>
   </div>
 

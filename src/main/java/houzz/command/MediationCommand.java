@@ -34,6 +34,8 @@ public class MediationCommand {
 	//@NotBlank(message = "등록 가능 광고을 입력해주세요")
 	Integer ableAdCount;
 	
+	String mediationJoinOk;
+	
 	public boolean isMediationPwEqualsMediationPwCon() {
 		return mediationPw.equals(mediationPwCon);
 	}

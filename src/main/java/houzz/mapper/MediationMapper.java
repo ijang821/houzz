@@ -15,6 +15,7 @@ public interface MediationMapper {
 	public Integer mediationUpdate(MediationDTO dto);
 	public Integer mediationDelete(String mediationNum);
 	public Integer mediationRemove(HashMap<String, Object> condition);
+	public Integer mediJoinCk(String mediationEmail);
 	
 	
 	

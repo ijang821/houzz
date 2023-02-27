@@ -21,4 +21,6 @@ public class MediationDTO {
 	String mediationPhone;
 	String mediationEmail;
 	Integer ableAdCount;
+	
+	String mediationJoinOk;
 }

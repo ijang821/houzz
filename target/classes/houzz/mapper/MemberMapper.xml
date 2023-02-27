@@ -103,4 +103,6 @@
 		where member_email = #{memberEmail}
 		and MEMBER_JOIN_CK = 'N'
 	</update>
+	
+	
 </mapper>

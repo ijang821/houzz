@@ -72,7 +72,9 @@ body {font-size:16px;}
     font-weight: normal;
     font-style: normal;
 }
-
+a{
+	text-decoration-line : none;
+}
 </style>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
 <script>
@@ -136,7 +138,7 @@ function check3Values() {
 	var businessRegiNum = $("#businessRegiNum").val();
 	var mediationName = $("#mediationName").val();
 	var ceoName = $("#ceoName").val();
-	
+
 	if (buniessRegiNum != null && mediationName != null && ceoName != null) { 
 		{
 			const data = {
@@ -165,11 +167,10 @@ function check3Values() {
 				alert("없는 사업자 번호 입니다.")
 				}
 			})
-	} else { 
-		return false;
-	}
+	} 	
+	} 	
 }
-
+	
 function businesses() {
 	const data = {
 			  "businesses": [
@@ -180,6 +181,7 @@ function businesses() {
 				    }
 				  ]
 				}
+				
 	$.ajax({
 		type : "post",
 		url : "https://api.odcloud.kr/api/nts-businessman/v1/validate?serviceKey=9WgITHzjmowoZkiwH41zTk74goui769A%2BEo4FxeFb0zKqFc3fcIG8zo7Xb6yFuV78ToR1VdaOiDuXCjrg7VnGw%3D%3D&returnType=JSON",
@@ -193,11 +195,9 @@ function businesses() {
 		},
 		error:function(result){
 			console.log(result.responseText);
-			
 			}
 		})
 	}
-
 </script>
 
 </head>
@@ -207,15 +207,11 @@ function businesses() {
 <nav class="w3-sidebar w3-green w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
   <div class="w3-container">
-    <h3 class="w3-padding-64"><b>HOUZZ</b></h3>
+    <h3 class="w3-padding-64"><b><a href="/">HOUZZ</a></b></h3>
   </div>
   <div class="w3-bar-block">
     <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
-    <a href="#showcase" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Showcase</a> 
-    <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Services</a> 
-    <a href="#designers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Designers</a> 
-    <a href="#packages" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Packages</a> 
-    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Contact</a>
+   
   </div>
 </nav>
 
@@ -286,7 +282,6 @@ function businesses() {
 						th:errors="*{mediationNum}"></span>
 					</tr>
 					
-					
 					<tr>
 						<th><label for="businessRegiNum">사업자 등록번호</label></th>
 						<td><input type='text' name='businessRegiNum' id="businessRegiNum" th:value="${mediationCommand.businessRegiNum}" placeholder='-제외하고 입력해주세요'/>
@@ -301,14 +296,12 @@ function businesses() {
 							id="mediationName" size='15' maxlength='12' th:value="${mediationCommand.mediationName}"/>	<span style="color: red"
 							th:if="${#fields.hasErrors('mediationName')}"
 							th:errors="*{mediationName}"></span></td>
-					
 					</tr>
 					<tr>
 						<th><label for="ceoName">대표자명</label></th>
 						<td><input type='text' name='ceoName' id="ceoName" th:value="${mediationCommand.ceoName}"><span style="color: red" th:if="${#fields.hasErrors('ceoName')}"
 							th:errors="*{ceoName}"></span></td>
 					</tr>
-
 					<tr>
 						<th colspan='2'>연락처</th>
 					</tr>
@@ -329,8 +322,8 @@ function businesses() {
 							<td><input type="text" id="sample4_postcode"></td>
 						</tr>	
 							
-							
-							<span style="color: red"
+						<tr>	
+						<td><span style="color: red"
 							th:if="${#fields.hasErrors('mediationAddr')}"
 							th:errors="*{mediationAddr}"></span></td>
 					</tr>

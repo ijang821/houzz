@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import houzz.domain.EstateDTO;
+import houzz.domain.FieldCheckDTO;
 import houzz.domain.OptionsDTO;
 
 @Repository(value = "houzz.mapper.EstateMapper")
@@ -18,4 +19,5 @@ public interface EstateMapper {
 	public Integer estateDelete(String estateNum);
 	public OptionsDTO selectOptOne(String estateNum);
 	public Integer updateOptions(OptionsDTO opDTO);
+	public Integer fieldCk(FieldCheckDTO fieldCheckDTO);
 }

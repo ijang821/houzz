@@ -223,7 +223,7 @@ function onClick(element) {
 				   font-size: 17px;
    				   font-weight: 600;
     			   letter-spacing: 2px;">
-			<td>번호</td>
+			<td>사진</td>
 			<td>이름</td>
 			<td>주소</td>
 			<td>가격</td>
@@ -257,8 +257,7 @@ function onClick(element) {
         <span th:if="${session.authInfoDTO != null}">
         <table border=1>
         <tr th:each="estateDTO : ${list}">
-        <td>  <img height="400" width="400"
-						th:src="|estate/upload/${estateDTO.estatePic}|" /></td>
+        <td>  <img height="400" width="400" th:src="|estate/upload/${estateDTO.estatePic}|" /></td>
 	     </tr>
 	     </table>
         </span>

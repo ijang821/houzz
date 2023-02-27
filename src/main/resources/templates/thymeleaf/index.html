@@ -10,8 +10,13 @@ body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
 .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
 .w3-half img:hover{opacity:1}
+
 a{
 	text-decoration-line : none;
+}
+
+li{
+ list-style: none;
 }
 .searchbtn {
     background: #4caf50;
@@ -74,29 +79,29 @@ function onClick(element) {
     
     <div class="w3-container">
         <h3 class="w3-padding-64"><b><a href="/">HOUZZ</a></b></h3>  
-        </div>
+        
+    </div>
     <div class="w3-bar-block">
         <span th:if="${session.authInfoDTO == null}">
     <a href="login" class="w3-bar-item w3-button w3-hover-white">HOUZZ 로그인</a>
     </div>
     
     <div class="w3-bar-block"> 
-        <span th:if="${session.authInfoDTO != null}">
+       <span th:if="${session.authInfoDTO != null}">
     <a href="/login/logout" class="w3-bar-item w3-button w3-hover-white">HOUZZ 로그아웃</a>
-    </div>
+      </div>
     
-  <div class="w3-bar-block">    
+  <div class="w3-bar-block" >    
         <span th:if="${session.authInfoDTO != null}"> 
 	    <span th:switch="${session.authInfoDTO.grade}">
 	  
-		<th:block th:case="mem">
-              <li class="w3-padding-16"><a href="memDetail">내정보 보기</a></li>
+		<th:block th:case="mem" >
+        &nbsp;<li class="w3-padding-16"><a href="memDetail">내정보 보기</a></li>
               <li class="w3-padding-16"><a href="memPass">비밀번호 수정</a></li>
               <li class="w3-padding-16"><a href="memModify">내정보 수정</a></li>
               <li class="w3-padding-16"><a href="inquiryList">문의하기</a></li>  
               <li class="w3-padding-16"><a href="/report/reportList">신고목록</a></li>  
-              <li class="w3-padding-16"><a href="/corner/interestList">관심 매물</a></li>
-              <li class="w3-padding-16"><a href="/estate/estateList">등록매물 관리</a></li> 
+              <li class="w3-padding-16"><a href="/estate/estateList">매물</a></li> 
               <li class="w3-padding-16"><a href="memDelete1">회원 탈퇴</a></li>
         </th:block>
          
@@ -104,8 +109,8 @@ function onClick(element) {
               <li class="w3-padding-16"><a href="mediationDetail">내정보 보기</a></li>
               <li class="w3-padding-16"><a href="mediationPass">비밀번호 수정</a></li>
               <li class="w3-padding-16"><a href="mediationModify">내정보 수정</a></li>
+              <li class="w3-padding-16"><a href="/estate/estateList">매물</a></li> 
               <li class="w3-padding-16"><a href="medDelete1">공인중개소 폐업</a></li>
-              <li class="w3-padding-16"><a href="/estate/estateList">등록매물 관리</a></li> 
         </th:block>
         
         <th:block th:case="emp">
@@ -119,10 +124,8 @@ function onClick(element) {
               <li class="w3-padding-16"><a href="/department/departmentList">부서 관리</a></li>   
               <li class="w3-padding-16"><a href="/estate/estateList">매물 관리</a></li>
               <li class="w3-padding-16"><a href="/register/mediationList">공인 중개소 관리</a></li>
-              <li class="w3-padding-16"><a href="empDelete1">직원 퇴사</a></li>
         </th:block>
         
-     
          <span th:if="${session.authInfoDTO == null}">
         
         <form action="/login/item.login" name="frm" id="frm" method="post" th:object="${loginCommand}">
@@ -159,7 +162,10 @@ function onClick(element) {
 				    <a href="/help/findPassword">&nbsp;비밀번호 찾기</a></td>
 			</tr>
 		</table>
-	</form>    
+	</form> 
+	
+	      
+	
   </div>
 </nav>
 
@@ -180,6 +186,7 @@ function onClick(element) {
     <h1 class="w3-jumbo"><b>HOUZZ</b></h1>
     <h1 class="w3-xxxlarge w3-text-green"><b>지도</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
+       
   </div>
  	<!-- 검색 창 -->
   	<form action="estateList" method="get" >
@@ -246,9 +253,19 @@ function onClick(element) {
     <div class="w3-half w3-margin-bottom">
       <ul class="w3-ul w3-light-grey w3-center">
         <li class="w3-dark-grey w3-xlarge w3-padding-32">HOUZZ</li>
+        
+        <span th:if="${session.authInfoDTO != null}">
+        <table border=1>
+        <tr th:each="estateDTO : ${list}">
+        <td>  <img height="400" width="400"
+						th:src="|estate/upload/${estateDTO.estatePic}|" /></td>
+	     </tr>
+	     </table>
+        </span>
+        
         <span th:if="${session.authInfoDTO == null}">
         <li class="w3-padding-16"><a href="/">로그인 하시면 매물들을 보실 수 있습니다.</a></li>
-      
+        </span>
     </div>
   </div>
 

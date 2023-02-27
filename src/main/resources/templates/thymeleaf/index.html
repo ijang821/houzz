@@ -13,6 +13,37 @@ body {font-size:16px;}
 a{
 	text-decoration-line : none;
 }
+.searchbtn {
+    background: #4caf50;
+    margin-left: 10px;
+}
+.allbutton {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #fff;
+    opacity: 0.7;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.allbutton:hover {
+    opacity: 1;
+} 
+table, tr, td {
+    border: none;
+    padding: 13px;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    text: align;
+}
+td {
+    display: table-cell;
+    vertical-align: inherit;
+    width: 144px;
+}
 </style>
 <script>
 // Script to open and close sidebar
@@ -150,9 +181,21 @@ function onClick(element) {
     <h1 class="w3-xxxlarge w3-text-green"><b>지도</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
   </div>
-  
+ 	<!-- 검색 창 -->
+  	<form action="estateList" method="get" >
+		<input type="search" name="estateWord" size="50" th:value="${estateWord}" placeholder="매물 검색..."
+		style ="
+			border: none;
+	     	padding: 10px 15px; 
+	    	border-radius: 20px;
+	    	box-shadow: 0px 0px 5px #60686196;
+	    	width: 600px;"
+		/> 
+		<input type="submit" class="allbutton searchbtn" value="검색" />
+	</form>
+	
   <div style="margin-top:40px;margin-bottom:40px;">
-  	<div id="map" style="width:1500px;height:950px;"></div>
+  	<div id="map" style="width:1400px;height:750px;"></div>
 	  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ea3c6e54b06c79a07b748acf502fd530"></script>
 		<script>
 			var container = document.getElementById('map');
@@ -163,9 +206,43 @@ function onClick(element) {
 
 		var map = new kakao.maps.Map(container, options);
 	</script>
+  </div><br>
+  <table border="1" style="border-collapse: collapse;
+    						 border: none;
+   							 text-align: center;">
+		<tr style="border:none;
+				   background: #4eaf52eb;
+    			   color: #fff;
+				   font-size: 17px;
+   				   font-weight: 600;
+    			   letter-spacing: 2px;">
+			<td>번호</td>
+			<td>이름</td>
+			<td>주소</td>
+			<td>가격</td>
+		</tr>
+		<tr th:each=" estateDTO : ${list}">
+			<td>
+				<a th:href="|estateDetail/${estateDTO.estateNum}|">
+					<th:block th:each="estatePic : ${#strings.arraySplit(estateDTO.estatePic,'-')}">
+					<img th:src="|/estate/upload/${estatePic}|" width="500px" /><br />
+					</th:block>
+				</a>
+			</td>
+			<td>
+				[[${estateDTO.estateName} ]]
+			</td>
+			<td>
+				[[${estateDTO.estateAddr}]]
+			</td>
+			<td>
+				[[${estateDTO.estatePrice}]]
+			</td>
+		</tr>
+	</table>
+	<br>
   </div>
-  
-  <div class="w3-row-padding">
+  <div class="w3-row-padding" style="margin-right: 15px">
     <div class="w3-half w3-margin-bottom">
       <ul class="w3-ul w3-light-grey w3-center">
         <li class="w3-dark-grey w3-xlarge w3-padding-32">HOUZZ</li>

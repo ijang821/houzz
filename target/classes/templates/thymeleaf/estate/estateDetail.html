@@ -35,6 +35,8 @@ function w3_close() {
 function fieldCkPop(){
 	var url = '../estFieldCk?estateNum='+document.getElementById("estateNum").value;
     window.open(url,'fieldCk','height:300, width:300');
+    opener.document.location.reload();
+    self.close();
  }
 </script>
 </head>

@@ -103,7 +103,7 @@ function w3_close() {
     	<tr>
     		<th>ID</th>
     		<td>
-    			<input type="text" name="empId" th:value="${employeeCommand.empId}" >
+    			<input type="text" name="empId" th:value="${employeeCommand.empId}" readonly="readonly" >
     			<span id="idCheck"></span>
 				<span style="color:red" th:if="${#fields.hasErrors('empId')}" th:errors="*{empId}"></span>
     		</td>

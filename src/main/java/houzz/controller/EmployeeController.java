@@ -74,7 +74,7 @@ public class EmployeeController {
 	 */
 	@Autowired
 	EmployeeDetailService employeeDetailService;
-	@RequestMapping("/employeeDetail/{empNum}")
+	@RequestMapping("employeeDetail/{empNum}")
 	public String empDetail(@PathVariable(value = "empNum")String empNum, Model model) {
 		employeeDetailService.execute(empNum, model);
 		return "thymeleaf/employee/employeeDetail";

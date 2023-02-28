@@ -31,7 +31,7 @@
 	<update id="updateEmp" parameterType="empDTO">
 		update employees
 		set EMP_NAME= #{empName}, EMP_PHONE=#{empPhone}, EMP_EMAIL=#{empEmail},
-		EMP_ADDR=#{empAddr}, EMP_BIRTH =#{empBirth}
+		EMP_ADDR=#{empAddr}, EMP_BIRTH =#{empBirth},DEPARTMENT_NUM=#{departmentNum},EMP_GENDER=#{empGender}
 		where emp_id = #{empId}
 	</update>
 

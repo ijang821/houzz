@@ -34,7 +34,7 @@
 		       MEMBER_PHONE ,
 		       MEMBER_EMAIL , MEMBER_ADDR , MEMBER_GENDER ,
 		       MEMBER_BIRTH , ACCOUNT_ADDRESS, MEMBER_JOIN_DATE ,
-		       MEMBER_JOIN_CK,  
+		       MEMBER_JOIN_CK  
 		from member
 		where member_id = #{memberId}
 	</select>

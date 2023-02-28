@@ -7,6 +7,9 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+<script src="/static/js/MyConfig.js"></script>
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
@@ -23,6 +26,46 @@ a{
 }
 </style>
 <script>
+
+window.addEventListener("load", function() {
+	web3 = new Web3(
+			new Web3.providers.HttpProvider("http://localhost:7545"));
+});
+
+/// 자바스크립트를 이용해서 파일 읽어오기
+function onFileSelected(event) {
+	const file = event.target.files[0];
+	const reader = new FileReader();
+	reader.onload = function(event) {
+		console.log("파일 내용 :" + event.target.result);
+		const privateKey = event.target.result;
+		/// 지갑
+		const account = web3.eth.accounts.privateKeyToAccount(privateKey);
+		const address = account.address;
+		console.log("address : " + address);
+		$.ajax({
+			type : "post",
+			dataType : "text",
+			url : "/login/privateLogin",
+			data : {
+				"address" : address
+			},
+			success : function(result) {
+				if (result == "1") {
+					location.href = "/";
+				} else {
+					alert("인증서에 해당하는 사용자가 없어 로그인되지 않았습니다.");
+					location.reload();
+				}
+			},
+			error : function() {
+				alert("오류입니다.");
+				return false;
+			}
+		});
+	}
+	reader.readAsText(file);
+}
 // Script to open and close sidebar
 function w3_open() {
   document.getElementById("mySidebar").style.display = "block";
@@ -71,9 +114,10 @@ function w3_close() {
   
   <!-- MemberRegist -->
   <div class="w3-container" id="services" style="margin-top:75px">
-  
+            
+        
 	<form action="/login/loginPro" name="frm" id="frm" method="post" th:object="${loginCommand}">
-		<table border="1" align="center" width="30%" height="30%">
+		<table border="1" align="center" width="30%" height="35%">
 		     <tr>
 				<td colspan="3" align="center" style="background-color: green">
 				<h1 style="color : white">Houzz</h1></td>		
@@ -95,6 +139,9 @@ function w3_close() {
 				<td colspan="3">자동 로그인 <input type="checkbox" name="autoLogin" />
 					&nbsp;&nbsp;&nbsp;&nbsp; 아이디 저장 <input type="checkbox"
 					name="idStore" th:checked="${loginCommand.idStore != null && loginCommand.idStore}"/>
+					&nbsp;&nbsp;
+				</td>
+				
 				</td>
 		</table>
 		<table align="center">
@@ -102,7 +149,18 @@ function w3_close() {
 				<td>
 				    <a href="/register/agree">회원가입 &nbsp; |</a>&nbsp;
 				    <a href="/find/findId">아이디 찾기 &nbsp;  |</a>&nbsp;
-				    <a href="/find/findPw">&nbsp;비밀번호 찾기</a></td>
+				    <a href="/find/findPw">&nbsp;비밀번호 찾기</a>  &nbsp;  
+				    </td>
+			</tr>
+			
+		</table>
+		<br/>
+		<table align="center">
+			<tr>
+				<td>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;개인키 로그인하기 |&nbsp; 인증서 : <input type="file" onchange="onFileSelected(event)">
+				    </td>
 			</tr>
 		</table>
 	</form>

@@ -136,9 +136,6 @@ td {
       </div>
     
   <div class="w3-bar-block" >    
-        <p>개인키 로그인</p>      
-	        인증서 : <input type="file" onchange="onFileSelected(event)">
-     
         <span th:if="${session.authInfoDTO != null}"> 
 	    <span th:switch="${session.authInfoDTO.grade}">
 	  

@@ -37,6 +37,11 @@
 		and MEDIATION_EMAIL =#{userEmail}
 	</select>
 	
+	<update id="changPw" parameterType="passwordChangeDTO">
+	update ${tableName}
+	set ${userPwColumn} = #{userPw}
+	where ${userIdColumn} = #{userId}
+    </update>
 	
 
 </mapper>

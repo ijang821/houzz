@@ -38,7 +38,7 @@ public class MemberCommand {
 	Date memberBirth;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date memberJoinDate;
-	
+	@NotNull (message = "지갑주소를 입력해주세요.")
 	String accountAddress;
 	
 	String memberJoinCk;

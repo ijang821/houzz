@@ -27,6 +27,7 @@ public class MemberRegistService {
 		memDTO.setMemberNum(memberCommand.getMemberNum());
 		memDTO.setMemberPhone(memberCommand.getMemberPhone());
 		memDTO.setMemberPw(passwordEncoder.encode(memberCommand.getMemberPw()));
+		memDTO.setAccountAddress(memberCommand.getAccountAddress());
 		i = memberMapper.memberInsert(memDTO);
 		return i;
 	}

@@ -115,7 +115,7 @@ public class MyPageMedController {
 			return "thymeleaf/mediationShip/medPassCon";
 		}
 		mediationPasswordService.execute(mediationPw,session);
-		return "thymeleaf/mediationShip/medPassCk";
+		return "redirect:/";
 	}
 	/**
 	 * 공인 중개소 폐업 (세션 날리기)

@@ -22,4 +22,5 @@ public interface MemberMapper {
 	public AuthInfoDTO memberEmail(String memberEmail);
 	public String memberIdCk(String memberId);
 	public Integer memJoinCk(String memberEmail);
+	public Integer addAccountAddr(MemberDTO memDTO);
 }

@@ -123,10 +123,15 @@ function w3_close() {
     	<tr>
     		<th>지갑주소</th>
     		<td>
-    			[[${memberCommand.accountAddress}]]
+    			<span th:if="${memberCommand.accountAddress != null}">
+    				[[${memberCommand.accountAddress}]]
+    			</span>
+    			<span th:if="${memberCommand.accountAddress == null}">
+    				<button type="button" onclick="location.href='accountAdd'">지갑주소 추가</button>
+    			</span>
     		</td>
     	</tr>
-    	
+  
     	<tfoot align="center" colspan="2">
     		<td>
 				<a th:href="|../memberModify?memberNum=${memberCommand.memberNum}|">회원 수정</a>

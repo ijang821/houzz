@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import houzz.command.MemberCommand;
+import houzz.service.member.MemAccountAddressService;
 import houzz.service.member.MemberDeleteService;
 import houzz.service.member.MemberDelsService;
 import houzz.service.member.MemberDetailService;
@@ -18,6 +19,7 @@ import houzz.service.member.MemberListController;
 import houzz.service.member.MemberModifyService;
 import houzz.service.member.MemberNumService;
 import houzz.service.member.MemberRegistService;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("member")

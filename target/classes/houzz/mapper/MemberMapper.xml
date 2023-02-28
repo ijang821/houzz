@@ -104,5 +104,10 @@
 		and MEMBER_JOIN_CK = 'N'
 	</update>
 	
+	<update id="addAccountAddr" parameterType="memberDTO">
+		update member
+		set ACCOUNT_ADDRESS = #{accountAddress}
+		where member_id = #{memberId}
+	</update>
 	
 </mapper>

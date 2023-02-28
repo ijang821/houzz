@@ -21,6 +21,21 @@ body {font-size:16px;}
 a{
 	text-decoration-line : none;
 }
+table, tr, td {
+    border: none;
+    padding: 13px;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    text: align;
+}
+td {
+    display: table-cell;
+    vertical-align: inherit;
+    width: 144px;
+}
 </style>
 <script>
 // Script to open and close sidebar
@@ -75,8 +90,15 @@ function w3_close() {
   <div class="w3-container" id="services" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-green"><b>내정보</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">					
- <table border=1 width="30%" >
-    	<tr>
+ <table border=1 style="border-collapse: collapse;
+    						 border: none;
+   							 text-align: center;" >
+    	<tr style="border:none;
+				   background: #4eaf52eb;
+    			   color: #fff;
+				   font-size: 17px;
+   				   font-weight: 600;
+    			   letter-spacing: 2px;">
     		<th>회원 번호</th>
     		<td>
     			[[${memberCommand.memberNum}]]
@@ -134,7 +156,12 @@ function w3_close() {
     	<tr>
     		<th>지갑주소</th>
     		<td>
-    			[[${memberCommand.accountAddress}]]
+    			<span th:if="${memberCommand.accountAddress != null}">
+    				[[${memberCommand.accountAddress}]]
+    			</span>
+    			<span th:if="${memberCommand.accountAddress == null}">
+    				<button type="button" onclick="location.href='accountAdd'">지갑주소 추가</button>
+    			</span>
     		</td>
     	</tr>
     </table>

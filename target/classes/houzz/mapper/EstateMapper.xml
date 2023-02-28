@@ -72,4 +72,9 @@
 		delete from estate
 		where estate_num = #{estateNum}
 	</delete>
+	
+	<insert id="fieldCk" parameterType="fieldCheckDTO">
+		insert into FIELD_CHECK(ESTATE_NUM, FIELD_CK_DATE, FIELD_CK_OK)
+		values(#{estateNum}, sysdate, 'Y')
+	</insert>
 </mapper>

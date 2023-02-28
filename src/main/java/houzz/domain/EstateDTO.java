@@ -18,4 +18,5 @@ public class EstateDTO {
 	String originalEstatePic;
 	String estateExplain;
 	Date estateRegiDate;
+	String memberNum;
 }

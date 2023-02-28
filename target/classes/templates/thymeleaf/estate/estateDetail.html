@@ -20,6 +20,9 @@ a {
 	text-decoration-line:none;
 }
 </style>
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+<script src="/static/js/MyConfig.js"></script>
+<script src="/static/js/houzzScript.js"></script>
 <script>
 // Script to open and close sidebar
 function w3_open() {
@@ -38,6 +41,8 @@ function fieldCkPop(){
     opener.document.location.reload();
     self.close();
  }
+ 
+ 
 </script>
 </head>
 <body>
@@ -181,6 +186,19 @@ function fieldCkPop(){
     	</span>
     	</span>
     </table>
+    </form>
+    <form action="onclick:UploadIMG()" enctype="multipart/form-data">
+	    <table>
+	    	<tr>
+	    		<td>
+	    			계약서 등록
+	    		</td>
+	    		<td>
+	    			<input type="file" name="contractPDF" id="contractPDF" multiple="multiple"/>
+	    			<input type="button" value="등록하기"></button>
+	    		</td>
+	    	</tr>
+	    </table>
     </form>
   </div>
   

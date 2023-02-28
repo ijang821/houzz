@@ -21,7 +21,7 @@ public class EstateCommand {
 	Long estatePrice;
 	@NotBlank(message = "매물정보를 입력하여 주세요.")
 	String estateInfo;
-	
+	String memberNum;
 	
 	MultipartFile [] estatePic;
 	//String originalEstatePic;

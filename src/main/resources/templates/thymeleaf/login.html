@@ -135,7 +135,7 @@ function w3_close() {
             
         
 	<form action="/login/loginPro" name="frm" id="frm" method="post" th:object="${loginCommand}">
-		<table border="1" align="center" width="30%" height="35%">
+		<table border="1" align="center" width="70%" height="70%">
 		     <tr>
 				<td colspan="3" align="center" style="background-color: green">
 				<h1 style="color : white">Houzz</h1></td>		
@@ -150,9 +150,9 @@ function w3_close() {
 				</td>
 			</tr>
 			<tr>
-				<td colspan="3" align="center" style="color : green">
-				<input type="submit" value="로그인">
-				<span><input type="button" value="인증서 로그인"></span>
+				<td colspan="3" align="left" style="color : blue">
+				       <input type="submit" value="로그인"> 
+				       <input type="file" onchange="onFileSelected(event)">(인증서 로그인)</td>
 			<tr>
 			<tr>
 				<td colspan="3">자동 로그인 <input type="checkbox" name="autoLogin" />
@@ -173,15 +173,7 @@ function w3_close() {
 			</tr>
 			
 		</table>
-		<br/>
-		<table align="center">
-			<tr>
-				<td>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;개인키 로그인하기 |&nbsp; 인증서 : <input type="file" onchange="onFileSelected(event)">
-				    </td>
-			</tr>
-		</table>
+	
 	</form>
 	
 

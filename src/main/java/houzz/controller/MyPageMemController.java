@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import houzz.command.MemberCommand;
 import houzz.domain.AuthInfoDTO;
+import houzz.mapper.MemberShipMapper;
+import houzz.service.member.MemAccountAddressService;
 import houzz.service.memberShip.MemDelete1Service;
 import houzz.service.memberShip.MemberInfoService;
 import houzz.service.memberShip.MemberInfoUpdateService;
@@ -136,5 +138,27 @@ public class MyPageMemController {
 		memDelete1Service.execute(session);
 		session.invalidate();
 		return "redirect:/";
+	}
+	
+	
+	
+	@RequestMapping("accountAdd")
+	public String accountAdd() {
+		return "thymeleaf/memberShip/accountAddrAdd";
+	}
+	/**
+	 * 지갑주소 추가
+	 * @param session
+	 * @param memberCommand
+	 * @param model
+	 * @return
+	 */
+	@Autowired
+	MemAccountAddressService memAccountAddressService;
+	@Autowired
+	MemberShipMapper memberShipMapper;
+	@RequestMapping("accountAddress")
+	public void accAddrSuccess(@RequestParam("accountAddress")String accountAddress, HttpSession session, Model model) {
+		memAccountAddressService.execute(accountAddress, session, model);
 	}
 }

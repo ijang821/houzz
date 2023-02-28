@@ -67,10 +67,7 @@ a{
 				<b><a href="/">HOUZZ</a></b>
 			</h3>
 		</div>
-		<div class="w3-bar-block">
-			<a href="#" onclick="w3_close()"
-				class="w3-bar-item w3-button w3-hover-white">Home</a> 
-		</div>
+		
 	</nav>
 
 	<!-- Top menu on small screens -->
@@ -100,8 +97,6 @@ a{
 
 		</div>
 
-
-
 		<!-- MemberRegist -->
 		<div class="w3-container" id="services" style="margin-top: 75px">
 			<h1 class="w3-xxxlarge w3-text-green">
@@ -120,7 +115,11 @@ a{
 					<td>매물번호</td>
 					<td>제목</td>
 					<td>신고 처리 여부</td>
+					<span th:if="${session.authInfoDTO != null}"> 
+	                <span th:switch="${session.authInfoDTO.grade}">
+	                <th:block th:case="emp">
 					<td><input type="submit" value="삭제"></td>
+					</th:block>
 				 </tr>
 				 <br />
 				 <tr th:each ="reportDTO : ${list}">
@@ -131,7 +130,12 @@ a{
 					<td><span th:if="${reportDTO.reportProcess == 'Y'}" th:text="Y"></span> 
 		                <span th:if="${reportDTO.reportProcess == 'N'}" th:text="N"></span>
 					</td>
-					<td><input type="checkbox" name="portDels" th:value="${reportDTO.reportNum}"></td>
+					<span th:if="${session.authInfoDTO != null}"> 
+	                <span th:switch="${session.authInfoDTO.grade}">
+	                <th:block th:case="emp">
+					<td><input type="checkbox" name="portDels" th:value="${reportDTO.reportNum}">
+					</th:block>
+					</td>
 				 </tr>
 				 
 			</table>

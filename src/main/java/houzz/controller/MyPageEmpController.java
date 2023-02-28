@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import houzz.command.EmployeeCommand;
 import houzz.domain.AuthInfoDTO;
-import houzz.service.empShip.EmpDelete1Service;
 import houzz.service.empShip.EmpInfoUpateService;
 import houzz.service.empShip.EmpPasswordService;
 import houzz.service.empShip.EmployeeInfoService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
+
 public class MyPageEmpController {
 	@ModelAttribute
 	EmployeeCommand getEmployeeCommand() {
@@ -34,10 +34,10 @@ public class MyPageEmpController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("empDetail")
+	@RequestMapping(value = "empInfoUpdate",method = RequestMethod.GET)
 	public String empInfo(Model model, HttpSession session) {
 		employeeInfoService.execute(model, session);
-		return "thymeleaf/employeeShip/empDetail";
+		return "thymeleaf/employee/employeeDetail";
 	}
 
 	/**
@@ -66,11 +66,11 @@ public class MyPageEmpController {
 			return "thymeleaf/employeeShip/empModify";
 		}
 		empInfoUpateService.execute(employeeCommand, model, session);
-		return "thymeleaf/employeeShip/empDetail";
+		return "thymeleaf/employee/employeeDetail";
 	}
 
 	/**
-	 * 공인 중개소 비밀번호 변경
+	 * 직원 비밀번호 변경
 	 * 
 	 * @return
 	 */
@@ -80,7 +80,7 @@ public class MyPageEmpController {
 	}
 
 	/**
-	 * 공인 중개소 비밀번호 변경 전 기존 비밀번호 확인
+	 * 직원 비밀번호 변경 전 기존 비밀번호 확인
 	 * 
 	 * @return
 	 */
@@ -97,7 +97,7 @@ public class MyPageEmpController {
 		return "thymeleaf/employeeShip/empPassCon";
 	}
 	/**
-	 * 공인 중개소 새로운 비밀번호 변경
+	 * 직원 새로운 비밀번호 변경
 	 * 
 	 * @return
 	 */
@@ -120,17 +120,5 @@ public class MyPageEmpController {
 		empPasswordService.execute(empPw,session);
 		return "redirect:/";
 	}
-	/**
-	 * 직원 퇴사
-	 * 
-	 * @return
-	 */
-	@Autowired
-	EmpDelete1Service empDelete1Service;
-	@RequestMapping("empDelete1")
-	public String empDelete1(HttpSession session) {
-		empDelete1Service.execute(session);
-		session.invalidate();
-		return "thymeleaf/employeeShip/empSecession";
-	}
+
 }

@@ -18,6 +18,7 @@ import houzz.service.employee.EmployeeListService;
 import houzz.service.employee.EmployeeModifyService;
 import houzz.service.employee.EmployeeNumService;
 import houzz.service.employee.EmployeeWriteService;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("employee")
@@ -30,8 +31,8 @@ public class EmployeeController {
 	@Autowired
 	EmployeeListService employeeListService;
 	@RequestMapping("empList")
-	public String empList(@RequestParam(value = "empWord", required = false)String empWord, Model model) {
-		employeeListService.execute(empWord, model);
+	public String empList(@RequestParam(value = "empWord", required = false)String empWord, Model model,HttpSession session) {
+		employeeListService.execute(empWord, model,session);
 		return "thymeleaf/employee/empList";
 	}
 	
@@ -62,7 +63,7 @@ public class EmployeeController {
 			result.rejectValue("empPwCon", "employeeCommand.empPwCon", "비밀번호 확인이 다릅니다");
 		}
 		employeeWriteService.execute(employeeCommand);
-		return "redirect:empList";
+		return "redirect:/";
 	}
 	
 	/**
@@ -73,10 +74,10 @@ public class EmployeeController {
 	 */
 	@Autowired
 	EmployeeDetailService employeeDetailService;
-	@RequestMapping("empDetail/{empNum}")
+	@RequestMapping("/employeeDetail/{empNum}")
 	public String empDetail(@PathVariable(value = "empNum")String empNum, Model model) {
 		employeeDetailService.execute(empNum, model);
-		return "thymeleaf/employee/empDetail";
+		return "thymeleaf/employee/employeeDetail";
 	}
 	
 	/**

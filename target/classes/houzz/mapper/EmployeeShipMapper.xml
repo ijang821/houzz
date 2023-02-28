@@ -41,9 +41,6 @@
 		where emp_id = #{empId}
    </update>
 
-    <delete id="empDel" parameterType="string">
-        delete from employees
-        where emp_id = #{empId}
-    </delete>
+   
 
 </mapper>

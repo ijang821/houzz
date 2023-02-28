@@ -16,6 +16,9 @@ body {font-size:16px;}
     font-weight: normal;
     font-style: normal;
 }
+a{
+	text-decoration-line : none;
+}
 </style>
 <script>
 // Script to open and close sidebar
@@ -39,14 +42,7 @@ function w3_close() {
   <div class="w3-container">
     <h3 class="w3-padding-64"><b><a href="/">HOUZZ</a></b></h3>
   </div>
-  <div class="w3-bar-block">
-    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
-    <a href="#showcase" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Showcase</a> 
-    <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Services</a> 
-    <a href="#designers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Designers</a> 
-    <a href="#packages" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Packages</a> 
-    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Contact</a>
-  </div>
+
 </nav>
 
 <!-- Top menu on small screens -->
@@ -71,6 +67,7 @@ function w3_close() {
 		<input type="submit" value="검색" />
 	</form>
 	<br/>
+	<form action="employeeDels" method="post">
     <table border="1">
 		<tr>
 			<td>번호</td>
@@ -78,6 +75,7 @@ function w3_close() {
 			<td>이름</td>
 			<td>아이디</td>
 			<td>생일</td>
+		    <td><input type="submit" class="allbutton delbtn" value="삭제"></td>	
 		</tr>
 		<tr th:each="empDTO : ${list}">
 			<td>
@@ -94,6 +92,9 @@ function w3_close() {
 			</td>
 			<td>
 				<span th:text="${#dates.format(empDTO.empBirth,'yyyy-MM-dd')}"></span>
+			</td>
+			<td>
+				<input type="checkbox" name="empDels" th:value="${empDTO.empNum}">
 			</td>
 		</tr>
 	</table>

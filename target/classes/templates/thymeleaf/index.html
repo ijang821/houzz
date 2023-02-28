@@ -125,6 +125,10 @@ td {
         <h3 class="w3-padding-64"><b><a href="/">HOUZZ</a></b></h3>  
         
     </div>
+    
+    
+    
+    
     <div class="w3-bar-block">
         <span th:if="${session.authInfoDTO == null}">
     <a href="login" class="w3-bar-item w3-button w3-hover-white">HOUZZ 로그인</a>
@@ -134,6 +138,7 @@ td {
        <span th:if="${session.authInfoDTO != null}">
     <a href="/login/logout" class="w3-bar-item w3-button w3-hover-white">HOUZZ 로그아웃</a>
       </div>
+      
     
   <div class="w3-bar-block" >    
         <span th:if="${session.authInfoDTO != null}"> 
@@ -158,7 +163,7 @@ td {
         </th:block>
         
         <th:block th:case="emp">
-              <li class="w3-padding-16"><a href="empDetail">내정보 보기</a></li>
+              <li class="w3-padding-16"><a href="empInfoUpdate">내정보 보기</a></li>
               <li class="w3-padding-16"><a href="employeeModify">내정보 수정</a></li>
               <li class="w3-padding-16"><a href="empPass">비밀번호 변경</a></li>
               <li class="w3-padding-16"><a href="/employee/empList">직원 관리</a></li>
@@ -170,44 +175,7 @@ td {
               <li class="w3-padding-16"><a href="/register/mediationList">공인 중개소 관리</a></li>
         </th:block>
         
-         <span th:if="${session.authInfoDTO == null}">
-        
-        <form action="/login/item.login" name="frm" id="frm" method="post" th:object="${loginCommand}">
-		<table border="1" align="center" width="30%" height="30%">
-		     <tr>
-				<td colspan="3" align="center" style="background-color: green">
-				<h1 style="color : white">Houzz</h1></td>		
-			<tr>
-				<td align="center" ><input type="text" name="userId" id="userId" placeholder="아이디" th:value="${loginCommand.userId}"/>
-				  <br />	<span style="color:red" th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
-				</td>	
-			</tr>
-			<tr>
-				<td align="center"><input type="password" name="userPw" id="userPw" placeholder="비밀번호" th:value="${loginCommand.userPw}">
-				<br /><span style="color:red" th:if="${#fields.hasErrors('userPw')}" th:errors="*{userPw}"></span>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="3" align="center" style="color : green">
-				<input type="submit" value="로그인">
-			<tr>
-			
-			<tr>
-				<td colspan="3">자동 로그인 <input type="checkbox" name="autoLogin" />
-					&nbsp;&nbsp;&nbsp;&nbsp; 아이디 저장 <input type="checkbox"
-					name="idStore" th:checked="${loginCommand.idStore != null && loginCommand.idStore}"/>
-				</td>
-		</table>
-		<table align="center">
-			<tr>
-				<td>
-				    <a href="/register/agree">회원가입 &nbsp; |</a>&nbsp;
-				    <a href="/help/findId">아이디 찾기 &nbsp;  |</a>&nbsp;
-				    <a href="/help/findPassword">&nbsp;비밀번호 찾기</a></td>
-			</tr>
-		</table>
-		
-	</form> 
+       
 	
 	
   </div>
@@ -295,7 +263,7 @@ td {
   <div class="w3-row-padding" style="margin-right: 15px">
     <div class="w3-half w3-margin-bottom">
       <ul class="w3-ul w3-light-grey w3-center">
-        <li class="w3-dark-grey w3-xlarge w3-padding-32">HOUZZ</li>
+        
         
         <span th:if="${session.authInfoDTO != null}">
         <table border=1>
@@ -305,9 +273,7 @@ td {
 	     </table>
         </span>
         
-        <span th:if="${session.authInfoDTO == null}">
-        <li class="w3-padding-16"><a href="/">로그인 하시면 매물들을 보실 수 있습니다.</a></li>
-        </span>
+        
     </div>
   </div>
 

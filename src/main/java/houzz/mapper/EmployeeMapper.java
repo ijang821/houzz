@@ -1,5 +1,6 @@
 package houzz.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -14,4 +15,6 @@ public interface EmployeeMapper {
 	public EmployeeDTO selectOne(String empNum);
 	public Integer empUpdate(EmployeeDTO empDTO);
 	public Integer empDelete(String empNum);
+	
+	public void employeeRemove(HashMap<String, Object> condition);
 }

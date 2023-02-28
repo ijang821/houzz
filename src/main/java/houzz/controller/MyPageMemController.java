@@ -122,7 +122,7 @@ public class MyPageMemController {
 			return "thymeleaf/memberShip/memPassCon";
 		}
 		memberPasswordService.execute(memberPw, session);
-		return "thymeleaf/memberShip/memPassCk";
+		return "redirect:/";
 	}
 
 	@RequestMapping("memDelete1")

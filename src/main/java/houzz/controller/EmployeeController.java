@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import houzz.command.EmployeeCommand;
 import houzz.service.employee.EmployeeDelService;
+import houzz.service.employee.EmployeeDelsService;
 import houzz.service.employee.EmployeeDetailService;
 import houzz.service.employee.EmployeeListService;
 import houzz.service.employee.EmployeeModifyService;
@@ -118,4 +119,11 @@ public class EmployeeController {
 		}
 		return "redirect:empList";
 	}
+	@Autowired
+	EmployeeDelsService employeeDelsService;
+	@RequestMapping("employeeDels")
+	public String employeeDels(@RequestParam("empDels")String empDels[]) {
+		employeeDelsService.execute(empDels);
+		return "redirect:empList";
+	} 
 }

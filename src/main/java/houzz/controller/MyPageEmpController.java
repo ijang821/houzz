@@ -118,7 +118,7 @@ public class MyPageEmpController {
 			return "thymeleaf/employeeShip/empPassCon";
 		}
 		empPasswordService.execute(empPw,session);
-		return "thymeleaf/employeeShip/empPassCk";
+		return "redirect:/";
 	}
 	/**
 	 * 직원 퇴사

@@ -52,4 +52,14 @@
 	delete from employees
 	where emp_num = #{empNum}
 </delete>
+
+<delete id="employeeRemove" parameterType="hashMap">
+    delete from employees
+    where emp_num in
+    <foreach collection="employeeNums" item="empNum"
+			index="index" open="(" close=")" separator=",">
+          #{empNum}  
+    </foreach>
+</delete>
+
 </mapper>

@@ -8,8 +8,8 @@
 		MEMBER_NUM , MEMBER_NAME , MEMBER_ID , MEMBER_PW ,
 		MEMBER_PHONE ,
 		MEMBER_EMAIL , MEMBER_ADDR , MEMBER_GENDER ,
-		MEMBER_BIRTH , MEMBER_JOIN_DATE ,
-		MEMBER_JOIN_CK, ACCOUNT_ADDRESS
+		MEMBER_BIRTH , ACCOUNT_ADDRESS, MEMBER_JOIN_DATE ,
+		MEMBER_JOIN_CK, 
 	</sql>
 
 	<resultMap type="memberDTO" id="memConstructorMap">
@@ -30,10 +30,11 @@
 	</resultMap>
 	
 	<select id="selectMem" parameterType="string" resultMap="memConstructorMap">
-		select member_num , member_name , member_id , member_pw , 
-		       member_phone , member_email , member_addr , 
-		       member_gender , member_birth , account_address , member_join_date ,
-		       member_join_ck  
+		select MEMBER_NUM , MEMBER_NAME , MEMBER_ID , MEMBER_PW ,
+		       MEMBER_PHONE ,
+		       MEMBER_EMAIL , MEMBER_ADDR , MEMBER_GENDER ,
+		       MEMBER_BIRTH , ACCOUNT_ADDRESS, MEMBER_JOIN_DATE ,
+		       MEMBER_JOIN_CK,  
 		from member
 		where member_id = #{memberId}
 	</select>

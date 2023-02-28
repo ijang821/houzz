@@ -12,8 +12,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import houzz.command.LoginCommand;
+import houzz.domain.AuthInfoDTO;
+import houzz.mapper.LoginMapper;
 import houzz.service.CookiesService;
 import houzz.service.LoginService;
 import jakarta.servlet.http.Cookie;
@@ -94,4 +98,21 @@ public class LoginController {
 		out.close();
 		return null;
 	}
+	//인증서를 이용한 로그인
+	@Autowired
+	LoginMapper loginMapper;
+	@RequestMapping(value = "/login/privateLogin", method = RequestMethod.POST)
+	public @ResponseBody String privateLogin(
+			@RequestParam(value = "address")String address,HttpSession session) {
+		AuthInfoDTO authInfoDTO = loginMapper.addressLogin(address);
+		if(authInfoDTO !=null) {
+			session.setAttribute("authInfoDTO", authInfoDTO);
+			return "1";
+		}
+		else {
+			return "0";
+		}
+	}
+	
+	
 }

@@ -27,7 +27,6 @@ public class SMSSendService {
 		try {
 			JSONObject obj = (JSONObject) coolsms.send(params);
 		} catch (CoolsmsException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -11,6 +11,6 @@ public interface FindMapper {
 
 	public AuthInfoDTO findId(String memberEmail);
 	public String findPw(FindPwCommand findPwCommand);
-	public void changPw(PasswordChangeDTO dto);
+	public Integer changPw(PasswordChangeDTO dto);
    
 }

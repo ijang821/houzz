@@ -19,28 +19,27 @@
 		where MEDIATION_EMAIL = lower(#{mediationEmail})
 	</select>
 	
-		<select id="findPw" parameterType="houzz.command.FindPwCommand"
-		resultType="authInfoDTO">
+		<select id="findPw" parameterType="houzz.command.FindPwCommand" resultType="string">
 		select 'mem' from member
-		where member_id =#{userId}
-		and member_Phone =#{userPhone} 
-		and MEMBER_EMAIL =#{userEmail}
+		where member_id = #{userId}
+		and member_phone = #{userPhone} 
+		and member_email = #{userEmail}
 		union
 		select 'emp' from employees
-		where emp_id =#{userId}
-		and emp_phone =#{userPhone} 
-		and emp_email =#{userEmail}
+		where emp_id = #{userId}
+		and emp_phone = #{userPhone} 
+		and emp_email = #{userEmail}
         union   
 		select 'med' from mediation
-		where MEDIATION_ID =#{userId}
-		and MEDIATION_PHONE =#{userPhone} 
-		and MEDIATION_EMAIL =#{userEmail}
+		where MEDIATION_ID = #{userId}
+		and MEDIATION_PHONE = #{userPhone} 
+		and MEDIATION_EMAIL = #{userEmail}
 	</select>
 	
 	<update id="changPw" parameterType="passwordChangeDTO">
-	update ${tableName}
-	set ${userPwColumn} = #{userPw}
-	where ${userIdColumn} = #{userId}
+	    update ${tableName}
+	    set ${userPwColumn} = #{userPw}
+	    where ${userIdColumn} = #{userId}
     </update>
 	
 

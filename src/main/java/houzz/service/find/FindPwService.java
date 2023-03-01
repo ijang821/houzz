@@ -5,7 +5,6 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 import houzz.command.FindPwCommand;
@@ -24,13 +23,13 @@ public class FindPwService {
     EmailSendService emailSendService;
     @Autowired
     SMSSendService smsSendService;
-	public String execute(FindPwCommand findPwCommand, BindingResult result, Model model) {
+	public String execute(FindPwCommand findPwCommand, BindingResult result) {
 		String str = findMapper.findPw(findPwCommand);
 		if (str == null) {
 			result.rejectValue("userId", "notFind");
 			return "thymeleaf/find/findPw";
 		} else {
-			String tampPw = UUID.randomUUID().toString().substring(0, 8);
+			String tampPw = UUID.randomUUID().toString().substring(0,8);
 			String newPw = passwordEncoder.encode(tampPw);
 			PasswordChangeDTO dto = new PasswordChangeDTO();
 			dto.setUserId(findPwCommand.getUserId());
@@ -56,12 +55,12 @@ public class FindPwService {
 							+ "반드시 로그인 후 비밀번호를 변경해 주세요. "
 							+ "</body></html>";
 			String subject = "임시비밀번호";
-			emailSendService.mailSend(content, subject, "administrator@gmail.com"
-	    		, findPwCommand.getUserEmail());
-			content = "안녕하세요 HOUZZ입니다. "+findPwCommand.getUserId() + "'님의 "
+			emailSendService.mailSend(content, subject, "administrator@gmail.com", findPwCommand.getUserEmail());
+			content = "안녕하세요 HOUZZ입니다. "
+			        + findPwCommand.getUserId() + "'님의 "
 					+ "임시 비밀번호가 등록된 이메일로 전송되었습니다. ";
-			smsSendService.send("010-7146-1970",findPwCommand.getUserPhone() , content);;
+			smsSendService.send("010-7146-1970", findPwCommand.getUserPhone(), content);
 		}
-		return "thymeleaf/find/findPwOk";
+		return "thymeleaf/help/findPwOk";
 	}
-  }
+}

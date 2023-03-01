@@ -44,8 +44,11 @@ public class FindController {
 	@Autowired
 	FindPwService findPwService;
 	@RequestMapping(value = "findPw", method = RequestMethod.POST)
-	public String findPw(@Validated FindPwCommand findPwCommand, BindingResult result,Model model) {
-		findPwService.execute(findPwCommand,result,model);
+	public String findPw(@Validated FindPwCommand findPwCommand, BindingResult result) {
+		if(result.hasErrors()) {
+		return "thymeleaf/find/findPw";
+		}
+		findPwService.execute(findPwCommand,result);
 		return "thymeleaf/find/findPwOk";
 	}
 }

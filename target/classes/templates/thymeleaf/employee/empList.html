@@ -62,8 +62,12 @@ function w3_close() {
     <h1 class="w3-jumbo"><b>HOUZZ</b></h1>
     <h1 class="w3-xxxlarge w3-text-green"><b>CO-Wokers Of Houzz</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
+    <span th:if="${session.authInfoDTO != null}">
+	        <span th:switch="${session.authInfoDTO.grade}">
+	        <th:block th:case="emp">
+            <th:block th:if="${departmentNum.departmentNum} != null and ${departmentNum.departmentNum == '101'} ">  
     <form action="empList" method="get" >
-		<input type="search" name="empWord" size="50" th:value="${empWord}" placeholder="문의글 검색..."/> 
+		<input type="search" name="empWord" size="50" th:value="${empWord}" placeholder="직원 검색..."/> 
 		<input type="submit" value="검색" />
 	</form>
 	<br/>
@@ -79,7 +83,7 @@ function w3_close() {
 		</tr>
 		<tr th:each="empDTO : ${list}">
 			<td>
-				<a th:href="|empDetail/${empDTO.empNum}|">[[${empDTO.empNum}]]</a>
+				<a th:href="|employeeDetail/${empDTO.empNum}|">[[${empDTO.empNum}]]</a>
 			</td>
 			<td>
 				[[${empDTO.departmentNum} ]]
@@ -92,16 +96,17 @@ function w3_close() {
 			</td>
 			<td>
 				<span th:text="${#dates.format(empDTO.empBirth,'yyyy-MM-dd')}"></span>
-			</td>
+			</td>	
 			<td>
 				<input type="checkbox" name="empDels" th:value="${empDTO.empNum}">
 			</td>
-		</tr>
+		</tr>	
 	</table>
+	</th:block>
+	</th:block>
+	</form>	
   </div>
   
-
-
   <!-- EmployeeRegist -->
   <div class="w3-container" id="services" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-green"><b>직원 등록</b></h1>
@@ -111,14 +116,11 @@ function w3_close() {
     </p>
   </div>
 
-
 <!-- End page content -->
 </div>
 
 <!-- W3.CSS Container -->
 <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
-
-
 
 </body>
 </html>

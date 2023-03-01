@@ -23,6 +23,6 @@ public class EmployeeListService {
 		List<EmployeeDTO> list = employeeMapper.selectAll(empWord);
 		model.addAttribute("list", list);
 		model.addAttribute("empWord", empWord);
-		model.addAttribute("dto",dto);
+		model.addAttribute("departmentNum",dto);
 	}
 }

@@ -16,8 +16,8 @@ import jakarta.servlet.http.HttpServletResponse;
 public class FileDownLoad {
 	public void fileDownLoad(String path, String fileName, String ofileName ,HttpServletRequest request, HttpServletResponse response) {
 		
-		
-		String RealPath =  "src/main/resources/static/download/pdf";//request.getServletContext().getRealPath(path);
+		//String RealPath =  "src/main/resources/static/download/pdf";
+		String RealPath =  "C:\\Download";//request.getServletContext().getRealPath(path);
 		String originalFileName = ofileName;
 		try {
 			originalFileName = URLEncoder.encode(originalFileName,"UTF-8");
@@ -26,7 +26,7 @@ public class FileDownLoad {
 		response.setContentType("application/octet-stream; charset=utf-8");
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + originalFileName + "\";");
         response.setHeader("Content-Transfer-Encoding", "binary");
-        File file = new File(RealPath + "/" + storeFileName);
+        File file = new File(RealPath + "\\" + storeFileName);
         // 웹브라우저쪽으로 output하기 위해서 사용하는 객체 
         ServletOutputStream out1 = null; 
         // 시스템에 있는 파일은 가져오기 위한 객체 

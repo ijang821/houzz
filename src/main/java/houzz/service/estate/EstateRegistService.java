@@ -158,7 +158,8 @@ public class EstateRegistService {
 	
 	public void createPdf(EstateCommand estateCommand, String fileName) {
 		String result = ""; 
-		String RealPath =  "src/main/resources/static/download/pdf";
+		//String RealPath =  "src/main/resources/static/download/pdf";
+		String RealPath =  "C:\\Download";
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date(System.currentTimeMillis());
 		
@@ -167,7 +168,7 @@ public class EstateRegistService {
 		
 		try {
 			Document document = new Document(); // pdf문서를 처리하는 객체
-			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RealPath+"/"+fileName));
+			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RealPath+"\\"+fileName));
 			document.open(); 
 			BaseFont baseFont = BaseFont.createFont("src/main/resources/static/font/NanumBarunGothic.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 			

@@ -36,7 +36,9 @@ body {
 	font-weight: normal;
 	font-style: normal;
 }
-
+a{
+text-decoration-line:none;
+}
 
 </style>
 <script>
@@ -113,7 +115,8 @@ body {
 				</tr>
 				<tr th:each="inquiryDTO : ${list}">
 			<td>
-				<a th:href="|inquiryDetail/${inquiryDTO.inquiryNum}|">[[${inquiryDTO.inquiryNum}]]</a>
+				<b style="text-decoration-line:underline"> <a th:href="|inquiryDetail/${inquiryDTO.inquiryNum}|">
+				[[${inquiryDTO.inquiryNum}]]</a></b>
 			</td>
 			<td>
 				[[${inquiryDTO.memberNum}]]

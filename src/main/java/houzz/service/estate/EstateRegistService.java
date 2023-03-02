@@ -24,9 +24,11 @@ import com.itextpdf.text.pdf.PdfWriter;
 import houzz.command.EstateCommand;
 import houzz.domain.AuthInfoDTO;
 import houzz.domain.EstateDTO;
+import houzz.domain.MediationDTO;
 import houzz.domain.MemberDTO;
 import houzz.domain.OptionsDTO;
 import houzz.mapper.EstateMapper;
+import houzz.mapper.MediationShipMapper;
 import houzz.mapper.MemberShipMapper;
 import jakarta.servlet.http.HttpSession;
 
@@ -36,6 +38,7 @@ public class EstateRegistService {
 	EstateMapper estateMapper;
 	@Autowired
 	MemberShipMapper memberShipMapper;
+
 	public void execute(EstateCommand estateCommand, HttpSession session) {
 		EstateDTO estDTO = new EstateDTO();
 		estDTO.setEstateAddr(estateCommand.getEstateAddr());
@@ -48,6 +51,7 @@ public class EstateRegistService {
 		AuthInfoDTO authInfo = (AuthInfoDTO)session.getAttribute("authInfoDTO");
 		MemberDTO memberDTO = memberShipMapper.selectMem(authInfo.getUserId());
 		estDTO.setMemberNum(memberDTO.getMemberNum());
+		
 		
 		/* 파일 저장 */
 		String fileDir = "/view/estate/upload";

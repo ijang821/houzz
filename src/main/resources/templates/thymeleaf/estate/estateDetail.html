@@ -184,6 +184,7 @@ function fieldCkPop(){
     	</span>
     </table>
     </form>
+    <span th:if="${reProcess} == null or ${reProcess.reportProcess.equals('N')}">
     <form action="onclick:UploadIMG()" enctype="multipart/form-data">
 	    <table>
 	    	<tr>
@@ -197,6 +198,7 @@ function fieldCkPop(){
 	    	</tr>
 	    </table>
     </form>
+    </span>
   </div>
   
 <!-- End page content -->

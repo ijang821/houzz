@@ -312,7 +312,10 @@ function businesses() {
 					<tr>
 						<th><label for="mediationAddr">소재지</label></th>
 						<td><input type='text' name='mediationAddr'
-							id="sample4_roadAddress"  th:value="${mediationCommand.mediationAddr}" /> 
+							id="sample4_roadAddress"  th:value="${mediationCommand.mediationAddr}" />
+							 <span style="color: red"
+							th:if="${#fields.hasErrors('mediationAddr')}"
+							th:errors="*{mediationAddr}"></span></td>
 							<a href="javascript:sample4_execDaumPostcode();">주소검색</a></td>
 					<tr>
 						<th><label for="sample4_postcode">우편번호</label></th>

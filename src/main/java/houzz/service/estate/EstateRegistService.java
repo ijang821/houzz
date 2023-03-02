@@ -160,6 +160,10 @@ public class EstateRegistService {
 		String result = ""; 
 		//String RealPath =  "src/main/resources/static/download/pdf";
 		String RealPath =  "C:\\Download";
+		File f = new File(RealPath);
+        if(!f.exists()) {
+        	f.mkdir();
+        }
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date(System.currentTimeMillis());
 		

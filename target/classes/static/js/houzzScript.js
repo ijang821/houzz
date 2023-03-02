@@ -1,4 +1,4 @@
-const GAS_AMOUNT=500000;
+//const GAS_AMOUNT=500000;
 
 
 window.addEventListener("load", function() {
@@ -12,6 +12,8 @@ window.addEventListener("load", function() {
 	
 	getDefault();
 });
+
+let account;
 function getDefault() {
 	web3.eth.getAccounts(function(e, r) {
 		account = $("#accountAddress").val();
@@ -34,7 +36,7 @@ function onFileSelected(event){
 	reader.readAdText(file);
 }
 
-
+var dataURI;
 function UploadIMG(){
 		var formData = new FormData();
 		const imageInput = $("#contractPDF")[0];
@@ -52,34 +54,38 @@ function UploadIMG(){
 			processData: false, 
 			enctype: 'multipart/form-data', 
 			success : function(response){
+				
 				dataURI = response.Hash;
+				console.log(dataURI);
 				$("#uploadedImg").attr("src","https://rhee.infura-ipfs.io/" + dataURI);
 				$("#Data_URI").text(dataURI);
+				execute();
 			},
 			error : function(res){
 				console.log(res);
 				alert("에러가 발생했습니다.");
 			}
 		};
-		$.ajax(option);
-		////////////////////////////////
-		console.log(dataURI);
-		registerUniqueToken(contractInstance, account, tokenId, dataURI);
+		$.ajax(option);	
+}
+function execute(){
+	console.log(dataURI);
+	registerUniqueToken(contractInstance, account, tokenId, dataURI);
 		
 		///////////////////////////////
-		transferToCA(contractInstance, account, tokenId, dataURI);
+	transferToCA(contractInstance, account, tokenId, dataURI);
 		
 		//////////////////////////////
-		createHouzz();
+	createHouzz();
 }
-
 function createHouzz(){				
-	console.log(dataURI);
+	console.log("dataURI : " + dataURI);
 	const message = dataURI;
-
+	const privateKey =  privateKey1;
+	console.log("privateKey : " + privateKey);
 	// 메시지 해시 생성
 	const messageHash = web3.utils.sha3(message);
-
+	console.log("messageHash : " + messageHash);
 	// 서명 생성
 	const signature = web3.eth.accounts.sign(messageHash, privateKey);
 
@@ -88,8 +94,11 @@ function createHouzz(){
 	console.log("signature.v : " + signature.v);
 	console.log("signature.r : " + signature.r);
 	console.log("signature.s : " + signature.s);
-	const price = web3.utils.toWei($("#estatePrice").val(), 'ether');
-	auction.contractInstance.methods.createHouzz(MYNFT_CA, tokenId, $("#estateName").val()
+	const price = web3.utils.toWei("1", 'ether');
+	console.log("$('#estateName').val() :"+ $("#estateName").val());
+	console.log("tokenId : " + tokenId);
+	console.log("MYNFT_CA : " + MYNFT_CA);
+	auContractInstance.methods.createHouzz(MYNFT_CA, tokenId, $("#estateName").val()
 		, dataURI, price, signature.v, signature.r, signature.s)
 		.send({ from: account, gas: GAS_AMOUNT })
 		.then((transactionHash) => {

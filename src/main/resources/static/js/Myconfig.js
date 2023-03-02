@@ -465,7 +465,7 @@ const HOUZZ_ABI = [
 				"type": "uint256"
 			},
 			{
-				"name": "_auctionTitle",
+				"name": "_houzzTitle",
 				"type": "string"
 			},
 			{
@@ -489,7 +489,7 @@ const HOUZZ_ABI = [
 				"type": "string"
 			}
 		],
-		"name": "createAuction",
+		"name": "createHouzz",
 		"outputs": [
 			{
 				"name": "",
@@ -504,11 +504,11 @@ const HOUZZ_ABI = [
 		"constant": true,
 		"inputs": [
 			{
-				"name": "_auctionId",
+				"name": "_houzzId",
 				"type": "uint256"
 			}
 		],
-		"name": "getAuctionById",
+		"name": "getHouzzById",
 		"outputs": [
 			{
 				"name": "name",
@@ -559,7 +559,7 @@ const HOUZZ_ABI = [
 				"type": "uint256"
 			}
 		],
-		"name": "auctions",
+		"name": "houzzs",
 		"outputs": [
 			{
 				"name": "name",
@@ -606,7 +606,7 @@ const HOUZZ_ABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_auctionId",
+				"name": "_houzzId",
 				"type": "uint256"
 			},
 			{
@@ -626,7 +626,7 @@ const HOUZZ_ABI = [
 				"type": "string"
 			}
 		],
-		"name": "finalizeAuction",
+		"name": "finalizeHouzz",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -654,7 +654,7 @@ const HOUZZ_ABI = [
 				"type": "address"
 			}
 		],
-		"name": "getAuctionsOf",
+		"name": "getHouzzsOf",
 		"outputs": [
 			{
 				"name": "",
@@ -677,7 +677,7 @@ const HOUZZ_ABI = [
 				"type": "uint256"
 			}
 		],
-		"name": "auctionOwner",
+		"name": "houzzOwner",
 		"outputs": [
 			{
 				"name": "",
@@ -696,7 +696,7 @@ const HOUZZ_ABI = [
 				"type": "address"
 			}
 		],
-		"name": "getAuctionsCountOfOwner",
+		"name": "getHouzzsCountOfOwner",
 		"outputs": [
 			{
 				"name": "",
@@ -722,11 +722,11 @@ const HOUZZ_ABI = [
 			},
 			{
 				"indexed": false,
-				"name": "_auctionId",
+				"name": "_houzzId",
 				"type": "uint256"
 			}
 		],
-		"name": "AuctionCreated",
+		"name": "HouzzCreated",
 		"type": "event"
 	},
 	{
@@ -739,11 +739,11 @@ const HOUZZ_ABI = [
 			},
 			{
 				"indexed": false,
-				"name": "_auctionId",
+				"name": "_houzzId",
 				"type": "uint256"
 			}
 		],
-		"name": "AuctionFinalized",
+		"name": "HouzzFinalized",
 		"type": "event"
 	}
 ]
@@ -751,6 +751,6 @@ const HOUZZ_ABI = [
 
 const GAS_AMOUNT=500000;
 
-const MYNFT_CA = "0xd61B3da16A1EE7Abf51bBc7beda3AB4906b1CB36";
-const HOUZZ_CA = "0xf1880E0A391D2C069f4755E82e04D19b1e7e08CD";
+const MYNFT_CA = "0x469Fdd804F6E62C44582c1EE9Cd870614cDe31aF";
+const HOUZZ_CA = "0x6722Af887599cAa049Abb196cd7587653CFE4955";
 

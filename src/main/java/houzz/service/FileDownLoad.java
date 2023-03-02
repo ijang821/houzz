@@ -26,6 +26,10 @@ public class FileDownLoad {
 		response.setContentType("application/octet-stream; charset=utf-8");
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + originalFileName + "\";");
         response.setHeader("Content-Transfer-Encoding", "binary");
+        File f = new File(RealPath);
+        if(!f.exists()) {
+        	f.mkdir();
+        }
         File file = new File(RealPath + "\\" + storeFileName);
         // 웹브라우저쪽으로 output하기 위해서 사용하는 객체 
         ServletOutputStream out1 = null; 

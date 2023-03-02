@@ -23,11 +23,12 @@ public class WebConfig implements WebMvcConfigurer {
 		return new InteceptorConfig();
 	}
 	
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
+	//@Override
+	//public void addInterceptors(InterceptorRegistry registry) {
 		// TODO Auto-generated method stub
 
-		List<String> list = new ArrayList<String>();
-		list.add("/static/**/*");
-	}
+	//	List<String> list = new ArrayList<String>();
+	//	list.add("/static/**/*");
+	//}
+	
 }

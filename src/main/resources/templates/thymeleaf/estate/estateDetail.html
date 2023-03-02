@@ -20,9 +20,12 @@ a {
 	text-decoration-line:none;
 }
 </style>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="/static/js/MyConfig.js"></script>
+<script type="text/javascript" src="/static/js/houzzScript.js"></script>
+
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
-<script src="/static/js/MyConfig.js"></script>
-<script src="/static/js/houzzScript.js"></script>
+
 <script>
 // Script to open and close sidebar
 function w3_open() {
@@ -41,7 +44,17 @@ function fieldCkPop(){
     opener.document.location.reload();
     self.close();
  }
- 
+/// 자바스크립트를 이용해서 파일 읽어오기
+let privateKey1;
+function onFileSelected(event) {
+	const file = event.target.files[0];
+	const reader = new FileReader();
+	reader.onload = function(event) {
+		console.log("파일 내용 :" + event.target.result);
+	    privateKey1 = event.target.result;
+	}
+	reader.readAsText(file);
+}
  
 </script>
 </head>
@@ -224,16 +237,25 @@ geocoder.addressSearch('경기 성남시 분당구 대왕판교로 477', functio
     	</span>
     </table>
     </form>
+
+    <form  th:object="${memberDTO}" enctype="multipart/form-data">
+	<input type="hidden" name="accountAddress" id="accountAddress" th:value="${memberDTO.accountAddress}">
+	<div th:object="${estateCommand}">
+	<input type="hidden" name="estateName" id="estateName" th:value="${estateCommand.estateName}">
+	</div>
+	    <table border=1>
+
     <span th:if="${reProcess} == null or ${reProcess.reportProcess.equals('N')}">
     <form action="onclick:UploadIMG()" enctype="multipart/form-data">
-	    <table>
+	    <table border=1>
 	    	<tr>
 	    		<td>
 	    			계약서 등록
 	    		</td>
 	    		<td>
-	    			<input type="file" name="contractPDF" id="contractPDF" multiple="multiple"/>
-	    			<input type="button" value="등록하기"></button>
+	    			<input type="file" name="contractPDF" id="contractPDF" multiple="multiple"/><hr>
+	    			<input type="file" onchange="onFileSelected(event)">(PrimaryKey)</td><br>
+	    			<button type="button" onclick="UploadIMG()">PDF등록하기</button>
 	    		</td>
 	    	</tr>
 	    </table>
@@ -246,8 +268,6 @@ geocoder.addressSearch('경기 성남시 분당구 대왕판교로 477', functio
 
 <!-- W3.CSS Container -->
 <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
-
-
 
 </body>
 </html>

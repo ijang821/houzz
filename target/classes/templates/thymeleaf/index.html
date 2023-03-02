@@ -8,6 +8,8 @@
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
 <script src="/static/js/MyConfig.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ea3c6e54b06c79a07b748acf502fd530&libraries=services"></script>
+
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
@@ -215,15 +217,44 @@ td {
 	
   <div style="margin-top:40px;margin-bottom:40px;">
   	<div id="map" style="width:1400px;height:750px;"></div>
+  	
+  	<p><em> <a href=https://map.kakao.com/link/map/37.402056,127.108212}>지도를 클릭해 주세요!</a></em></p>
+  	<div id="clickLatlng"></div>
 	  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ea3c6e54b06c79a07b748acf502fd530"></script>
-		<script>
-			var container = document.getElementById('map');
-			var options = {
-				center: new kakao.maps.LatLng(33.450701, 126.570667),
+	 
+	  <script>
+	  var mapContainer = document.getElementById('map'),  // 지도를 표시할 div
+	      mapOptions = {
+				center: new kakao.maps.LatLng(37.56530131587934, 126.977554767261 ),  // 지도의 중심좌표
 				level: 3
 			};
+	  
+	  var map = new kakao.maps.Map(mapContainer, mapOptions);  //지도 생성
+	  
+	  // 지도를 클릭한 위치에 표출할 마커입니다
+	  var marker = new kakao.maps.Marker({ 
+	      // 지도 중심좌표에 마커를 생성합니다 
+	      position: map.getCenter() 
+	  }); 
+	  // 지도에 마커를 표시합니다
+	  marker.setMap(map);
 
-		var map = new kakao.maps.Map(container, options);
+	  // 지도에 클릭 이벤트를 등록합니다
+	  // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+	  kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
+	      
+	      // 클릭한 위도, 경도 정보를 가져옵니다 
+	      var latlng = mouseEvent.latLng; 
+	      
+	      // 마커 위치를 클릭한 위치로 옮깁니다
+	      marker.setPosition(latlng);
+	      
+	      var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+	      message += '경도는 ' + latlng.getLng() + ' 입니다';
+	      
+	      var resultDiv = document.getElementById('clickLatlng'); 
+	      resultDiv.innerHTML = message;
+	  });	
 	</script>
   </div><br>
   <table border="1" style="border-collapse: collapse;
@@ -242,7 +273,7 @@ td {
 		</tr>
 		<tr th:each=" estateDTO : ${list}">
 			<td>
-				<a th:href="|estateDetail/${estateDTO.estateNum}|">
+				<a th:href="|estate/estateDetail/${estateDTO.estateNum}|">
 					<th:block th:each="estatePic : ${#strings.arraySplit(estateDTO.estatePic,'-')}">
 					<img th:src="|/estate/upload/${estatePic}|" width="500px" /><br />
 					</th:block>

@@ -184,6 +184,7 @@ function onFileSelected(event) {
     			<input type="text" name="estateAddr" th:value="${estateCommand.estateAddr}" id="sample4_roadAddress">
     			<span style="color:red" th:if="${#fields.hasErrors('estateAddr')}" th:errors="*{estateAddr}"></span>
     			<a href="javascript:sample4_execDaumPostcode();"><b style="text-decoration-line:underline">주소검색</b></a></td>
+    			</tr>
     		<tr>
 						<th><label for="sample4_postcode">우편번호</label></th>
 						<td><input type="text" name="sample4_postcode" id="sample4_postcode"></td>

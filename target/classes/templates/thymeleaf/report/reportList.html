@@ -123,8 +123,8 @@ a{
 				 </tr>
 				 <br />
 				 <tr th:each ="reportDTO : ${list}">
-					<td><a th:href="|reportDetail/${reportDTO.reportNum}|">
-					                            [[${reportDTO.reportNum}]]</a></td>
+					<td><b style="text-decoration-line:underline"><a th:href="|reportDetail/${reportDTO.reportNum}|">
+					                            [[${reportDTO.reportNum}]]</a></b></td>
 					<td>[[${reportDTO.estateNum}]]</td>
 					<td>[[${reportDTO.reportTitle}]]</td>
 					<td><span th:if="${reportDTO.reportProcess == 'Y'}" th:text="Y"></span> 

@@ -281,16 +281,13 @@ function businesses() {
 						th:if="${#fields.hasErrors('mediationNum')}"
 						th:errors="*{mediationNum}"></span>
 					</tr>
-					
 					<tr>
 						<th><label for="businessRegiNum">사업자 등록번호</label></th>
 						<td><input type='text' name='businessRegiNum' id="businessRegiNum" th:value="${mediationCommand.businessRegiNum}" placeholder='-제외하고 입력해주세요'/>
 						<span style="color: red" th:if="${#fields.hasErrors('businessRegiNum')}" th:errors="*{businessRegiNum}" ></span>
-					    <span onclick="businesses()">사업자등록번호 확인</span>
-					    
-					    </td>
-					</tr>
-					<tr>
+					    <span onclick="businesses()">사업자등록번호 확인</span></td>              
+                   </tr>
+				   <tr>
 						<th><label for="mediationName">중개소 이름</label></th>
 						<td><input type='text' name='mediationName'
 							id="mediationName" size='15' maxlength='12' th:value="${mediationCommand.mediationName}"/>	<span style="color: red"
@@ -316,17 +313,11 @@ function businesses() {
 						<th><label for="mediationAddr">소재지</label></th>
 						<td><input type='text' name='mediationAddr'
 							id="sample4_roadAddress"  th:value="${mediationCommand.mediationAddr}" /> 
-							<a href="javascript:sample4_execDaumPostcode();">주소검색</a><br />
-						<tr>
-							<th><label for="memberPhone">우편번호</label></th>
-							<td><input type="text" id="sample4_postcode"></td>
-						</tr>	
-							
-						<tr>	
-						<td><span style="color: red"
-							th:if="${#fields.hasErrors('mediationAddr')}"
-							th:errors="*{mediationAddr}"></span></td>
-					</tr>
+							<a href="javascript:sample4_execDaumPostcode();">주소검색</a></td>
+					<tr>
+						<th><label for="sample4_postcode">우편번호</label></th>
+						<td><input type="text" name="sample4_postcode" id="sample4_postcode"></td>
+					</tr>			
 					<tr>
 						<th><label for="mediationPhone">전화 번호</label></th>
 						<td><input type='tel' size='26' maxlength='13'

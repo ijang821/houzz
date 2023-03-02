@@ -118,16 +118,27 @@ public class MyPageMedController {
 		return "redirect:/";
 	}
 	/**
-	 * 공인 중개소 폐업 (세션 날리기)
+	 * 공인 중개소 탈퇴 재확인 페이지
+	 * 
+	 * @return
+	 */
+	@RequestMapping("medDelete")
+	public String medDelete() {
+		return "thymeleaf/mediationShip/mediatonDrop";
+	}
+	/**
+	 * 공인 중개소 탈퇴 (세션 날리기)
 	 * 
 	 * @return
 	 */
 	@Autowired
 	MedDelete1Service medDelete1Service;
-	@RequestMapping("medDelete1")
-	public String medDelete1(HttpSession session) {
+	@RequestMapping("mediationDrop")
+	public String mediationDrop(HttpSession session) {
 		medDelete1Service.execute(session);
 		session.invalidate();
 		return "thymeleaf/mediationShip/medSecession";
 	}
+	
+	
 }

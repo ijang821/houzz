@@ -44,9 +44,6 @@ function w3_close() {
   <div class="w3-container">
     <h3 class="w3-padding-64"><b><a href="/">HOUZZ</a></b></h3>
   </div>
-  <div class="w3-bar-block">
- <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
-  </div>
 </nav>
 
 <!-- Top menu on small screens -->
@@ -68,14 +65,13 @@ function w3_close() {
     <hr style="width:50px;border:5px solid green" class="w3-round">
   </div>
   
-
   <!-- MemberRegist -->
   <div class="w3-container" id="services" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-green"><b>공인 중개소 상세 페이지</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">	
     				
 				
-				<table width='30%' align='center' border='1'>
+				<table width='30%' align="left" border='1'>
 					
 						<tr>
 							<th colspan='2'>공인중개소 ID와 비밀번호 입력</th>
@@ -84,7 +80,6 @@ function w3_close() {
 							<th align="left"><label for="mediationId">* 공인중개소 아이디</label></th>
 							<td>[[${mediationCommand.mediationId}]]</td>
 						</tr>
-						
 						<tr>
 							<th colspan='2'>공인중개소 기본 정보</th>
 						</tr>
@@ -92,8 +87,6 @@ function w3_close() {
 							<th align="left"><label for='mediationNum'>중개 등록 번호</label></th>
 							<td>[[${mediationCommand.mediationNum}]]</td>
 						</tr>
-
-						<br />
 						<tr>
 							<th align="left"><label for="businessRegiNum">사업자 등록번호</label></th>
 							<td>[[${mediationCommand.businessRegiNum}]]</td>
@@ -101,13 +94,11 @@ function w3_close() {
 						<tr>
 							<th align="left"><label for="mediationName">중개소 이름</label></th>
 							<td>[[${mediationCommand.mediationName}]]</td>
-
 						</tr>
 						<tr>
 							<th align="left"><label for="ceoName">대표자명</label></th>
 							<td>[[${mediationCommand.ceoName}]]</td>
 						</tr>
-
 						<tr>
 							<th colspan='2'>연락처</th>
 						</tr>

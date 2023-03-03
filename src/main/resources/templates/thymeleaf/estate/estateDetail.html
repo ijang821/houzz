@@ -93,7 +93,7 @@ function onFileSelected(event) {
   	   <div style="color:red"><h3>[허위매물]</h3></div>
        </th:block>
        
-  <div id="map" style="width:100%;height:350px;"></div>
+  <div id="map" style="width:100%;height:350px;"></div><br> 
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ea3c6e54b06c79a07b748acf502fd530&libraries=services"></script>
 <script>
@@ -133,7 +133,7 @@ geocoder.addressSearch('경기 성남시 분당구 대왕판교로 477', functio
         map.setCenter(coords);
     } 
 });   
-       </script>               
+       </script>              
     <table border=1> 
     	<tr>
     		<th>매물 번호</th>
@@ -243,10 +243,6 @@ geocoder.addressSearch('경기 성남시 분당구 대왕판교로 477', functio
 	<div th:object="${estateCommand}">
 	<input type="hidden" name="estateName" id="estateName" th:value="${estateCommand.estateName}">
 	</div>
-	    <table border=1>
-
-    <span th:if="${reProcess} == null or ${reProcess.reportProcess.equals('N')}">
-    <form action="onclick:UploadIMG()" enctype="multipart/form-data">
 	    <table border=1>
 	    	<tr>
 	    		<td>

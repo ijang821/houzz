@@ -11,7 +11,7 @@
 
 	String timestamp			= SignatureUtil.getTimestamp();			// util에 의해서 자동생성
 	String orderNumber			= mid+"_"+SignatureUtil.getTimestamp();	// 가맹점 주문번호(가맹점에서 직접 설정)
-	String price				= "1000";								// 상품가격(특수기호 제외, 가맹점에서 직접 설정)
+	String price				= "100";								// 상품가격(특수기호 제외, 가맹점에서 직접 설정)
 
 
 	Map<String, String> signParam = new HashMap<String, String>();
@@ -136,8 +136,8 @@
                                 <input type="text" name="buyeremail" value="test@test.com">
                             </label>
 				    		
-				    		<input type="hidden" name="returnUrl" value="https://[가맹점도메인]/INIstdpay_pc_return.jsp">
-                            <input type="hidden" name="closeUrl" value="https://[가맹점도메인]/close.jsp">
+				    		<input type="hidden" name="returnUrl" value="http://localhost:8080/INIstdpay_pc_return">
+                            <input type="hidden" name="closeUrl" value="http://localhost:8080/close">
                             
 				    		<label class="col-10 col-sm-2 input param" style="border:none;">acceptmethod</label>
                             <label class="col-10 col-sm-9 input">

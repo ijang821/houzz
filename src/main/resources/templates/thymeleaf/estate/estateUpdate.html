@@ -33,9 +33,9 @@
 							extraRoadAddr = ' (' + extraRoadAddr + ')';
 						}
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('sample4_postcode').value = data.zonecode;
+						//document.getElementById('sample4_postcode').value = data.zonecode;
 						document.getElementById("sample4_roadAddress").value = roadAddr;
-
+                         /*
 						// 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
 						if (roadAddr !== '') {
 							document.getElementById("sample4_extraAddress").value = extraRoadAddr;
@@ -54,8 +54,10 @@
 							guideTextBox.innerHTML = '';
 							guideTextBox.style.display = 'none';
 						}
-					}
-				}).open();
+					
+				*/
+				}
+			}).open();
 	}
 	
 </script>
@@ -175,12 +177,7 @@ function fileDel(orgFile1, strFile1, btn, kind1 ){
     			<input type="text" name="estateAddr" th:value="${estateCommand.estateAddr}" id="sample4_roadAddress">
     			<span style="color:red" th:if="${#fields.hasErrors('estateAddr')}" th:errors="*{estateAddr}"></span>
     		    <a href="javascript:sample4_execDaumPostcode();"><b style="text-decoration-line:underline">주소검색</b></a></td> 
-    		</tr>
-    		<tr>
-						<th><label for="sample4_postcode">우편번호</label></th>
-						<td><input type="text" name="sample4_postcode" id="sample4_postcode"></td>
-		   </tr>
-    	
+    		</tr>	
     	<tr>
     		<th>매물 가격</th>
     		<td>

@@ -216,7 +216,7 @@ td {
 	  <script>
 	  var mapContainer = document.getElementById('map'),  // 지도를 표시할 div
 	      mapOptions = {
-				center: new kakao.maps.LatLng(37.56530131587934, 126.977554767261 ),  // 지도의 중심좌표
+				center: new kakao.maps.LatLng(37.5186196, 126.9075947 ),  // 지도의 중심좌표
 				level: 3
 			};
 	  
@@ -283,20 +283,8 @@ td {
 	</table>
 	<br>
   </div>
-  <div class="w3-row-padding" style="margin-right: 15px">
-    <div class="w3-half w3-margin-bottom">
-      <ul class="w3-ul w3-light-grey w3-center">
-        
-        
-        <span th:if="${session.authInfoDTO != null}">
-        <table border=1>
-        <tr th:each="estateDTO : ${list}">
-        <td>  <img height="400" width="400" th:src="|estate/upload/${estateDTO.estatePic}|" /></td>
-	     </tr>
-	     </table>
-        </span>    
-    </div>
-  </div>
+  
+
 
 <!-- End page content -->
 

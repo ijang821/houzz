@@ -454,6 +454,102 @@ const MYNFT_ABI =[
 
 const HOUZZ_ABI = [
 	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_owner",
+				"type": "address"
+			}
+		],
+		"name": "getHouzzsCountOfOwner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_houzzId",
+				"type": "uint256"
+			},
+			{
+				"name": "_to",
+				"type": "address"
+			},
+			{
+				"name": "_v",
+				"type": "string"
+			},
+			{
+				"name": "_r",
+				"type": "string"
+			},
+			{
+				"name": "_s",
+				"type": "string"
+			}
+		],
+		"name": "finalizeHouzz",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_owner",
+				"type": "address"
+			}
+		],
+		"name": "getHouzzsOf",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getCount",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_houzzId",
+				"type": "uint256"
+			}
+		],
+		"name": "deleteHouzz",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [
 			{
@@ -465,7 +561,7 @@ const HOUZZ_ABI = [
 				"type": "uint256"
 			},
 			{
-				"name": "_auctionTitle",
+				"name": "_houzzTitle",
 				"type": "string"
 			},
 			{
@@ -489,7 +585,7 @@ const HOUZZ_ABI = [
 				"type": "string"
 			}
 		],
-		"name": "createAuction",
+		"name": "createHouzz",
 		"outputs": [
 			{
 				"name": "",
@@ -504,11 +600,62 @@ const HOUZZ_ABI = [
 		"constant": true,
 		"inputs": [
 			{
-				"name": "_auctionId",
+				"name": "",
 				"type": "uint256"
 			}
 		],
-		"name": "getAuctionById",
+		"name": "houzzs",
+		"outputs": [
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "price",
+				"type": "uint256"
+			},
+			{
+				"name": "metadata",
+				"type": "string"
+			},
+			{
+				"name": "tokenId",
+				"type": "uint256"
+			},
+			{
+				"name": "repoAddress",
+				"type": "address"
+			},
+			{
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"name": "v",
+				"type": "string"
+			},
+			{
+				"name": "r",
+				"type": "string"
+			},
+			{
+				"name": "s",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_houzzId",
+				"type": "uint256"
+			}
+		],
+		"name": "getHouzzById",
 		"outputs": [
 			{
 				"name": "name",
@@ -556,120 +703,6 @@ const HOUZZ_ABI = [
 		"inputs": [
 			{
 				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "auctions",
-		"outputs": [
-			{
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"name": "price",
-				"type": "uint256"
-			},
-			{
-				"name": "metadata",
-				"type": "string"
-			},
-			{
-				"name": "tokenId",
-				"type": "uint256"
-			},
-			{
-				"name": "repoAddress",
-				"type": "address"
-			},
-			{
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"name": "v",
-				"type": "string"
-			},
-			{
-				"name": "r",
-				"type": "string"
-			},
-			{
-				"name": "s",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_auctionId",
-				"type": "uint256"
-			},
-			{
-				"name": "_to",
-				"type": "address"
-			},
-			{
-				"name": "_v",
-				"type": "string"
-			},
-			{
-				"name": "_r",
-				"type": "string"
-			},
-			{
-				"name": "_s",
-				"type": "string"
-			}
-		],
-		"name": "finalizeAuction",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getCount",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_owner",
-				"type": "address"
-			}
-		],
-		"name": "getAuctionsOf",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
 				"type": "address"
 			},
 			{
@@ -677,26 +710,7 @@ const HOUZZ_ABI = [
 				"type": "uint256"
 			}
 		],
-		"name": "auctionOwner",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_owner",
-				"type": "address"
-			}
-		],
-		"name": "getAuctionsCountOfOwner",
+		"name": "houzzOwner",
 		"outputs": [
 			{
 				"name": "",
@@ -722,11 +736,11 @@ const HOUZZ_ABI = [
 			},
 			{
 				"indexed": false,
-				"name": "_auctionId",
+				"name": "_houzzId",
 				"type": "uint256"
 			}
 		],
-		"name": "AuctionCreated",
+		"name": "HouzzCreated",
 		"type": "event"
 	},
 	{
@@ -739,11 +753,11 @@ const HOUZZ_ABI = [
 			},
 			{
 				"indexed": false,
-				"name": "_auctionId",
+				"name": "_houzzId",
 				"type": "uint256"
 			}
 		],
-		"name": "AuctionFinalized",
+		"name": "HouzzFinalized",
 		"type": "event"
 	}
 ]
@@ -752,6 +766,6 @@ const HOUZZ_ABI = [
 const GAS_AMOUNT=500000;
 
 
-const MYNFT_CA = "0xb6D8f4ed20f876cf22B185CAF202F085cb5b38dd";
-const HOUZZ_CA = "0x1ac1a5CC5E5a72bfc21028D3c10390CEA16bE4cE";
+const MYNFT_CA = "0x81D04c95ebf342C4145c018A51a1Fe83fbC5368E";
+const HOUZZ_CA = "0xb5677306c9036EcF1bD6391dAc83D704672B9efa";
 

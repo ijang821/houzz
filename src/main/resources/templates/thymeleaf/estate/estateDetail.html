@@ -42,9 +42,7 @@ a {
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="/static/js/MyConfig.js"></script>
 <script type="text/javascript" src="/static/js/houzzScript.js"></script>
-
-<script
-	src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
 
 <script>
 	// Script to open and close sidebar
@@ -177,11 +175,9 @@ a {
 					</tr>
 					<tr>
 						<th>옵션</th>
-						<td th:object="${estCommand}"><input type="checkbox"
-							name="airConditioner" id="airConditioner"
-							th:checked="${estCommand.airConditioner=='Y'}"
-							disabled="disabled" />에어컨&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-							type="checkbox" name="washer" id="washer"
+						<td th:object="${estCommand}">
+						<input type="checkbox" name="airConditioner" id="airConditioner" th:checked="${estCommand.airConditioner=='Y'}"disabled="disabled" />에어컨&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<input type="checkbox" name="washer" id="washer"
 							th:checked="${estCommand.washer=='Y'}" disabled="disabled" />세탁기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<input type="checkbox" name="bed" id="bed"
 							th:checked="${estCommand.bed=='Y'}" disabled="disabled" />침대
@@ -208,20 +204,22 @@ a {
 							name="bidet" id="bidet" th:checked="${estCommand.bidet=='Y'}"
 							disabled="disabled" />비데</td>
 					</tr>
-					<span th:if="${session.authInfoDTO != null}"> <span
-						th:switch="${session.authInfoDTO.grade}"> <th:block
-								th:case="mem">
-								<span
-									th:if="${reProcess} == null or ${reProcess.reportProcess.equals('N')}">
+					<span th:if="${session.authInfoDTO != null}"> 
+					<span th:switch="${session.authInfoDTO.grade}"> 
+					<th:block th:case="mem">
+								<span th:if="${reProcess} == null or ${reProcess.reportProcess.equals('N')}">
 									<tfoot align="center" colspan="2">
 										<tr>
-											<td colspan="2"><a
-												th:href="|../estateModify?estateNum=${estateCommand.estateNum}|">매물
-													수정</a> <span> | </span> <a
-												th:href="|../estateDelete?estateNum=${estateCommand.estateNum}|">매물
-													삭제</a> <span> | </span> <a th:href="|../estateList|">매물 리스트</a>
-												<span> | </span> <a
-												th:href="|../../report/reportWrite?estateNum=${estateCommand.estateNum}|">신고하기</a>
+											<td colspan="2">
+											<a th:href="|../estateModify?estateNum=${estateCommand.estateNum}|">매물 수정</a>
+											<span> | </span>
+											<a th:href="|../estDelPage?estateNum=${estateCommand.estateNum}|">매물 삭제</a>
+											<span> | </span>
+											<a th:href="|../estateList|">매물 리스트</a>
+											<span> | </span>
+											<a th:href="|../../report/reportWrite?estateNum=${estateCommand.estateNum}|">신고하기</a>
+								    		<span> | </span>
+											<a th:href="|../estBuy?estateNum=${estateCommand.estateNum}|">계약하기</a>
 
 											</td>
 										</tr>
@@ -240,11 +238,9 @@ a {
 
 
 			<form th:object="${memberDTO}" enctype="multipart/form-data">
-				<input type="hidden" name="accountAddress" id="accountAddress"
-					th:value="${memberDTO.accountAddress}">
+				<input type="hidden" name="accountAddress" id="accountAddress" th:value="${memberDTO.accountAddress}">
 				<div th:object="${estateCommand}">
-					<input type="hidden" name="estateName" id="estateName"
-						th:value="${estateCommand.estateName}">
+					<input type="hidden" name="estateName" id="estateName" th:value="${estateCommand.estateName}">
 				</div>
 				<span th:if="${session.authInfoDTO != null}"> <span
 					th:switch="${session.authInfoDTO.grade}"> <th:block

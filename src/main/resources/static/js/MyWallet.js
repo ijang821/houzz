@@ -131,5 +131,7 @@ function deleteHouzz() {
 						return;
 					}
 				});
+			}).catch((error) =>{
+				console.log('error:' +error);
 			});
 }

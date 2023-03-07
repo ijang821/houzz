@@ -80,7 +80,7 @@ contract HOUZZ {
       require(msg.sender == houzzs[_houzzId].owner, "Only the owner can delete the houzz");
 
       // 집 삭제
-      houzzs[_houzzId].owner = address(0);
+      houzzs[_houzzId].owner = address(1);
       emit HouzzFinalized(msg.sender, _houzzId); // 상태 변경 로그 추가
    }
 

@@ -125,7 +125,7 @@ function transferToCA(contractInstance,account,tokenId){
 	contractInstance.methods.transferFrom(account,HOUZZ_CA, tokenId).send({from:account,gas:GAS_AMOUNT})
     .then(
 		function(result){
-			 console.log("result",result)    ;
+			 console.log("result",result);
 		});
 }
 

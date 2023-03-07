@@ -75,6 +75,9 @@ body {font-size:16px;}
 a{
 	text-decoration-line : none;
 }
+#submitChk {
+	display: none;
+}
 </style>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
 <script>
@@ -117,87 +120,33 @@ $(function(){
 		}
 		this.submit();
 	});
-	
-	
-	$("#businessRegiNum").blur(function(){
-		console.log('------ 1');
-		check3Values()
-		// #businessRegiNum , #mediationName , #ceoName 를 체크하는 function 
-	});
-	$("#mediationName").blur(function(){
-		console.log('------ 2');
-		check3Values()
-	});
-	$("#ceoName").blur(function(){
-		console.log('------ 3');
-		check3Values()
-	});
 });
+	function businessNum() {
+		var businessRegiNum = $("#businessRegiNum").val();
 
-function check3Values() { 
-	var businessRegiNum = $("#businessRegiNum").val();
-	var mediationName = $("#mediationName").val();
-	var ceoName = $("#ceoName").val();
-
-	if (buniessRegiNum != null && mediationName != null && ceoName != null) { 
-		{
-			const data = {
-					  "businesses": [
-						    {
-						      "b_no": "2148865615",
-						      "start_dt": "20100917",
-						      "p_nm" : "황성규"
-						    }
-						  ]
-						}
-		
-		$.ajax({
-			type : "post",
-			url : "https://api.odcloud.kr/api/nts-businessman/v1/validate?serviceKey=9WgITHzjmowoZkiwH41zTk74goui769A%2BEo4FxeFb0zKqFc3fcIG8zo7Xb6yFuV78ToR1VdaOiDuXCjrg7VnGw%3D%3D&returnType=JSON",
-			data : JSON.stringify(data),
-			dataType : "JSON",
-			contentType : "application/json",
-			accept : "application/json",
-			success : function(result){
-				console.log(result);
-				alert("진위가 확인되었습니다.")
-			},
-			error:function(result){
-				console.log(result.responseText);
-				alert("없는 사업자 번호 입니다.")
-				}
-			})
-	} 	
-	} 	
-}
-	
-function businesses() {
-	const data = {
-			  "businesses": [
-				    {
-				      "b_no": "2148865615",
-				      "start_dt": "20100917",
-				      "p_nm" : "황성규"
-				    }
-				  ]
-				}
-				
-	$.ajax({
-		type : "post",
-		url : "https://api.odcloud.kr/api/nts-businessman/v1/validate?serviceKey=9WgITHzjmowoZkiwH41zTk74goui769A%2BEo4FxeFb0zKqFc3fcIG8zo7Xb6yFuV78ToR1VdaOiDuXCjrg7VnGw%3D%3D&returnType=JSON",
-		data : JSON.stringify(data),
-		dataType : "JSON",
-		contentType : "application/json",
-		accept : "application/json",
-		success : function(result){
-			console.log(result);
-			
-		},
-		error:function(result){
-			console.log(result.responseText);
-			}
-		})
-	}
+		var data = {
+			    "b_no": [businessRegiNum] // 사업자번호 "xxxxxxx" 로 조회 시,
+			   }; 
+			   
+			$.ajax({
+			  url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=9WgITHzjmowoZkiwH41zTk74goui769A%2BEo4FxeFb0zKqFc3fcIG8zo7Xb6yFuV78ToR1VdaOiDuXCjrg7VnGw%3D%3D",  // serviceKey 값을 xxxxxx에 입력
+			  type: "POST",
+			  data: JSON.stringify(data), // json 을 string으로 변환하여 전송
+			  dataType: "JSON",
+			  contentType: "application/json",
+			  accept: "application/json",
+			  success: function(result) {
+				  console.log(result.data[0]['b_stt']);		  
+				  if(result.data[0]['tax_type'] != '국세청에 등록되지 않은 사업자등록번호입니다.'){
+					  $("#submitChk").css("display","inline-block");
+				  }  
+				  alert(result.data[0]['tax_type']);  
+			  },
+			  error: function(result) {
+			      console.log(result.responseText); //responseText의 에러메세지 확인
+			  }
+			});
+	}	
 </script>
 
 </head>
@@ -241,7 +190,10 @@ function businesses() {
 			<table width='600' align='center' border='1'>
 				<tfoot>
 					<tr>
-						<th colspan="2"><input type='submit' value='가입완료' id="submit" />&nbsp;&nbsp;
+						<th colspan="2">
+							<span id="submitChk">
+							<input type='submit' value='가입완료' id="submit" />&nbsp;&nbsp;
+							</span>
 							<input type='reset' value='다시 입력' />&nbsp;&nbsp; <input
 							type='button' value='가입 안함'
 							onclick="javascript:location.href='/'" /></th>
@@ -284,8 +236,8 @@ function businesses() {
 					<tr>
 						<th><label for="businessRegiNum">사업자 등록번호</label></th>
 						<td><input type='text' name='businessRegiNum' id="businessRegiNum" th:value="${mediationCommand.businessRegiNum}" placeholder='-제외하고 입력해주세요'/>
-						<span style="color: red" th:if="${#fields.hasErrors('businessRegiNum')}" th:errors="*{businessRegiNum}" ></span>
-					    <span onclick="businesses()">사업자등록번호 확인</span></td>              
+						<span style="color: red" th:if="${#fields.hasErrors('businessRegiNum')}" th:errors="*{businessRegiNum}" ></span>   
+					     <span onclick="businessNum();">사업자등록번호 확인</span></td>            
                    </tr>
 				   <tr>
 						<th><label for="mediationName">중개소 이름</label></th>
@@ -313,9 +265,7 @@ function businesses() {
 						<th><label for="mediationAddr">소재지</label></th>
 						<td><input type='text' name='mediationAddr'
 							id="sample4_roadAddress"  th:value="${mediationCommand.mediationAddr}" />
-							 <span style="color: red"
-							th:if="${#fields.hasErrors('mediationAddr')}"
-							th:errors="*{mediationAddr}"></span></td>
+							 
 							<a href="javascript:sample4_execDaumPostcode();">주소검색</a></td>
 					<tr>
 						<th><label for="sample4_postcode">우편번호</label></th>

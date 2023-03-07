@@ -36,6 +36,9 @@ body {
    font-weight: normal;
    font-style: normal;
 }
+a{
+	text-decoration-line : none;
+}
 
 
 </style>
@@ -123,9 +126,9 @@ body {
                    <span th:switch="${session.authInfoDTO.grade}">
                    
                    <th:block th:case="mem">
-                     <a th:href="|../inquiryModify?inquiryNum=${inquiryCommand.inquiryNum}|">문의 수정</a> <span> | </span>
-                <a th:href="|../inquiryDelete?inquiryNum=${inquiryCommand.inquiryNum}|">문의 삭제</a> <span> | </span> 
-                <a th:href="|../inquiryList|">목록으로 가기</a> 
+            <b style="text-decoration-line:underline"><a th:href="|../inquiryModify?inquiryNum=${inquiryCommand.inquiryNum}|">문의 수정</a></b> <span> | </span>
+            <b style="text-decoration-line:underline"><a th:href="|../inquiryDelete?inquiryNum=${inquiryCommand.inquiryNum}|">문의 삭제</a></b> <span> | </span> 
+            <b style="text-decoration-line:underline"><a th:href="|../inquiryList|">목록으로 가기</a> </b>
                    
                    </th:block>
                    <hr />

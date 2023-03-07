@@ -4,270 +4,332 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Poppins">
 <style>
-body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
-body {font-size:16px;}
-.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
-.w3-half img:hover{opacity:1}
-@font-face {
-    font-family: 'BMJUA';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+body, h1, h2, h3, h4, h5 {
+	font-family: "Poppins", sans-serif
 }
+
+body {
+	font-size: 16px;
+}
+
+.w3-half img {
+	margin-bottom: -6px;
+	margin-top: 16px;
+	opacity: 0.8;
+	cursor: pointer
+}
+
+.w3-half img:hover {
+	opacity: 1
+}
+
+@font-face {
+	font-family: 'BMJUA';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
 a {
-	text-decoration-line:none;
+	text-decoration-line: none;
 }
 </style>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="/static/js/MyConfig.js"></script>
 <script type="text/javascript" src="/static/js/houzzScript.js"></script>
 
-<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
 
 <script>
-// Script to open and close sidebar
-function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
-  document.getElementById("myOverlay").style.display = "block";
-}
- 
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-  document.getElementById("myOverlay").style.display = "none";
-}
-
-function fieldCkPop(){
-	var url = '../estFieldCk?estateNum='+document.getElementById("estateNum").value;
-    window.open(url,'fieldCk','height:300, width:300');
-    opener.document.location.reload();
-    self.close();
- }
-/// 자바스크립트를 이용해서 파일 읽어오기
-let privateKey1;
-function onFileSelected(event) {
-	const file = event.target.files[0];
-	const reader = new FileReader();
-	reader.onload = function(event) {
-		console.log("파일 내용 :" + event.target.result);
-	    privateKey1 = event.target.result;
+	// Script to open and close sidebar
+	function w3_open() {
+		document.getElementById("mySidebar").style.display = "block";
+		document.getElementById("myOverlay").style.display = "block";
 	}
-	reader.readAsText(file);
-}
- 
+
+	function w3_close() {
+		document.getElementById("mySidebar").style.display = "none";
+		document.getElementById("myOverlay").style.display = "none";
+	}
+
+	function fieldCkPop() {
+		var url = '../estFieldCk?estateNum='
+				+ document.getElementById("estateNum").value;
+		window.open(url, 'fieldCk', 'height:300, width:300');
+		opener.document.location.reload();
+		self.close();
+	}
+	/// 자바스크립트를 이용해서 파일 읽어오기
+	let privateKey1;
+	function onFileSelected(event) {
+		const file = event.target.files[0];
+		const reader = new FileReader();
+		reader.onload = function(event) {
+			console.log("파일 내용 :" + event.target.result);
+			privateKey1 = event.target.result;
+		}
+		reader.readAsText(file);
+	}
 </script>
 </head>
 <body>
 
-<!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-green w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
-  <div class="w3-container">
-    <h3 class="w3-padding-64"><b><a href="/">HOUZZ</a></b></h3>
-  </div>
- 
-</nav>
+	<!-- Sidebar/menu -->
+	<nav class="w3-sidebar w3-green w3-collapse w3-top w3-large w3-padding"
+		style="z-index: 3; width: 300px; font-weight: bold;" id="mySidebar">
+		<br> <a href="javascript:void(0)" onclick="w3_close()"
+			class="w3-button w3-hide-large w3-display-topleft"
+			style="width: 100%; font-size: 22px">Close Menu</a>
+		<div class="w3-container">
+			<h3 class="w3-padding-64">
+				<b><a href="/">HOUZZ</a></b>
+			</h3>
+		</div>
 
-<!-- Top menu on small screens -->
-<header class="w3-container w3-top w3-hide-large w3-green w3-xlarge w3-padding">
-  <a href="javascript:void(0)" class="w3-button w3-green w3-margin-right" onclick="w3_open()">☰</a>
-  <span>Company Name</span>
-</header>
+	</nav>
 
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+	<!-- Top menu on small screens -->
+	<header
+		class="w3-container w3-top w3-hide-large w3-green w3-xlarge w3-padding">
+		<a href="javascript:void(0)"
+			class="w3-button w3-green w3-margin-right" onclick="w3_open()">☰</a>
+		<span>Company Name</span>
+	</header>
 
-<!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:340px;margin-right:40px">
+	<!-- Overlay effect when opening sidebar on small screens -->
+	<div class="w3-overlay w3-hide-large" onclick="w3_close()"
+		style="cursor: pointer" title="close side menu" id="myOverlay"></div>
 
-  <!-- Header -->
-  <div class="w3-container" style="margin-top:80px" id="showcase">
-    <h1 class="w3-jumbo"><b>HOUZZ</b></h1>
-    <h1 class="w3-xxxlarge w3-text-green"><b>HOUZZ estate [[${estateCommand.estateName}]]</b></h1>
-    <hr style="width:50px;border:5px solid green" class="w3-round">
-    <form action="estateRegist" name="frm" id="frm" method="post" th:object="${estateCommand}">
-    <input type="hidden" name="estateNum" id="estateNum" th:value="${estateCommand.estateNum}"/>
+	<!-- !PAGE CONTENT! -->
+	<div class="w3-main" style="margin-left: 340px; margin-right: 40px">
 
-       <th:block th:if="${reProcess} != null and ${reProcess.reportProcess.equals('Y')}">
-  	   <div style="color:red"><h3>[허위매물]</h3></div>
-       </th:block>
-       
-  <div id="map" style="width:100%;height:350px;"></div><br> 
+		<!-- Header -->
+		<div class="w3-container" style="margin-top: 80px" id="showcase">
+			<h1 class="w3-jumbo">
+				<b>HOUZZ</b>
+			</h1>
+			<h1 class="w3-xxxlarge w3-text-green">
+				<b>HOUZZ estate [[${estateCommand.estateName}]]</b>
+			</h1>
+			<hr style="width: 50px; border: 5px solid green" class="w3-round">
+			<form action="estateRegist" name="frm" id="frm" method="post"
+				th:object="${estateCommand}">
+				<input type="hidden" name="estateNum" id="estateNum"
+					th:value="${estateCommand.estateNum}" />
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ea3c6e54b06c79a07b748acf502fd530&libraries=services"></script>
-<script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
 
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
+				<div id="map" style="width: 100%; height: 350px;"></div>
+				<br>
 
-// 주소-좌표 변환 객체를 생성합니다
-var geocoder = new kakao.maps.services.Geocoder();
 
-var estateAddr;
-
-// 주소로 좌표를 검색합니다
-geocoder.addressSearch('[[${estateCommand.estateAddr}]]', function(result, status) {
-
-    // 정상적으로 검색이 완료됐으면 
-     if (status === kakao.maps.services.Status.OK) {
-
-        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-        // 결과값으로 받은 위치를 마커로 표시합니다
-        var marker = new kakao.maps.Marker({
-            map: map,
-            position: coords
-        });
-        
-        
-
-        // 인포윈도우로 장소에 대한 설명을 표시합니다
-        var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">[[${estateCommand.estateAddr}]]</div>'
-        });
-        infowindow.open(map, marker);
-
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        map.setCenter(coords);
-    } 
-});   
-       </script>              
-    <table border=1> 
-    	<tr>
-    		<th>매물 번호</th>
-    		<td>
-    			[[${estateCommand.estateNum}]] 
-    		</td>
-    	</tr>
-    	
-    	<tr>
-    		<th>이미지</th>
-    		<td>
-    			<th:block th:each="estatePic : ${#strings.arraySplit(estateCommand.estatePic,'-')}">
-				<img th:src="|/estate/upload/${estatePic}|" width="500px" /><br />
+				<th:block
+					th:if="${reProcess} != null and ${reProcess.reportProcess.equals('Y')}">
+					<div style="color: red">
+						<h3>[허위매물]</h3>
+					</div>
 				</th:block>
-			</td>
-    	</tr>
-    	<tr>
-    		<th>등록일</th>
-    		<td>
-    			<span th:text="${#dates.format(estateCommand.estateRegiDate,'yyyy-MM-dd')}"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<th>이름</th>
-    		<td>
-    			[[${estateCommand.estateName}]]
-    		</td>
-    	</tr>
-    	<tr>
-    		<th>주소</th>
-    		<td>
-    			[[${estateCommand.estateAddr}]]
-    		</td>
-    	</tr>
-    	<tr>
-    		<th>가격</th>
-    		<td>
-    			[[${estateCommand.estatePrice}]]
-    		</td>
-    	</tr>
-    	<tr>
-    		<th>매물 정보</th>
-    		<td>
-    			[[${estateCommand.estateInfo}]]
-			</td>
-    	</tr>
-    	<tr>
-    		<th>상세 설명</th>
-    		<td>
-    			[[${estateCommand.estateExplain}]]
-    		</td>
-    	</tr>
-    	<tr>
-    		<th>옵션</th>
-    		<td th:object="${estCommand}">
-    			<input type="checkbox" name="airConditioner"  id="airConditioner" th:checked="${estCommand.airConditioner=='Y'}" disabled="disabled"/>에어컨&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    			<input type="checkbox" name="washer"  id="washer" th:checked="${estCommand.washer=='Y'}" disabled="disabled"/>세탁기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    			<input type="checkbox" name="bed"  id="bed" th:checked="${estCommand.bed=='Y'}" disabled="disabled"/>침대 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    			<input type="checkbox" name="desk"  id="desk" th:checked="${estCommand.desk=='Y'}" disabled="disabled"/>책상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    			<input type="checkbox" name="closet"  id="closet" th:checked="${estCommand.closet=='Y'}" disabled="disabled"/>옷장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    			<input type="checkbox" name="tv"  id="tv" th:checked="${estCommand.tv=='Y'}" disabled="disabled"/>TV&nbsp;<br/>
-    			<input type="checkbox" name="shoeShelf"  id="shoeShelf" th:checked="${estCommand.shoeShelf=='Y'}" disabled="disabled"/>신발장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    			<input type="checkbox" name="refrigerator"  id="refrigerator" th:checked="${estCommand.refrigerator=='Y'}" disabled="disabled"/>냉장고&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    			<input type="checkbox" name="gasStove"  id="gasStove" th:checked="${estCommand.gasStove=='Y'}" disabled="disabled"/>가스레인지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    			<input type="checkbox" name="induction"  id="induction" th:checked="${estCommand.induction=='Y'}" disabled="disabled"/>인덕션&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    			<input type="checkbox" name="microwave"  id="microwave" th:checked="${estCommand.microwave=='Y'}" disabled="disabled"/>전자레인지&nbsp; <br/>    			
-    			<input type="checkbox" name="doorLock"  id="doorLock" th:checked="${estCommand.doorLock=='Y'}" disabled="disabled"/>전자 도어락&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 			
-    			<input type="checkbox" name="bidet"  id="bidet" th:checked="${estCommand.bidet=='Y'}" disabled="disabled"/>비데
-    		</td>
-    	</tr>
-    	<span th:if="${session.authInfoDTO != null}">
-	    <span th:switch="${session.authInfoDTO.grade}">
-	    <th:block th:case="mem">
-	    <span th:if="${reProcess} == null or ${reProcess.reportProcess.equals('N')}">
-	       <tfoot align="center" colspan="2">
-	       <tr>
-	        <td colspan="2">
-	         
-	         
-				<a th:href="|../estateModify?estateNum=${estateCommand.estateNum}|">매물 수정</a>
-				<span> | </span>
-				<a th:href="|../estateDelete?estateNum=${estateCommand.estateNum}|">매물 삭제</a>
-				<span> | </span>
-				<a th:href="|../estateList|">매물 리스트</a> <span> | </span>
-				<a th:href="|../../report/reportWrite?estateNum=${estateCommand.estateNum}|">신고하기</a>
-	    	
-    		</td>
-    		</tr>
-    	</tfoot>
-    	</span>
-    	 </th:block>
-   
-    	 <th:block th:case="emp">
-    	 <tfoot align="left" colspan="2">
-    		<td colspan="2">
-				<span onclick="fieldCkPop()">매물 현장 확인</span>
-    		</td>
-    	</tfoot>
-    	</th:block>
-    	</span>
-    	</span>
-    </table>
-    </form>
 
-    <form  th:object="${memberDTO}" enctype="multipart/form-data">
-	<input type="hidden" name="accountAddress" id="accountAddress" th:value="${memberDTO.accountAddress}">
-	<div th:object="${estateCommand}">
-	<input type="hidden" name="estateName" id="estateName" th:value="${estateCommand.estateName}">
+				<table border=1>
+					<tr>
+						<th>매물 번호</th>
+						<td>[[${estateCommand.estateNum}]]</td>
+					</tr>
+
+					<tr>
+						<th>이미지</th>
+						<td><th:block
+								th:each="estatePic : ${#strings.arraySplit(estateCommand.estatePic,'-')}">
+								<img th:src="|/estate/upload/${estatePic}|" width="500px" />
+								<br />
+							</th:block></td>
+					</tr>
+					<tr>
+						<th>등록일</th>
+						<td><span
+							th:text="${#dates.format(estateCommand.estateRegiDate,'yyyy-MM-dd')}"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>이름</th>
+						<td>[[${estateCommand.estateName}]]</td>
+					</tr>
+					<tr>
+						<th>주소</th>
+						<td>[[${estateCommand.estateAddr}]]</td>
+					</tr>
+					<tr>
+						<th>가격</th>
+						<td>[[${estateCommand.estatePrice}]]</td>
+					</tr>
+					<tr>
+						<th>매물 정보</th>
+						<td>[[${estateCommand.estateInfo}]]</td>
+					</tr>
+					<tr>
+						<th>상세 설명</th>
+						<td>[[${estateCommand.estateExplain}]]</td>
+					</tr>
+					<tr>
+						<th>옵션</th>
+						<td th:object="${estCommand}"><input type="checkbox"
+							name="airConditioner" id="airConditioner"
+							th:checked="${estCommand.airConditioner=='Y'}"
+							disabled="disabled" />에어컨&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
+							type="checkbox" name="washer" id="washer"
+							th:checked="${estCommand.washer=='Y'}" disabled="disabled" />세탁기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" name="bed" id="bed"
+							th:checked="${estCommand.bed=='Y'}" disabled="disabled" />침대
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" name="desk"
+							id="desk" th:checked="${estCommand.desk=='Y'}"
+							disabled="disabled" />책상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
+							type="checkbox" name="closet" id="closet"
+							th:checked="${estCommand.closet=='Y'}" disabled="disabled" />옷장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" name="tv" id="tv"
+							th:checked="${estCommand.tv=='Y'}" disabled="disabled" />TV&nbsp;<br />
+							<input type="checkbox" name="shoeShelf" id="shoeShelf"
+							th:checked="${estCommand.shoeShelf=='Y'}" disabled="disabled" />신발장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" name="refrigerator" id="refrigerator"
+							th:checked="${estCommand.refrigerator=='Y'}" disabled="disabled" />냉장고&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" name="gasStove" id="gasStove"
+							th:checked="${estCommand.gasStove=='Y'}" disabled="disabled" />가스레인지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" name="induction" id="induction"
+							th:checked="${estCommand.induction=='Y'}" disabled="disabled" />인덕션&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" name="microwave" id="microwave"
+							th:checked="${estCommand.microwave=='Y'}" disabled="disabled" />전자레인지&nbsp;
+							<br /> <input type="checkbox" name="doorLock" id="doorLock"
+							th:checked="${estCommand.doorLock=='Y'}" disabled="disabled" />전자
+							도어락&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox"
+							name="bidet" id="bidet" th:checked="${estCommand.bidet=='Y'}"
+							disabled="disabled" />비데</td>
+					</tr>
+					<span th:if="${session.authInfoDTO != null}"> <span
+						th:switch="${session.authInfoDTO.grade}"> <th:block
+								th:case="mem">
+								<span
+									th:if="${reProcess} == null or ${reProcess.reportProcess.equals('N')}">
+									<tfoot align="center" colspan="2">
+										<tr>
+											<td colspan="2"><a
+												th:href="|../estateModify?estateNum=${estateCommand.estateNum}|">매물
+													수정</a> <span> | </span> <a
+												th:href="|../estateDelete?estateNum=${estateCommand.estateNum}|">매물
+													삭제</a> <span> | </span> <a th:href="|../estateList|">매물 리스트</a>
+												<span> | </span> <a
+												th:href="|../../report/reportWrite?estateNum=${estateCommand.estateNum}|">신고하기</a>
+
+											</td>
+										</tr>
+									</tfoot>
+								</span>
+							</th:block> <th:block th:case="emp">
+								<tfoot align="left" colspan="2">
+									<td colspan="2"><span onclick="fieldCkPop()">매물 현장
+											확인</span></td>
+								</tfoot>
+							</th:block>
+					</span>
+					</span>
+				</table>
+			</form>
+
+
+			<form th:object="${memberDTO}" enctype="multipart/form-data">
+				<input type="hidden" name="accountAddress" id="accountAddress"
+					th:value="${memberDTO.accountAddress}">
+				<div th:object="${estateCommand}">
+					<input type="hidden" name="estateName" id="estateName"
+						th:value="${estateCommand.estateName}">
+				</div>
+				<span th:if="${session.authInfoDTO != null}"> <span
+					th:switch="${session.authInfoDTO.grade}"> <th:block
+							th:case="mem"></th:block> <span
+						th:if="${reProcess} == null or ${reProcess.reportProcess.equals('N')}">
+							<table border=1>
+								<tr>
+									<td>계약서 등록</td>
+									<td><input type="file" name="contractPDF" id="contractPDF"
+										multiple="multiple" />
+									<hr> <input type="file" onchange="onFileSelected(event)">(PrimaryKey)</td>
+									<br>
+									<button type="button" onclick="UploadIMG()">PDF등록하기</button>
+									</td>
+								</tr>
+							</table>
+							
+					</span>
+				</span>
+				</span>
+				<script type="text/javascript"
+					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ea3c6e54b06c79a07b748acf502fd530&libraries=services"></script>
+				<script>
+					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+					mapOption = {
+						center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+						level : 2
+					// 지도의 확대 레벨
+					};
+
+					// 지도를 생성합니다    
+					var map = new kakao.maps.Map(mapContainer, mapOption);
+
+					// 주소-좌표 변환 객체를 생성합니다
+					var geocoder = new kakao.maps.services.Geocoder();
+
+					var estateAddr;
+
+					// 주소로 좌표를 검색합니다
+					geocoder
+							.addressSearch(
+									'[[${estateCommand.estateAddr}]]',
+									function(result, status) {
+
+										// 정상적으로 검색이 완료됐으면 
+										if (status === kakao.maps.services.Status.OK) {
+
+											var coords = new kakao.maps.LatLng(
+													result[0].y, result[0].x);
+
+											// 결과값으로 받은 위치를 마커로 표시합니다
+											var marker = new kakao.maps.Marker(
+													{
+														map : map,
+														position : coords
+													});
+
+											// 인포윈도우로 장소에 대한 설명을 표시합니다
+											var infowindow = new kakao.maps.InfoWindow(
+													{
+														content : '<div style="width:100px;text-align:center;padding:6px 0;">[[${estateCommand.estateAddr}]]</div>'
+													});
+											infowindow.open(map, marker);
+
+											// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+											map.setCenter(coords);
+										}
+									});
+				</script>
+			</form>
+
+
+		</div>
+
+		<!-- End page content -->
 	</div>
-	    <table border=1>
-	    	<tr>
-	    		<td>
-	    			계약서 등록
-	    		</td>
-	    		<td>
-	    			<input type="file" name="contractPDF" id="contractPDF" multiple="multiple"/><hr>
-	    			<input type="file" onchange="onFileSelected(event)">(PrimaryKey)</td><br>
-	    			<button type="button" onclick="UploadIMG()">PDF등록하기</button>
-	    		</td>
-	    	</tr>
-	    </table>
-    </form>
-    </span>
-  </div>
-  
-<!-- End page content -->
-</div>
 
-<!-- W3.CSS Container -->
-<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
+	<!-- W3.CSS Container -->
+	<div class="w3-light-grey w3-container w3-padding-32"
+		style="margin-top: 75px; padding-right: 58px">
+		<p class="w3-right">
+			Powered by <a href="https://www.w3schools.com/w3css/default.asp"
+				title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a>
+		</p>
+	</div>
 
 </body>
 </html>

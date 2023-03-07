@@ -146,7 +146,7 @@ public class EstateController {
 	@RequestMapping("estateDelete")
 	public String estateDelete(@RequestParam(value = "estateNum")String estateNum, HttpServletRequest request) {
 		estateDeleteService.execute(estateNum, request);
-		return "redirect:estateList";
+		return "thymeleaf/estate/estateList";
 	}
 	/**
 	 * 파일 삭제 서비스
@@ -175,5 +175,17 @@ public class EstateController {
 	@RequestMapping(value = "fieldCkOk", method = RequestMethod.POST)
 	public void fieldCkDone(@RequestParam(value = "estateNum")String estateNum,FieldCheckCommand fieldCheckCommand) {
 		fieldCkService.execute(estateNum, fieldCheckCommand);
+	}
+	
+	@RequestMapping(value = "estDelPage")
+	public String estDelPage(@RequestParam(value = "estateNum")String estateNum, Model model) {
+		estateDetailService.execute(estateNum, model);
+		return "thymeleaf/estate/estDel";
+	}
+	
+	@RequestMapping(value = "estBuy")
+	public String estBuy(@RequestParam(value = "estateNum")String estateNum, Model model) {
+		estateDetailService.execute(estateNum, model);
+		return "thymeleaf/estate/estBuy";
 	}
 }

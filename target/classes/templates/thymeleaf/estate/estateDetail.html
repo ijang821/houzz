@@ -23,7 +23,6 @@ a {
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="/static/js/MyConfig.js"></script>
 <script type="text/javascript" src="/static/js/houzzScript.js"></script>
-
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
 
 <script>
@@ -215,11 +214,13 @@ geocoder.addressSearch('경기 성남시 분당구 대왕판교로 477', functio
 	         
 				<a th:href="|../estateModify?estateNum=${estateCommand.estateNum}|">매물 수정</a>
 				<span> | </span>
-				<a th:href="|../estateDelete?estateNum=${estateCommand.estateNum}|">매물 삭제</a>
+				<a th:href="|../estDelPage?estateNum=${estateCommand.estateNum}|">매물 삭제</a>
 				<span> | </span>
-				<a th:href="|../estateList|">매물 리스트</a> <span> | </span>
+				<a th:href="|../estateList|">매물 리스트</a>
+				<span> | </span>
 				<a th:href="|../../report/reportWrite?estateNum=${estateCommand.estateNum}|">신고하기</a>
-	    	
+	    		<span> | </span>
+				<a th:href="|../estBuy?estateNum=${estateCommand.estateNum}|">계약하기</a>
     		</td>
     		</tr>
     	</tfoot>
@@ -258,7 +259,8 @@ geocoder.addressSearch('경기 성남시 분당구 대왕판교로 477', functio
     </form>
     </span>
   </div>
-  
+  <hr>
+ 
 <!-- End page content -->
 </div>
 

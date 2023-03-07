@@ -33,7 +33,7 @@ function onFileSelected(event){
 		console.log(event.target.result);
 		privateKey = event.target.result;
 	};
-	reader.readAdText(file);
+	reader.readAsText(file);
 }
 
 var dataURI;

@@ -454,6 +454,102 @@ const MYNFT_ABI = [
 
 const HOUZZ_ABI = [
 	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_owner",
+				"type": "address"
+			}
+		],
+		"name": "getHouzzsCountOfOwner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_houzzId",
+				"type": "uint256"
+			},
+			{
+				"name": "_to",
+				"type": "address"
+			},
+			{
+				"name": "_v",
+				"type": "string"
+			},
+			{
+				"name": "_r",
+				"type": "string"
+			},
+			{
+				"name": "_s",
+				"type": "string"
+			}
+		],
+		"name": "finalizeHouzz",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_owner",
+				"type": "address"
+			}
+		],
+		"name": "getHouzzsOf",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getCount",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_houzzId",
+				"type": "uint256"
+			}
+		],
+		"name": "deleteHouzz",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [
 			{
@@ -498,6 +594,57 @@ const HOUZZ_ABI = [
 		],
 		"payable": false,
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "houzzs",
+		"outputs": [
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "price",
+				"type": "uint256"
+			},
+			{
+				"name": "metadata",
+				"type": "string"
+			},
+			{
+				"name": "tokenId",
+				"type": "uint256"
+			},
+			{
+				"name": "repoAddress",
+				"type": "address"
+			},
+			{
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"name": "v",
+				"type": "string"
+			},
+			{
+				"name": "r",
+				"type": "string"
+			},
+			{
+				"name": "s",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -556,120 +703,6 @@ const HOUZZ_ABI = [
 		"inputs": [
 			{
 				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "houzzs",
-		"outputs": [
-			{
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"name": "price",
-				"type": "uint256"
-			},
-			{
-				"name": "metadata",
-				"type": "string"
-			},
-			{
-				"name": "tokenId",
-				"type": "uint256"
-			},
-			{
-				"name": "repoAddress",
-				"type": "address"
-			},
-			{
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"name": "v",
-				"type": "string"
-			},
-			{
-				"name": "r",
-				"type": "string"
-			},
-			{
-				"name": "s",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_houzzId",
-				"type": "uint256"
-			},
-			{
-				"name": "_to",
-				"type": "address"
-			},
-			{
-				"name": "_v",
-				"type": "string"
-			},
-			{
-				"name": "_r",
-				"type": "string"
-			},
-			{
-				"name": "_s",
-				"type": "string"
-			}
-		],
-		"name": "finalizeHouzz",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getCount",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_owner",
-				"type": "address"
-			}
-		],
-		"name": "getHouzzsOf",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
 				"type": "address"
 			},
 			{
@@ -678,25 +711,6 @@ const HOUZZ_ABI = [
 			}
 		],
 		"name": "houzzOwner",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_owner",
-				"type": "address"
-			}
-		],
-		"name": "getHouzzsCountOfOwner",
 		"outputs": [
 			{
 				"name": "",
@@ -748,11 +762,10 @@ const HOUZZ_ABI = [
 	}
 ]
 
-
 const GAS_AMOUNT=500000;
 
 
-const MYNFT_CA = "0x28b9c8Aa32150d3AfEe7ED4a1fC9E5f3B12545Bd";
-const HOUZZ_CA = "0xB0fFB3eCB29B1f21baE748d1EbB613630c49fCdc";
+const MYNFT_CA = "0x31a09a817Ef47dD719695eDB4f218bfaDEdeA50E";
+const HOUZZ_CA = "0x032fCE6b80f7A9032Fe518a71ed93e48e994B544";
 
 

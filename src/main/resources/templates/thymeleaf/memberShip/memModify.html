@@ -33,9 +33,9 @@
                     extraRoadAddr = ' (' + extraRoadAddr + ')';
                 }
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample4_postcode').value = data.zonecode;
+                //document.getElementById('sample4_postcode').value = data.zonecode;
                 document.getElementById("sample4_roadAddress").value = roadAddr;                
-                
+                /*
                 // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
                 if(roadAddr !== ''){
                     document.getElementById("sample4_extraAddress").value = extraRoadAddr;
@@ -52,6 +52,7 @@
                     guideTextBox.innerHTML = '';
                     guideTextBox.style.display = 'none';
                 }
+                */
             }
         }).open();
     }
@@ -141,7 +142,7 @@ function w3_close() {
 				
 				<input type="hidden" name="memberPwCon" value="12341234!q"> 
 				
-				<table width='600' align='center' border='1'>
+				<table width='600' align="left" border='1'>
 					<tfoot>
 						<tr>
 							<th colspan="2"><input type='submit' value='수정완료'
@@ -212,11 +213,6 @@ function w3_close() {
 								style="color: red" th:if="${#fields.hasErrors('memberAddr')}"
 								th:errors="*{memberAddr}"></span></td>
 						</tr>
-						<tr>
-							<th><label for="sample4_postcode">우편번호</label></th>
-							<td><input type="text" id="sample4_postcode" name="sample4_postcode"></td>
-						</tr>
-
 						<tr>
 							<th><label for="memberPhone">연락처</label></th>
 							<td><input type='tel' size='26' maxlength='13'

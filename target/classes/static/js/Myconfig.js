@@ -1,4 +1,37 @@
-const MYNFT_ABI = [
+const MYNFT_ABI =[
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "name",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "getApproved",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
 	{
 		"constant": false,
 		"inputs": [
@@ -12,6 +45,87 @@ const MYNFT_ABI = [
 			}
 		],
 		"name": "approve",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "totalSupply",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_from",
+				"type": "address"
+			},
+			{
+				"name": "_to",
+				"type": "address"
+			},
+			{
+				"name": "_tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "transferFrom",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_owner",
+				"type": "address"
+			},
+			{
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "tokenOfOwnerByIndex",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_from",
+				"type": "address"
+			},
+			{
+				"name": "_to",
+				"type": "address"
+			},
+			{
+				"name": "_tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "safeTransferFrom",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -36,44 +150,108 @@ const MYNFT_ABI = [
 		"type": "function"
 	},
 	{
-		"constant": false,
+		"constant": true,
 		"inputs": [
-			{
-				"name": "_to",
-				"type": "address"
-			},
 			{
 				"name": "_tokenId",
 				"type": "uint256"
-			},
+			}
+		],
+		"name": "exists",
+		"outputs": [
 			{
-				"name": "_tokenURI",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "tokenByIndex",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "ownerOf",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_owner",
+				"type": "address"
+			}
+		],
+		"name": "balanceOf",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "symbol",
+		"outputs": [
+			{
+				"name": "",
 				"type": "string"
 			}
 		],
-		"name": "registerUniqueToken",
-		"outputs": [],
 		"payable": false,
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_from",
-				"type": "address"
-			},
-			{
 				"name": "_to",
 				"type": "address"
 			},
 			{
-				"name": "_tokenId",
-				"type": "uint256"
+				"name": "_approved",
+				"type": "bool"
 			}
 		],
-		"name": "safeTransferFrom",
+		"name": "setApprovalForAll",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -113,36 +291,60 @@ const MYNFT_ABI = [
 				"type": "address"
 			},
 			{
-				"name": "_approved",
-				"type": "bool"
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"name": "_tokenURI",
+				"type": "string"
 			}
 		],
-		"name": "setApprovalForAll",
+		"name": "registerUniqueToken",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
-		"constant": false,
+		"constant": true,
 		"inputs": [
-			{
-				"name": "_from",
-				"type": "address"
-			},
-			{
-				"name": "_to",
-				"type": "address"
-			},
 			{
 				"name": "_tokenId",
 				"type": "uint256"
 			}
 		],
-		"name": "transferFrom",
-		"outputs": [],
+		"name": "tokenURI",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
 		"payable": false,
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_owner",
+				"type": "address"
+			},
+			{
+				"name": "_operator",
+				"type": "address"
+			}
+		],
+		"name": "isApprovedForAll",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -247,308 +449,10 @@ const MYNFT_ABI = [
 		],
 		"name": "ApprovalForAll",
 		"type": "event"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_owner",
-				"type": "address"
-			}
-		],
-		"name": "balanceOf",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "exists",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "getApproved",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_owner",
-				"type": "address"
-			},
-			{
-				"name": "_operator",
-				"type": "address"
-			}
-		],
-		"name": "isApprovedForAll",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "name",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "ownerOf",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "symbol",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_index",
-				"type": "uint256"
-			}
-		],
-		"name": "tokenByIndex",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_owner",
-				"type": "address"
-			},
-			{
-				"name": "_index",
-				"type": "uint256"
-			}
-		],
-		"name": "tokenOfOwnerByIndex",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "tokenURI",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "totalSupply",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
 	}
 ]
 
 const HOUZZ_ABI = [
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_owner",
-				"type": "address"
-			}
-		],
-		"name": "getHouzzsCountOfOwner",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_houzzId",
-				"type": "uint256"
-			},
-			{
-				"name": "_to",
-				"type": "address"
-			},
-			{
-				"name": "_v",
-				"type": "string"
-			},
-			{
-				"name": "_r",
-				"type": "string"
-			},
-			{
-				"name": "_s",
-				"type": "string"
-			}
-		],
-		"name": "finalizeHouzz",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_owner",
-				"type": "address"
-			}
-		],
-		"name": "getHouzzsOf",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getCount",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_houzzId",
-				"type": "uint256"
-			}
-		],
-		"name": "deleteHouzz",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
 	{
 		"constant": false,
 		"inputs": [
@@ -561,7 +465,7 @@ const HOUZZ_ABI = [
 				"type": "uint256"
 			},
 			{
-				"name": "_houzzTitle",
+				"name": "_auctionTitle",
 				"type": "string"
 			},
 			{
@@ -585,7 +489,7 @@ const HOUZZ_ABI = [
 				"type": "string"
 			}
 		],
-		"name": "createHouzz",
+		"name": "createAuction",
 		"outputs": [
 			{
 				"name": "",
@@ -600,62 +504,11 @@ const HOUZZ_ABI = [
 		"constant": true,
 		"inputs": [
 			{
-				"name": "",
+				"name": "_auctionId",
 				"type": "uint256"
 			}
 		],
-		"name": "houzzs",
-		"outputs": [
-			{
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"name": "price",
-				"type": "uint256"
-			},
-			{
-				"name": "metadata",
-				"type": "string"
-			},
-			{
-				"name": "tokenId",
-				"type": "uint256"
-			},
-			{
-				"name": "repoAddress",
-				"type": "address"
-			},
-			{
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"name": "v",
-				"type": "string"
-			},
-			{
-				"name": "r",
-				"type": "string"
-			},
-			{
-				"name": "s",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_houzzId",
-				"type": "uint256"
-			}
-		],
-		"name": "getHouzzById",
+		"name": "getAuctionById",
 		"outputs": [
 			{
 				"name": "name",
@@ -703,6 +556,120 @@ const HOUZZ_ABI = [
 		"inputs": [
 			{
 				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "auctions",
+		"outputs": [
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "price",
+				"type": "uint256"
+			},
+			{
+				"name": "metadata",
+				"type": "string"
+			},
+			{
+				"name": "tokenId",
+				"type": "uint256"
+			},
+			{
+				"name": "repoAddress",
+				"type": "address"
+			},
+			{
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"name": "v",
+				"type": "string"
+			},
+			{
+				"name": "r",
+				"type": "string"
+			},
+			{
+				"name": "s",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_auctionId",
+				"type": "uint256"
+			},
+			{
+				"name": "_to",
+				"type": "address"
+			},
+			{
+				"name": "_v",
+				"type": "string"
+			},
+			{
+				"name": "_r",
+				"type": "string"
+			},
+			{
+				"name": "_s",
+				"type": "string"
+			}
+		],
+		"name": "finalizeAuction",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getCount",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_owner",
+				"type": "address"
+			}
+		],
+		"name": "getAuctionsOf",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
 				"type": "address"
 			},
 			{
@@ -710,7 +677,26 @@ const HOUZZ_ABI = [
 				"type": "uint256"
 			}
 		],
-		"name": "houzzOwner",
+		"name": "auctionOwner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_owner",
+				"type": "address"
+			}
+		],
+		"name": "getAuctionsCountOfOwner",
 		"outputs": [
 			{
 				"name": "",
@@ -736,11 +722,11 @@ const HOUZZ_ABI = [
 			},
 			{
 				"indexed": false,
-				"name": "_houzzId",
+				"name": "_auctionId",
 				"type": "uint256"
 			}
 		],
-		"name": "HouzzCreated",
+		"name": "AuctionCreated",
 		"type": "event"
 	},
 	{
@@ -753,19 +739,19 @@ const HOUZZ_ABI = [
 			},
 			{
 				"indexed": false,
-				"name": "_houzzId",
+				"name": "_auctionId",
 				"type": "uint256"
 			}
 		],
-		"name": "HouzzFinalized",
+		"name": "AuctionFinalized",
 		"type": "event"
 	}
 ]
 
+
 const GAS_AMOUNT=500000;
 
 
-const MYNFT_CA = "0x31a09a817Ef47dD719695eDB4f218bfaDEdeA50E";
-const HOUZZ_CA = "0x032fCE6b80f7A9032Fe518a71ed93e48e994B544";
-
+const MYNFT_CA = "0xb6D8f4ed20f876cf22B185CAF202F085cb5b38dd";
+const HOUZZ_CA = "0x1ac1a5CC5E5a72bfc21028D3c10390CEA16bE4cE";
 

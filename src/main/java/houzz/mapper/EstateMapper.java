@@ -20,4 +20,5 @@ public interface EstateMapper {
 	public OptionsDTO selectOptOne(String estateNum);
 	public Integer updateOptions(OptionsDTO opDTO);
 	public Integer fieldCk(FieldCheckDTO fieldCheckDTO);
+	public FieldCheckDTO selectOne1(String estateNum);
 }

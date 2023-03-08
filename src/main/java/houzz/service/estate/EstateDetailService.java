@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import houzz.domain.EstateDTO;
+import houzz.domain.FieldCheckDTO;
 import houzz.domain.MemberDTO;
 import houzz.domain.OptionsDTO;
 import houzz.domain.ReportDTO;
@@ -20,6 +21,7 @@ public class EstateDetailService {
 	ReportMapper reportMapper;
 	@Autowired
 	MemberMapper memberMapper;
+	
 	public void execute(String estateNum, Model model ) {
 		EstateDTO estDTO = estateMapper.selectOne(estateNum);
 		OptionsDTO optDTO = estateMapper.selectOptOne(estateNum);
@@ -28,6 +30,11 @@ public class EstateDetailService {
 		model.addAttribute("estCommand", optDTO);
 		model.addAttribute("memberDTO", memberDTO);
 		System.out.println("이거다 !!!!"+estDTO);
+		
+		FieldCheckDTO fieldCheckDTO = estateMapper.selectOne1(estateNum);	
+		model.addAttribute("fieldCheckDTO",fieldCheckDTO);
+		System.out.println(fieldCheckDTO);
+		
 		
 		ReportDTO reportDTO = reportMapper.selectOne(estateNum);
 		model.addAttribute("reProcess",reportDTO);

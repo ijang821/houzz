@@ -77,4 +77,12 @@
 		insert into FIELD_CHECK(ESTATE_NUM, FIELD_CK_DATE, FIELD_CK_OK)
 		values(#{estateNum}, sysdate, 'Y')
 	</insert>
+	
+	<select id="selectOne1" parameterType="string" resultType="fieldCheckDTO">
+	     select FIELD_CK_DATE fieldCkDate, FIELD_CK_OK fieldCkOk
+	     from field_check
+	     where estate_num = #{estateNum}
+	</select>
+	
+	
 </mapper>

@@ -40,9 +40,9 @@ $(function(){
 	        url : "/estate/fieldCkOk", 
 	        data : {"estateNum": estateNum}, 
 	        success : function(){
+	        	
 	        	window.self.close(); 
-	        	parent.reload();
-	        	console.log($("#estateNum").val());
+	        	opener.document.location.reload();
 	        },
 	        error:function(){
 	        	window.self.close(); 

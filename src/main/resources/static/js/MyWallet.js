@@ -111,20 +111,21 @@ function finalizeHouzz(){
 
 
 function deleteHouzz() {
-	console.log("account ::::::::::   "+account);
+	console.log("$('#selectedAuction').val() ::::::::::   "+$("#selectedAuction").val());
 	console.log("web3.eth.defaultAccount :::::"+web3.eth.defaultAccount);
-	ciHOUZZ.methods.deleteHouzz(account)
-					.send({ from: account, gas: GAS_AMOUNT })
+	toAddress = "0x75f6d5D7E5D3C9b2FD312328537c6bE20765FDb6";
+	ciHOUZZ.methods.deleteHouzz($("#selectedAuction").val(), toAddress)
+					.call({ from: account, gas: GAS_AMOUNT })
 					.then((result) => {
 				console.log('deleteHouzzresult : ' + result);
-				
 				$.ajax({
 					type: "post",
 					url: "estateDelete",
-					data: { "estateNum": "[[${estateCommand.estateNum}]]" },
+					data: { "estateNum": $("#estateNum").val() },
 					dataType: "text",
 					success: function(result) {
 						alert("삭제가 완료되었습니다.")
+						location.href="/estate/estateList"
 					},
 					error: function() {
 						alert("에러");

@@ -98,6 +98,7 @@ function createHouzz(){
 	console.log("$('#estateName').val() :"+ $("#estateName").val());
 	console.log("tokenId : " + tokenId);
 	console.log("MYNFT_CA : " + MYNFT_CA);
+	console.log("HOUZZ_CA : " + HOUZZ_CA);
 	auContractInstance.methods.createHouzz(MYNFT_CA, tokenId, $("#estateName").val()
 		, dataURI, price, signature.v, signature.r, signature.s)
 		.send({ from: account, gas: GAS_AMOUNT })
@@ -116,7 +117,7 @@ function registerUniqueToken(contractInstance, account, tokenId, dataURI){
                 console.log("result",result);
                 if(result.transactionHash){
                     alert("Token registered...!");
-                    $("#isRegistered").css("display", "");
+                    $("#isRegistered").css("display", ""); 
                 }
             });
 }

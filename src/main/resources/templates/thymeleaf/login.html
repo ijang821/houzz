@@ -29,11 +29,8 @@ a{
 	text-decoration-line : none;
 }
 table, tr, td {
-    border: collapse;
+    border: none;
     padding: 13px;
-}
-table{
-	width:400px;
 }
 tr {
     display: table-row;
@@ -44,8 +41,24 @@ tr {
 td {
     display: table-cell;
     vertical-align: inherit;
-    width: 144px;
+    width: 400px;
 }
+.loginbtn, .file-input {
+    background: #4caf50;
+    margin-left: 10px;
+}
+.allbutton {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #fff;
+    opacity: 0.7;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.allbutton:hover {
+    opacity: 1;
+} 
 </style>
 <script>
 
@@ -119,7 +132,7 @@ function w3_close() {
 <!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-hide-large w3-green w3-xlarge w3-padding">
   <a href="javascript:void(0)" class="w3-button w3-green w3-margin-right" onclick="w3_open()">☰</a>
-  <span>Company Name</span>
+  <span>HOUZZ</span>
 </header>
 
 <!-- Overlay effect when opening sidebar on small screens -->
@@ -143,24 +156,36 @@ function w3_close() {
 	<form action="/login/loginPro" name="frm" id="frm" method="post" th:object="${loginCommand}">
 		<table border="1" align="center" width="70%" height="70%">
 		     <tr>
-				<td colspan="3" align="center" style="background-color: green">
+				<td colspan="3" align="center" style="background-color: #4CAF50">
 				<h1 style="color : white">Houzz</h1></td>		
 			<tr>
-				<td align="center" ><input type="text" name="userId" id="userId" placeholder="아이디" th:value="${loginCommand.userId}"/>
+				<td align="center" ><input type="text" name="userId" id="userId" placeholder="아이디" th:value="${loginCommand.userId}" style ="
+											border: none;
+									     	padding: 10px 15px; 
+									    	border-radius: 20px;
+									    	box-shadow: 0px 0px 5px #60686196;
+									    	width: 600px;"/>
 				  <br />	<span style="color:red" th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
 				</td>	
 			</tr>
 			<tr>
-				<td align="center"><input type="password" name="userPw" id="userPw" placeholder="비밀번호" th:value="${loginCommand.userPw}">
+				<td align="center"><input type="password" name="userPw" id="userPw" placeholder="비밀번호" th:value="${loginCommand.userPw}" style ="
+											border: none;
+									     	padding: 10px 15px; 
+									    	border-radius: 20px;
+									    	box-shadow: 0px 0px 5px #60686196;
+									    	width: 600px;">
 				<br /><span style="color:red" th:if="${#fields.hasErrors('userPw')}" th:errors="*{userPw}"></span>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="3" align="left" style="color : black">
-				       <input type="submit" value="로그인"> 
+				       <input type="submit" class="allbutton loginbtn" value="로그인"> 
 				       <br />
 				       <hr/>
-				<input type="file" onchange="onFileSelected(event)">(인증성 로그인)</td>		
+				       <label for="file-input" class="file-input-label">
+					   <input type="file" class="allbutton file-input" onchange="onFileSelected(event)">(인증성 로그인)</td>
+					   </label>		
 			<tr>
 				<td colspan="3">자동 로그인 <input type="checkbox" name="autoLogin" />
 					&nbsp;&nbsp;&nbsp;&nbsp; 아이디 저장 <input type="checkbox"

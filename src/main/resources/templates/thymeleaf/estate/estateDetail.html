@@ -38,6 +38,45 @@ body {
 a {
 	text-decoration-line: none;
 }
+table, tr, td {
+    border: none;
+    padding: 13px;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    text: align;
+}
+td {
+    display: table-cell;
+    vertical-align: inherit;
+    width: 144px;
+}
+th {
+	border:none;
+	background: #4eaf52eb;
+    color: #fff;
+	font-size: 17px;
+   	font-weight: 600;
+    letter-spacing: 2px;
+}
+.btn {
+    background: #4caf50;
+    margin-left: 10px;
+}
+.allbutton {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #fff;
+    opacity: 0.7;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.allbutton:hover {
+    opacity: 1;
+} 
 </style>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="/static/js/MyConfig.js"></script>
@@ -257,12 +296,12 @@ a {
 						th:if="${reProcess} == null or ${reProcess.reportProcess.equals('N')}">
 							<table border=1>
 								<tr>
-									<td>계약서 등록</td>
+									<th>계약서 등록</th>
 									<td><input type="file" name="contractPDF" id="contractPDF"
 										multiple="multiple" />
 									<hr> <input type="file" onchange="onFileSelected(event)">(PrimaryKey)</td>
 									<br>
-									<button type="button" onclick="UploadIMG()">PDF등록하기</button>
+									<button type="button" class="allbutton btn" onclick="UploadIMG()">PDF등록하기</button>
 									</td>
 								</tr>
 							</table>

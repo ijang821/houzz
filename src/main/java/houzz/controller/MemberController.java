@@ -80,7 +80,7 @@ public class MemberController {
 	 */
 	@Autowired
 	MemberDetailService memberDetailService;
-	@RequestMapping(value = "memberDetail/")
+	@RequestMapping(value = "memberDetail/{memberNum}")
 	public String memberDetail(MemberCommand memberCommand, Model model) {
 		memberDetailService.execute(memberCommand, model);
 		return "thymeleaf/member/memberDetail";

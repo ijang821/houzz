@@ -79,11 +79,12 @@ function w3_close() {
 			<td>이름</td>
 			<td>아이디</td>
 			<td>생일</td>
-		    <td><input type="submit" class="allbutton delbtn" value="삭제"></td>	
+		    <td><input type="submit" class="allbutton delbtn" value="직원퇴사"></td>	
 		</tr>
 		<tr th:each="empDTO : ${list}">
 			<td>
-				<a th:href="|employeeDetail/${empDTO.empNum}|">[[${empDTO.empNum}]]</a>
+				<a th:href="|employeeDetail/${empDTO.empNum}|">
+				<b style="text-decoration-line:underline;">[[${empDTO.empNum}]]</b></a>
 			</td>
 			<td>
 		    <span th:if="${empDTO.departmentNum == '101'}" th:text="101.인사팀" ></span> 

@@ -297,7 +297,7 @@ function w3_close() {
                 </form>
 				
 				<button onclick="location.href='/'" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">돌아가기</button>
-					
+				
                 </div>
             </section>
 			

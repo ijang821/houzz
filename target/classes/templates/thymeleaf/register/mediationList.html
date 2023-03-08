@@ -122,8 +122,8 @@ a{
 					</tr>
 					<tr th:each="MediationDTO : ${list}">
 						<td><a
-							th:href="|mediationDetail/${MediationDTO.mediationNum}|">[[${MediationDTO.mediationNum}
-								]]</a></td>
+							th:href="|mediationDetail/${MediationDTO.mediationNum}|">
+							<b style="text-decoration-line : underline;">  [[${MediationDTO.mediationNum}]]</b></a></td>
 
 						<td>[[${MediationDTO.ceoName} ]]</td>
 						<td>[[${MediationDTO.mediationPhone} ]]</td>

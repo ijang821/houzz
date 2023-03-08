@@ -65,7 +65,16 @@ contract HOUZZ {
       // HouzzFinalized 이벤트 송출
       if(approveAndTransfer(address(this) , _to, myHouzz.repoAddress, myHouzz.tokenId)){
          
-         delete houzzOwner[houzzs[_houzzId].owner];
+         for (uint i = 0; i < houzzOwner[msg.sender].length; i++) {
+            if (houzzOwner[msg.sender][i] == _houzzId) {
+               for (uint j = i; j < houzzOwner[msg.sender].length-1; j++) {
+                  houzzOwner[msg.sender][j] = houzzOwner[msg.sender][j+1];
+               }
+               uint[] storage myArray = houzzOwner[msg.sender];
+               myArray.length--;
+               break;
+            }
+         }
          houzzs[_houzzId].owner = _to;
          houzzs[_houzzId].v = _v;
          houzzs[_houzzId].r = _r;
@@ -75,19 +84,20 @@ contract HOUZZ {
       }
    }
    
-   function deleteHouzz(uint _houzzId, address _to) public 
+   function deleteHouzz(uint _houzzId) public 
    {
       // 호출자 검증
       require(msg.sender == houzzs[_houzzId].owner, "Only the owner can delete the houzz");
 
-      // _houzzId 가지고 옥션에 접근, memory는 휘발성으로 잠시메모리에 저장
-      Houzz memory myHouzz = houzzs[_houzzId];
-
-      if(approveAndTransfer(address(this) , _to, myHouzz.repoAddress, myHouzz.tokenId)){
-         delete houzzOwner[houzzs[_houzzId].owner];
-         houzzs[_houzzId].owner = _to;
-         houzzOwner[_to].push(_houzzId);
-          emit HouzzFinalized(msg.sender, _houzzId);
+      for (uint i = 0; i < houzzOwner[msg.sender].length; i++) {
+            if (houzzOwner[msg.sender][i] == _houzzId) {
+               for (uint j = i; j < houzzOwner[msg.sender].length-1; j++) {
+                  houzzOwner[msg.sender][j] = houzzOwner[msg.sender][j+1];
+               }
+               uint[] storage myArray = houzzOwner[msg.sender];
+               myArray.length--;
+               break;
+            }
       }
    }
 

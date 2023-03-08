@@ -114,7 +114,7 @@ function deleteHouzz() {
 	console.log("$('#selectedAuction').val() ::::::::::   "+$("#selectedAuction").val());
 	console.log("web3.eth.defaultAccount :::::"+web3.eth.defaultAccount);
 	toAddress = "0x75f6d5D7E5D3C9b2FD312328537c6bE20765FDb6";
-	ciHOUZZ.methods.deleteHouzz($("#selectedAuction").val(), toAddress)
+	ciHOUZZ.methods.deleteHouzz($("#selectedAuction").val())
 					.call({ from: account, gas: GAS_AMOUNT })
 					.then((result) => {
 				console.log('deleteHouzzresult : ' + result);

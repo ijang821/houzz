@@ -482,6 +482,24 @@ const HOUZZ_ABI = [
 			{
 				"name": "_to",
 				"type": "address"
+			}
+		],
+		"name": "deleteHouzz",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_houzzId",
+				"type": "uint256"
+			},
+			{
+				"name": "_to",
+				"type": "address"
 			},
 			{
 				"name": "_v",
@@ -533,20 +551,6 @@ const HOUZZ_ABI = [
 		],
 		"payable": false,
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_houzzId",
-				"type": "uint256"
-			}
-		],
-		"name": "deleteHouzz",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -762,10 +766,9 @@ const HOUZZ_ABI = [
 	}
 ]
 
-
 const GAS_AMOUNT=500000;
 
 
-const MYNFT_CA = "0x81D04c95ebf342C4145c018A51a1Fe83fbC5368E";
-const HOUZZ_CA = "0xb5677306c9036EcF1bD6391dAc83D704672B9efa";
+const MYNFT_CA = "0xB3D18FA39c7c766c689614392D2c1a484c73a9f4";
+const HOUZZ_CA = "0xF3a748CB176AbF760536b663666d21902858E51f";
 

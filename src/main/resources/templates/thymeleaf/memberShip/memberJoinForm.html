@@ -91,6 +91,45 @@ body {
 a{
 	text-decoration-line : none;
 }
+table, tr, td {
+    border: none;
+    padding: 13px;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    text: align;
+}
+td {
+    display: table-cell;
+    vertical-align: inherit;
+    width: 144px;
+}
+th {
+	border:none;
+	background: #4eaf52eb;
+    color: #fff;
+	font-size: 17px;
+   	font-weight: 600;
+    letter-spacing: 2px;
+}
+.btn {
+    background: #4caf50;
+    margin-left: 10px;
+}
+.allbutton {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #fff;
+    opacity: 0.7;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.allbutton:hover {
+    opacity: 1;
+} 
 </style>
 
 <script>
@@ -183,7 +222,7 @@ a{
 		class="w3-container w3-top w3-hide-large w3-green w3-xlarge w3-padding">
 		<a href="javascript:void(0)"
 			class="w3-button w3-green w3-margin-right" onclick="w3_open()">☰</a>
-		<span>Company Name</span>
+		<span>HOUZZ</span>
 	</header>
 
 	<!-- Overlay effect when opening sidebar on small screens -->
@@ -216,11 +255,11 @@ a{
 				<table width='600' align='center' border='1'>
 					<tfoot>
 						<tr>
-							<th colspan="2">
-								<input type='submit' value='가입완료'id="submit" />&nbsp;&nbsp; 
-								<input type='reset' value='다시 입력' />&nbsp;&nbsp;
-								<input type='button' value='가입 안함' onclick="javascript:location.href='/'" />
-							</th>
+							<td align="center" colspan="2">
+								<input type='submit' class="allbutton btn" value='가입완료'id="submit" />&nbsp;&nbsp; 
+								<input type='reset' class="allbutton btn" value='다시 입력' />&nbsp;&nbsp;
+								<input type='button' class="allbutton btn" value='가입 안함' onclick="javascript:location.href='/'" />
+							</td>
 						</tr>
 					</tfoot>
 					<tbody>

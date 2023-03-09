@@ -43,7 +43,7 @@ td {
     vertical-align: inherit;
     width: 400px;
 }
-.loginbtn, .file-input {
+.loginbtn{
     background: #4caf50;
     margin-left: 10px;
 }
@@ -179,18 +179,17 @@ function w3_close() {
 				</td>
 			</tr>
 			<tr>
-				<td colspan="3" align="left" style="color : black">
+				<td colspan="3" align="center" style="color : black">
 				       <input type="submit" class="allbutton loginbtn" value="로그인"> 
 				       <br />
 				       <hr/>
-				       <label for="file-input" class="file-input-label">
-					   <input type="file" class="allbutton file-input" onchange="onFileSelected(event)">(인증성 로그인)</td>
-					   </label>		
+					   <input type="file"  onchange="onFileSelected(event)">(인증성 로그인)</td>	
 			<tr>
-				<td colspan="3">자동 로그인 <input type="checkbox" name="autoLogin" />
-					&nbsp;&nbsp;&nbsp;&nbsp; 아이디 저장 <input type="checkbox"
-					name="idStore" th:checked="${loginCommand.idStore != null && loginCommand.idStore}"/>
-					&nbsp;&nbsp;
+				<td colspan="3">
+					<div align="center">
+					자동 로그인 <input type="checkbox" name="autoLogin" />&nbsp;&nbsp;&nbsp;&nbsp; 
+					아이디 저장 <input type="checkbox" name="idStore" th:checked="${loginCommand.idStore != null && loginCommand.idStore}"/>&nbsp;&nbsp;
+					</div>
 				</td>
 		</table>
 		<table align="center">

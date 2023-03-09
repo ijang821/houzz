@@ -39,7 +39,64 @@ body {
 a{
 	text-decoration-line : none;
 }
-
+table, tr, td {
+    border: none;
+    padding: 13px;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    text: align;
+}
+td {
+    display: table-cell;
+    vertical-align: inherit;
+    width: 144px;
+}
+th {
+	border:none;
+	background: #4eaf52eb;
+    color: #fff;
+	font-size: 17px;
+   	font-weight: 600;
+    letter-spacing: 2px;
+}
+a.button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color:#4caf50;
+  color: #FFFFFF;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  opacity: 0.7;
+  cursor: pointer;
+   transition: 0.2s;
+}
+a.button:hover {
+  opacity: 1;
+}
+.searchbtn {
+    background: #4caf50;
+    margin-left: 10px;
+}
+.delbtn{
+	background: red;
+    margin-left: 10px;
+}
+.allbutton {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #fff;
+    opacity: 0.7;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.allbutton:hover {
+    opacity: 1;
+} 
 </style>
 <script>
 	// Script to open and close sidebar
@@ -75,7 +132,7 @@ a{
 		class="w3-container w3-top w3-hide-large w3-green w3-xlarge w3-padding">
 		<a href="javascript:void(0)"
 			class="w3-button w3-green w3-margin-right" onclick="w3_open()">☰</a>
-		<span>Company Name</span>
+		<span>HOUZZ</span>
 	</header>
 
 	<!-- Overlay effect when opening sidebar on small screens -->
@@ -104,27 +161,36 @@ a{
 			</h1>
 			<hr style="width: 50px; border: 5px solid green" class="w3-round">
 			<form action="reportList" method="get">
-			<input type="search" name ="reportWord" size="50" th:value="${reportWord}" placeholder="신고글 검색..."/>
-			<input type="submit" value="검색" />
+			<input type="search" name ="reportWord" size="50" th:value="${reportWord}" placeholder="신고글 검색..."
+					style ="border: none;
+				     	padding: 10px 15px; 
+				    	border-radius: 20px;
+				    	box-shadow: 0px 0px 5px #60686196;
+				    	width: 600px;"/>
+			<input type="submit" class="allbutton searchbtn" value="검색" />
 			</form>
 			<br />
 			<form action="reportDels" method="post">
 			<table border=1>
 				<tr>
-					<td>신고번호</td>
-					<td>매물번호</td>
-					<td>제목</td>
-					<td>신고 처리 여부</td>
+					<th>신고번호</th>
+					<th>매물번호</th>
+					<th>제목</th>
+					<th>신고 처리 여부</th>
 					<span th:if="${session.authInfoDTO != null}"> 
 	                <span th:switch="${session.authInfoDTO.grade}">
 	                <th:block th:case="emp">
-					<td><input type="submit" value="삭제"></td>
+					<th><input type="submit" class="allbutton delbtn" value="삭제"></th>
 					</th:block>
 				 </tr>
 				 <br />
 				 <tr th:each ="reportDTO : ${list}">
-					<td><b style="text-decoration-line:underline"><a th:href="|reportDetail/${reportDTO.reportNum}|">
-					                            [[${reportDTO.reportNum}]]</a></b></td>
+					<td>
+						<b style="text-decoration-line:underline">
+						<a class="button" th:href="|reportDetail/${reportDTO.reportNum}|">
+					    [[${reportDTO.reportNum}]]</a>
+					    </b>
+					</td>
 					<td>[[${reportDTO.estateNum}]]</td>
 					<td>[[${reportDTO.reportTitle}]]</td>
 					<td><span th:if="${reportDTO.reportProcess == 'Y'}" th:text="Y"></span> 

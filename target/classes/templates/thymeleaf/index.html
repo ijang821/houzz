@@ -49,10 +49,14 @@ tr {
     border-color: inherit;
     text: align;
 }
+
 td {
     display: table-cell;
     vertical-align: inherit;
     width: 144px;
+}
+.box {
+  margin-bottom: 20px;
 }
 </style>
 <script>
@@ -134,43 +138,43 @@ td {
     
     <div class="w3-bar-block"> 
        <span th:if="${session.authInfoDTO != null}">
-    <a href="/login/logout" class="w3-bar-item w3-button w3-hover-white">HOUZZ 로그아웃</a>
+    	<a href="/login/logout" class="w3-bar-item w3-button w3-hover-white box">HOUZZ 로그아웃</a>
       </div>
         
   <div class="w3-bar-block" >    
         <span th:if="${session.authInfoDTO != null}"> 
 	    <span th:switch="${session.authInfoDTO.grade}">
 	  
-		<th:block th:case="mem" >
-        &nbsp;<li class="w3-padding-16"><a href="memDetail">내정보 보기</a></li>
-              <li class="w3-padding-16"><a href="memPass">비밀번호 수정</a></li>
-              <li class="w3-padding-16"><a href="memModify">내정보 수정</a></li>
-              <li class="w3-padding-16"><a href="inquiryList">문의하기</a></li>  
-              <li class="w3-padding-16"><a href="/report/reportList">신고목록</a></li>  
-              <li class="w3-padding-16"><a href="/estate/estateList">매물</a></li> 
-              <li class="w3-padding-16"><a href="memDelete1">회원 탈퇴</a></li>
-              <li class="w3-padding-16"><a href="advertise">결제</a></li>
+		<th:block th:case="mem" > 
+      		  <a class="w3-bar-item w3-button w3-hover-white box" href="memDetail">내정보 보기</a>
+              <a class="w3-bar-item w3-button w3-hover-white box" href="memPass">비밀번호 수정</a>
+              <a class="w3-bar-item w3-button w3-hover-white box" href="memModify">내정보 수정</a>
+              <a class="w3-bar-item w3-button w3-hover-white box" href="inquiryList">문의하기</a>
+              <a class="w3-bar-item w3-button w3-hover-white box" href="/report/reportList">신고목록</a>  
+              <a class="w3-bar-item w3-button w3-hover-white box" href="/estate/estateList">매물</a>
+              <a class="w3-bar-item w3-button w3-hover-white box" href="memDelete1">회원 탈퇴</a>
+              <a class="w3-bar-item w3-button w3-hover-white box" href="advertise">결제</a>
         </th:block>
          
         <th:block th:case="med">
-              <li class="w3-padding-16"><a href="mediationDetail">내정보 보기</a></li>             
-              <li class="w3-padding-16"><a href="mediationModify">내정보 수정</a></li>
-              <li class="w3-padding-16"><a href="mediationPass">비밀번호 수정</a></li>
-              <li class="w3-padding-16"><a href="/estate/estateList">매물리스트</a></li> 
-              <li class="w3-padding-16"><a href="medDelete">공인중개소 폐업</a></li>
+              <a class="w3-bar-item w3-button w3-hover-white box" href="mediationDetail">내정보 보기</a>         
+              <a class="w3-bar-item w3-button w3-hover-white box" href="mediationModify">내정보 수정</a>
+              <a class="w3-bar-item w3-button w3-hover-white box" href="mediationPass">비밀번호 수정</a>
+              <a class="w3-bar-item w3-button w3-hover-white box" href="/estate/estateList">매물리스트</a>
+              <a class="w3-bar-item w3-button w3-hover-white box" href="medDelete">공인중개소 폐업</a>
         </th:block>
         
         <th:block th:case="emp">
-              <li class="w3-padding-16"><a href="empInfoUpdate">내정보 보기</a></li>
-              <li class="w3-padding-16"><a href="employeeModify">내정보 수정</a></li>
-              <li class="w3-padding-16"><a href="empPass">비밀번호 변경</a></li>               
-              <li class="w3-padding-16"><a href="/employee/empList">직원 관리</a></li>             
-              <li class="w3-padding-16"><a href="/member/memberList">회원 관리</a></li>
-              <li class="w3-padding-16"><a href="inquiryList">문의글 목록</a></li>  
-              <li class="w3-padding-16"><a href="/report/reportList">신고목록</a></li>  
-              <li class="w3-padding-16"><a href="/department/departmentList">부서 관리</a></li>   
-              <li class="w3-padding-16"><a href="/estate/estateList">매물 관리</a></li>
-              <li class="w3-padding-16"><a href="/register/mediationList">공인 중개소 관리</a></li>
+              <a class="w3-bar-item w3-button w3-hover-white box" href="empInfoUpdate">내정보 보기</a>
+              <a class="w3-bar-item w3-button w3-hover-white box" href="employeeModify">내정보 수정</a>
+              <a class="w3-bar-item w3-button w3-hover-white box" href="empPass">비밀번호 변경</a>             
+              <a class="w3-bar-item w3-button w3-hover-white box" href="/employee/empList">직원 관리</a>            
+              <a class="w3-bar-item w3-button w3-hover-white box" href="/member/memberList">회원 관리</a>
+              <a class="w3-bar-item w3-button w3-hover-white box" href="inquiryList">문의글 목록</a>
+              <a class="w3-bar-item w3-button w3-hover-white box" href="/report/reportList">신고목록</a> 
+              <a class="w3-bar-item w3-button w3-hover-white box" href="/department/departmentList">부서 관리</a> 
+              <a class="w3-bar-item w3-button w3-hover-white box" href="/estate/estateList">매물 관리</a>
+              <a class="w3-bar-item w3-button w3-hover-white box" href="/register/mediationList">공인 중개소 관리</a>
         </th:block>
   </div>
 </nav>

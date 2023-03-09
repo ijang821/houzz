@@ -72,6 +72,22 @@ body {font-size:16px;}
 a{
 	text-decoration-line : none;
 }
+.paybtn {
+    background: #4caf50;
+    margin-left: 10px;
+}
+.allbutton {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #fff;
+    opacity: 0.7;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.allbutton:hover {
+    opacity: 1;
+} 
 </style>
 <script>
 // Script to open and close sidebar
@@ -141,7 +157,7 @@ function w3_close() {
                         </ul>
                     </div>
                     <!-- //유의사항 -->
-                    <button onclick="paybtn()" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">결제 요청</button>
+                    <button onclick="paybtn()" class="btn_solid_pri col-6 mx-auto btn_lg allbutton paybtn" style="margin-top:50px">결제 요청</button>
 
                     <form name="" id="SendPayForm_id" method="post" class="mt-5">
                         <div class="row g-3 justify-content-between" style="--bs-gutter-x:0rem;">

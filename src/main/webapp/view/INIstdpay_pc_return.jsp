@@ -171,6 +171,22 @@ body {font-size:16px;}
 a{
 	text-decoration-line : none;
 }
+.btn {
+    background: #4caf50;
+    margin-left: 10px;
+}
+.allbutton {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #fff;
+    opacity: 0.7;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.allbutton:hover {
+    opacity: 1;
+}
 </style>
 <script>
 // Script to open and close sidebar
@@ -288,7 +304,7 @@ function w3_close() {
                     </div>
                 </form>
 				
-				<button onclick="location.href='/'" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">돌아가기</button>
+				<button onclick="location.href='/'" class="btn_solid_pri col-6 mx-auto btn_lg allbutton btn" style="margin-top:50px">돌아가기</button>
                 </div>
             </section>
 			

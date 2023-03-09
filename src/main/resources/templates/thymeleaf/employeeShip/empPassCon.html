@@ -40,6 +40,22 @@ body {
 a {
 	text-decoration-line: none;
 }
+.passCkbtn {
+    background: #4caf50;
+    margin-left: 10px;
+}
+.allbutton {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #fff;
+    opacity: 0.7;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.allbutton:hover {
+    opacity: 1;
+} 
 </style>
 <script>
 	// Script to open and close sidebar
@@ -75,7 +91,7 @@ a {
 		class="w3-container w3-top w3-hide-large w3-green w3-xlarge w3-padding">
 		<a href="javascript:void(0)"
 			class="w3-button w3-green w3-margin-right" onclick="w3_open()">☰</a>
-		<span>Company Name</span>
+		<span>HOUZZ</span>
 	</header>
 
 	<!-- Overlay effect when opening sidebar on small screens -->
@@ -102,13 +118,31 @@ a {
 		<!-- MemberRegist -->
 		<div class="w3-container" id="services" style="margin-top: 75px">
 			<form action="empPwModify" name="frm" id="frm" method="post">
-				현재 비밀번호 : <input type="password" name="oldPw" /> <span
-					th:if="${err_pw != null}" th:text="${err_pw}" style="color: red"></span>
-				<br /> 바꿀 비밀번호 : <input type="password" name="empPw"
-					id="empPw" /> <span th:if="${err_pw_con != null}"
-					th:text="${err_pw_con}" style="color: red"></span> <br /> 비밀번호 확인
-				: <input type="password" name="empPwCon" id="empPwCon" /> <br />
-				<input type="submit" value="비밀번호 변경하기" />
+				<h2 class="w3-xxxlarge w3-text-green">현재 비밀번호</h2>
+				<input type="password" name="oldPw" placeholder="현재 비밀번호를 입력해주세요" style ="
+								border: none;
+						     	padding: 10px 15px; 
+						    	border-radius: 20px;
+						    	box-shadow: 0px 0px 5px #60686196;
+						    	width: 600px;"/> 
+				<span th:if="${err_pw != null}" th:text="${err_pw}" style="color: red"></span>
+				<br /><hr> 
+				<h2 class="w3-xxxlarge w3-text-green">새 비밀번호</h2>
+				<input type="password" name="empPw" id="empPw" placeholder="새 비밀번호를 입력해주세요" style ="
+								border: none;
+						     	padding: 10px 15px; 
+						    	border-radius: 20px;
+						    	box-shadow: 0px 0px 5px #60686196;
+						    	width: 600px;"/> 
+				<span th:if="${err_pw_con != null}" th:text="${err_pw_con}" style="color: red"></span> <br /> 
+				<h2 class="w3-xxxlarge w3-text-green">비밀번호 확인</h2>
+				<input type="password" name="empPwCon" id="empPwCon" placeholder="새 비밀번호 확인을 입력해주세요" style ="
+								border: none;
+						     	padding: 10px 15px; 
+						    	border-radius: 20px;
+						    	box-shadow: 0px 0px 5px #60686196;
+						    	width: 600px;"/> <br /><hr>
+				<input type="submit" class="allbutton passCkbtn" value="비밀번호 변경하기" />
 			</form>
 		</div>
 

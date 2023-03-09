@@ -39,7 +39,64 @@ body {
 a{
 text-decoration-line:none;
 }
-
+table, tr, td {
+    border: none;
+    padding: 13px;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    text: align;
+}
+td {
+    display: table-cell;
+    vertical-align: inherit;
+    width: 144px;
+}
+th {
+	border:none;
+	background: #4eaf52eb;
+    color: #fff;
+	font-size: 17px;
+   	font-weight: 600;
+    letter-spacing: 2px;
+}
+a.button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color:#4caf50;
+  color: #FFFFFF;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  opacity: 0.7;
+  cursor: pointer;
+   transition: 0.2s;
+}
+a.button:hover {
+  opacity: 1;
+}
+.searchbtn {
+    background: #4caf50;
+    margin-left: 10px;
+}
+.delbtn{
+	background: red;
+    margin-left: 10px;
+}
+.allbutton {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #fff;
+    opacity: 0.7;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.allbutton:hover {
+    opacity: 1;
+}
 </style>
 <script>
 	// Script to open and close sidebar
@@ -75,7 +132,7 @@ text-decoration-line:none;
 		class="w3-container w3-top w3-hide-large w3-green w3-xlarge w3-padding">
 		<a href="javascript:void(0)"
 			class="w3-button w3-green w3-margin-right" onclick="w3_open()">☰</a>
-		<span>Company Name</span>
+		<span>HOUZZ</span>
 	</header>
 
 	<!-- Overlay effect when opening sidebar on small screens -->
@@ -96,21 +153,26 @@ text-decoration-line:none;
 			<hr style="width: 50px; border: 5px solid green" class="w3-round">
 		</div>
 		<form action="inquiryList" method="get" >
-		<input type="search" name="inquiryWord" size="50" th:value="${inquiryWord}" placeholder="문의글 검색..."/> 
-		<input type="submit" value="검색" />
+		<input type="search" name="inquiryWord" size="50" th:value="${inquiryWord}" placeholder="문의글 검색..."
+				style ="border: none;
+				     	padding: 10px 15px; 
+				    	border-radius: 20px;
+				    	box-shadow: 0px 0px 5px #60686196;
+				    	width: 600px;"/> 
+		<input type="submit" class="allbutton searchbtn" value="검색" />
 	    </form>
 	    <br/>
 		<form action="inquiryDels" method="post">
 			<table border=1 >
 				<tr>
-					<td>문의글 번호(자동부여)</td>
-					<td>회원 아이디</td>
-					<td>등록일</td>
-					<td>제목</td>
+					<th>문의글 번호(자동부여)</th>
+					<th>회원 아이디</th>
+					<th>등록일</th>
+					<th>제목</th>
 					<span th:if="${session.authInfoDTO != null}"> 
 	                <span th:switch="${session.authInfoDTO.grade}">        
 	                <th:block th:case="emp">
-			        <td><input type="submit" value="강제삭제"></td>
+			        <th><input type="submit" class="allbutton delbtn" value="강제삭제"></td>
 			        </th:block>
 				</tr>
 				<tr th:each="inquiryDTO : ${list}">

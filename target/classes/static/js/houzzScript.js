@@ -9,7 +9,6 @@ window.addEventListener("load", function() {
 						  .catch(error => console.log(error));
 	web3.eth.defaultAccount = $("#accountAddress").val();
 	console.log($("#accountAddress").val());
-	
 	getDefault();
 });
 
@@ -30,6 +29,8 @@ function onFileSelected(event){
 	const file = event.target.files[0];
 	const reader = new FileReader();
 	reader.onload = function(event){
+	const file = event.target.result;
+	const privateKey = decrypt(file, "hello blockchain");
 		console.log(event.target.result);
 		privateKey = event.target.result;
 	};
@@ -133,4 +134,34 @@ function transferToCA(contractInstance,account,tokenId){
 function _getRandomInt(min, max){
 	return Math.floor(Math.random()*(max - min)) +min;
 }
+
+function encrypt() {
+	const message = "23a87964bba8761734409bf8e2ff9cf1a6f57bd96776e3b9e286fe2ca340cabc";
+    const password = "hello blockchain";
+    const salt = CryptoJS.lib.WordArray.random(128 / 8);
+    const key = CryptoJS.PBKDF2(password, salt, { keySize: 256 / 32, iterations: 1000 });
+    const iv = CryptoJS.lib.WordArray.random(128 / 8);
+    const ciphertext = CryptoJS.AES.encrypt(message, key, { iv: iv });
+    const encrypted = salt.toString() + iv.toString() + ciphertext.toString();
+    document.write(encrypted);
+}
+// 복호화
+function decrypt(message,pass) {
+ 	const encrypted = message;
+    const password = pass;
+    const salt = CryptoJS.enc.Hex.parse(encrypted.substr(0, 32));
+    const iv = CryptoJS.enc.Hex.parse(encrypted.substr(32, 32));
+    const ciphertext = encrypted.substring(64);
+    const key = CryptoJS.PBKDF2(password, salt, { keySize: 256 / 32, iterations: 1000 });
+    const decrypted = CryptoJS.AES.decrypt({ ciphertext: CryptoJS.enc.Base64.parse(ciphertext) }, key, { iv: iv }).toString(CryptoJS.enc.Utf8);
+    //$('#decrypted-message-input').val(decrypted);
+  	return decrypted;
+}
+
+
+
+
+
+
+
 
